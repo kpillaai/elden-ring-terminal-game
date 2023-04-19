@@ -15,26 +15,26 @@ import edu.monash.fit2099.engine.weapons.Weapon;
  *
  */
 public class AttackAction extends Action {
-
+	// KEEP NOTE, ALL ATTRIBUTES HAVE BEEN CHANGED FROM PRIVATE TO PROTECTED, AS UNSHEATHE INHERITS FROM ATTACK
 	/**
 	 * The Actor that is to be attacked
 	 */
-	private Actor target;
+	protected Actor target;
 
 	/**
 	 * The direction of incoming attack.
 	 */
-	private String direction;
+	protected String direction;
 
 	/**
 	 * Random number generator
 	 */
-	private Random rand = new Random();
+	protected Random rand = new Random();
 
 	/**
 	 * Weapon used for the attack
 	 */
-	private Weapon weapon;
+	protected Weapon weapon;
 
 	/**
 	 * Constructor.
