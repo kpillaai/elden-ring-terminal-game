@@ -4,8 +4,5 @@ package game;
 
 public interface EnvironmentManager {
     public boolean IsWest();
-    public String
-
-
-
+    public boolean SpawnEnemy();
 }

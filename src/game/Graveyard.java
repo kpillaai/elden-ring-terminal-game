@@ -2,6 +2,7 @@ package game;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
+import edu.monash.fit2099.engine.positions.Location;
 
 /**
  * A class that represents a graveyard.
@@ -10,7 +11,7 @@ import edu.monash.fit2099.engine.positions.Ground;
  * Modified by:
  *
  */
-public class Graveyard extends Ground {
+public class Graveyard extends Ground implements EnvironmentManager {
 	public Graveyard() {
 		super('n');
 	}
@@ -19,18 +20,23 @@ public class Graveyard extends Ground {
 		return actor.hasCapability(Status.HOSTILE_TO_ENEMY);
 	}
 
-	//public boolean isWest(){
-		// if x is less than the middle of the map, then boolean west = true and enemytype is heavy skeletal swordsman
-		// then if x is more than the middle of the map, boolean west = false and enemytype is skeletal bandit
-	//}
-
-	public boolean spawnSkeletalEnemy(){
+	public boolean IsWest() {
+		//if x is less than half of map, enemy type = heavy skeletal swordsman and return TRUE
+		if (Location.x() < 38){
+			String EnemyType = heavyskeletalswordsman;
+					return true;}
+		//if X is more than half of map, enemy type = skeletal bandit and return FALSE
+		String EnemyType = skeletalbandit;
+		return false;
+	}
+	public boolean SpawnEnemy(){
 		int probability = RandomNumberGenerator.getRandomInt(100);
 		if (probability < 27) {
-			//spawn skeleton at this.Location()
+			//spawn enemy type at this.Location()
 			return true;
 		}
 		return false;
 	}
+
 
 }
