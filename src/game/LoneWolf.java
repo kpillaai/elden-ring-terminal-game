@@ -59,7 +59,23 @@ public class LoneWolf extends Actor {
         ActionList actions = new ActionList();
         if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)){
             actions.add(new AttackAction(this, direction));
-            // HINT 1: The AttackAction above allows you to attak the enemy with your intrinsic weapon.
+            // loops through the size of weapon inventory to attack enemy with weapon
+            for(int i = 0; i < otherActor.getWeaponInventory().size(); i++) {
+                actions.add(new AttackAction(this, direction, otherActor.getWeaponInventory().get(i)));
+                // if player has an Uchigatana, allow UnsheatheAction
+                if (otherActor.getWeaponInventory().get(i) instanceof Uchigatana) {
+                    // if (otherActor.getWeaponInventory().contains(new Uchigatana()))
+                    actions.add(new UnsheatheAction(this, direction, new Uchigatana()));
+                }
+
+                // if player has GreatKnife, allow Quickstep
+                // do AttackAction and then QuickstepAction? this would mean Quickstep is just responsible for moving
+                // cant do this, should be one action
+                //if (otherActor.getWeaponInventory().contains(new GreatKnife())) {
+                    // actions.add(new QuickstepAction()
+                //}
+            }
+            // HINT 1: The AttackAction above allows you to attack the enemy with your intrinsic weapon.
             // HINT 1: How would you attack the enemy with a weapon?
         }
         return actions;

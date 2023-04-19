@@ -2,6 +2,7 @@ package game;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
@@ -18,6 +19,7 @@ import edu.monash.fit2099.engine.positions.World;
 public class Application {
 
 	public static void main(String[] args) {
+		// test comment 12:56pm 17/04
 
 		World world = new World(new Display());
 
@@ -60,9 +62,8 @@ public class Application {
 				exception.printStackTrace();
 			}
 		}
-
-		gameMap.at(23, 17).addActor(new LoneWolf());
-
+		// (23, 17)
+		gameMap.at(36, 11).addActor(new LoneWolf());
 		// HINT: what does it mean to prefer composition to inheritance?
 		Player player = new Player("Tarnished", '@', 300);
 		world.addPlayer(player, gameMap.at(36, 10));
