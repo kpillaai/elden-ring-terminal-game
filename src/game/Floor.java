@@ -14,7 +14,7 @@ public class Floor extends Ground {
 	public Floor() {
 		super('_');
 	}
-	//test commit
+
 
 	@Override
 	public boolean canActorEnter(Actor actor) {
