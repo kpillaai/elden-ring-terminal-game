@@ -26,9 +26,9 @@ public class HeavySkeletalSwordsman extends Enemy implements Skeleton{
      * @param displayChar The character that represents the enemy
      * @param hitPoints   The number of hit points (HP) this enemy has
      */
-    public HeavySkeletalSwordsman(String name, char displayChar, int hitPoints, boolean isPileOfBones) {
+    public HeavySkeletalSwordsman(){
         super("Heavy Skeletal Swordsman", 'q', 153);
-        this.isPileOfBones = isPileOfBones;
+        this.isPileOfBones = false;
         this.addWeaponToInventory(new Grossmesser());
     }
 
