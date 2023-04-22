@@ -75,6 +75,10 @@ public abstract class Enemy extends Actor{
                     // if (otherActor.getWeaponInventory().contains(new Uchigatana()))
                     actions.add(new UnsheatheAction(this, direction, new Uchigatana()));
                 }
+                if (otherActor.getWeaponInventory().get(i) instanceof GreatKnife) {
+                    actions.add(new QuickstepAction(this, direction, new GreatKnife()));
+                    // actions.add(new MoveActorAction())
+                }
 
                 // if player has GreatKnife, allow Quickstep
                 // do AttackAction and then QuickstepAction? this would mean Quickstep is just responsible for moving
