@@ -46,7 +46,7 @@ public abstract class Enemy extends Actor{
             if(action != null)
                 return action;
         }
-        return new DoNothingAction();
+        return new DoNothingAction(); // need to change this to random action
     }
 
     /**
