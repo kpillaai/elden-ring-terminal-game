@@ -1,6 +1,8 @@
 package game;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-
+import edu.monash.fit2099.engine.actions.*;
+import edu.monash.fit2099.engine.actors.*;
+import edu.monash.fit2099.engine.positions.*;
 /**
  * BEHOLD, DOG!
  *
