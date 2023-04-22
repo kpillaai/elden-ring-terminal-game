@@ -68,7 +68,7 @@ public class Application {
 		Player player = new Player("Tarnished", '@', 300);
 
 		// Add newly implemented things here
-		player.getItemInventory().add(new Runes());
+		player.addItemToInventory(new Runes());
 		world.addPlayer(player, gameMap.at(36, 10));
 
 		HeavySkeletalSwordsman heavySkeletalSwordsman = new HeavySkeletalSwordsman();

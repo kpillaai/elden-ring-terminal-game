@@ -30,6 +30,7 @@ public class HeavySkeletalSwordsman extends Enemy implements Skeleton{
         super("Heavy Skeletal Swordsman", 'q', 153);
         this.isPileOfBones = false;
         this.addWeaponToInventory(new Grossmesser());
+        super.setRuneDropValues(35, 892);
     }
 
     @Override // not sure if a skeleton has an intrinsic weapon or what its meant to be
