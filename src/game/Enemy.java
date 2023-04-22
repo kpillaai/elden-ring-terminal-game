@@ -17,7 +17,7 @@ public abstract class Enemy extends Actor{
     /**
      * List of behaviours an enemy can perform
      */
-    private Map<Integer, Behaviour> behaviours = new HashMap<>();
+    public Map<Integer, Behaviour> behaviours = new HashMap<>();
 
     /**
      * Abstract constructor for Enemy class

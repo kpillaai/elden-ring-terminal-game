@@ -68,6 +68,16 @@ public class Application {
 		Player player = new Player("Tarnished", '@', 300);
 		world.addPlayer(player, gameMap.at(36, 10));
 
+		// Add newly implemented things here
+		HeavySkeletalSwordsman heavySkeletalSwordsman = new HeavySkeletalSwordsman();
+		heavySkeletalSwordsman.behaviours.put(1, new AOEAttackActionBehaviour(heavySkeletalSwordsman.getWeaponInventory().get(0)));
+		gameMap.at( 36, 9).addActor(heavySkeletalSwordsman);
+
+		GiantCrab giantCrab = new GiantCrab();
+		giantCrab.behaviours.put(1, new AOEAttackActionBehaviour(giantCrab.getIntrinsicWeapon()));
+		gameMap.at( 40, 12).addActor(new GiantCrab());
+
+
 		world.run();
 	}
 }
