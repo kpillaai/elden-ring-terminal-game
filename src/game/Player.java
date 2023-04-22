@@ -15,7 +15,7 @@ import edu.monash.fit2099.engine.displays.Menu;
  * Modified by:
  *
  */
-public class Player extends Actor implements Resettable {
+public class Player extends Actor implements Resettable{
 
 	private final Menu menu = new Menu();
 
