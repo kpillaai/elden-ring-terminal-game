@@ -22,20 +22,19 @@ public class Graveyard extends Ground implements EnvironmentManager {
 
 	public boolean IsWest() {
 		//if x is less than half of map, enemy type = heavy skeletal swordsman and return TRUE
-		if (Location.x() < 38){
-			String EnemyType = heavyskeletalswordsman;
+		if (location.x() < 38){
+			String EnemyType = heavySkeletalswordsman;
 					return true;}
 		//if X is more than half of map, enemy type = skeletal bandit and return FALSE
 		String EnemyType = skeletalbandit;
 		return false;
 	}
-	public boolean SpawnEnemy(){
+	@Override
+	public void tick(Location location){
 		int probability = RandomNumberGenerator.getRandomInt(100);
 		if (probability < 27) {
-			//spawn enemy type at this.Location()
-			return true;
+			gameMap.at(x,y).addActor(EnemyType);
 		}
-		return false;
 	}
 
 
