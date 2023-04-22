@@ -20,6 +20,11 @@ public abstract class Enemy extends Actor{
     public Map<Integer, Behaviour> behaviours = new HashMap<>();
 
     /**
+     * Range of values runes can drop for each enemy
+     */
+    private int[] runeDropValues;
+
+    /**
      * Abstract constructor for Enemy class
      * @param name Name of the enemy
      * @param displayChar The character that represents the enemy
@@ -91,5 +96,16 @@ public abstract class Enemy extends Actor{
     @Override
     public IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(0, "attacks", 100);
+    }
+
+    /**
+     *
+     */
+    public int[] getRuneDropValues(){
+        return this.runeDropValues;
+    }
+
+    public void setRuneDropValues(int min, int max) {
+        this.runeDropValues = new int[]{min, max};
     }
 }
