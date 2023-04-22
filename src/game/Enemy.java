@@ -17,7 +17,7 @@ public abstract class Enemy extends Actor{
     /**
      * List of behaviours an enemy can perform
      */
-    private Map<Integer, Behaviour> behaviours = new HashMap<>();
+    public Map<Integer, Behaviour> behaviours = new HashMap<>();
 
     /**
      * Abstract constructor for Enemy class
@@ -46,7 +46,7 @@ public abstract class Enemy extends Actor{
             if(action != null)
                 return action;
         }
-        return new DoNothingAction();
+        return new DoNothingAction(); // need to change this to random action
     }
 
     /**
@@ -62,13 +62,24 @@ public abstract class Enemy extends Actor{
         ActionList actions = new ActionList();
         if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)){
             actions.add(new AttackAction(this, direction));
-            // HINT 1: The AttackAction above allows you to attak the enemy with your intrinsic weapon.
-            // HINT 1: How would you attack the enemy with a weapon?
-            // Since otherActor may have weapons, this is stored inside an ArrayList attribute weaponInventory
-            // By looping through each item in weaponInventory, we add an action for each weapon
-            for(int i = 0; i < otherActor.getWeaponInventory().size(); i++){
+            // loops through the size of weapon inventory to attack enemy with weapon
+            for(int i = 0; i < otherActor.getWeaponInventory().size(); i++) {
                 actions.add(new AttackAction(this, direction, otherActor.getWeaponInventory().get(i)));
+                // if player has an Uchigatana, allow UnsheatheAction
+                if (otherActor.getWeaponInventory().get(i) instanceof Uchigatana) {
+                    // if (otherActor.getWeaponInventory().contains(new Uchigatana()))
+                    actions.add(new UnsheatheAction(this, direction, new Uchigatana()));
+                }
+
+                // if player has GreatKnife, allow Quickstep
+                // do AttackAction and then QuickstepAction? this would mean Quickstep is just responsible for moving
+                // cant do this, should be one action
+                //if (otherActor.getWeaponInventory().contains(new GreatKnife())) {
+                // actions.add(new QuickstepAction()
+                //}
             }
+            // HINT 1: The AttackAction above allows you to attack the enemy with your intrinsic weapon.
+            // HINT 1: How would you attack the enemy with a weapon?
         }
         return actions;
     }

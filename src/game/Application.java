@@ -17,7 +17,7 @@ import edu.monash.fit2099.engine.positions.World;
  *
  */
 public class Application {
-
+// committing new branch renaming
 	public static void main(String[] args) {
 		// test comment 12:56pm 17/04
 
@@ -67,6 +67,16 @@ public class Application {
 		// HINT: what does it mean to prefer composition to inheritance?
 		Player player = new Player("Tarnished", '@', 300);
 		world.addPlayer(player, gameMap.at(36, 10));
+
+		// Add newly implemented things here
+		HeavySkeletalSwordsman heavySkeletalSwordsman = new HeavySkeletalSwordsman();
+		heavySkeletalSwordsman.behaviours.put(1, new AOEAttackActionBehaviour(heavySkeletalSwordsman.getWeaponInventory().get(0)));
+		gameMap.at( 36, 9).addActor(heavySkeletalSwordsman);
+
+		GiantCrab giantCrab = new GiantCrab();
+		giantCrab.behaviours.put(1, new AOEAttackActionBehaviour(giantCrab.getIntrinsicWeapon()));
+		gameMap.at( 40, 12).addActor(new GiantCrab());
+
 
 		world.run();
 	}

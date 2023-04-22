@@ -11,7 +11,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
  * An action executed if an actor is killed.
  * Created by:
  * @author Adrian Kristanto
- * Modified by:
+ * Modified by: Zilei Chen
  *
  */
 public class DeathAction extends Action {
@@ -24,7 +24,8 @@ public class DeathAction extends Action {
     /**
      * When the target is killed, the items & weapons carried by target
      * will be dropped to the location in the game map where the target was
-     *
+     * If there are special interaction on death such as skeletons turning into a Pile of Bones it will also perform
+     * those actions
      * @param target The actor performing the action.
      * @param map The map the actor is on.
      * @return result of the action to be displayed on the UI
@@ -32,6 +33,13 @@ public class DeathAction extends Action {
     @Override
     public String execute(Actor target, GameMap map) {
         String result = "";
+
+        if(target instanceof Skeleton){
+            if(!((Skeleton) target).getIsPileOfBones()){
+               result = ((Skeleton) target).updatePileOfBones();
+               return result;
+            }
+        }
 
         ActionList dropActions = new ActionList();
         // drop all items
