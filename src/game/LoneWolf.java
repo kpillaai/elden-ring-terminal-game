@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
  * Modified by: Zilei Chen
  *
  */
-public class LoneWolf extends Enemy {
+public class LoneWolf extends Enemy{
 
     public LoneWolf() {
         super("Lone Wolf", 'h', 102);
