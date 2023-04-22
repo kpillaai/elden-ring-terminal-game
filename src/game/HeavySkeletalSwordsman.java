@@ -29,11 +29,12 @@ public class HeavySkeletalSwordsman extends Enemy implements Skeleton{
     public HeavySkeletalSwordsman(String name, char displayChar, int hitPoints, boolean isPileOfBones) {
         super("Heavy Skeletal Swordsman", 'q', 153);
         this.isPileOfBones = isPileOfBones;
+        this.addWeaponToInventory(new Grossmesser());
     }
 
-    @Override
+    @Override // not sure if a skeleton has an intrinsic weapon or what its meant to be
     public IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(97, "swings", 95);
+        return new IntrinsicWeapon(97, "hits", 95);
     }
 
     /**

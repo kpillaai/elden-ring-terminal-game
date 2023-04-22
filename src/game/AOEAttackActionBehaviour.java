@@ -6,18 +6,17 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SlamAttackActionBehaviour extends AttackAction implements Behaviour{
+public class AOEAttackActionBehaviour extends AttackAction implements Behaviour{
 
     /**
-     * The constructor for SlamAttackActionBehaviour, no attributes are used since the inherited constructor requires
-     * attributes that are redundant in this class.
+     * The constructor for AOEAttackActionBehaviour, only WeaponItem parameter is used since the inherited constructor
+     * requires some attributes that are redundant in this class.
      */
-    public SlamAttackActionBehaviour() {
-        super(null, null);
+    public AOEAttackActionBehaviour(Weapon weapon) {
+        super(null, null, weapon);
     }
 
     /**
@@ -47,7 +46,7 @@ public class SlamAttackActionBehaviour extends AttackAction implements Behaviour
         for ( String key : directions.keySet()){
             Actor attackTarget = map.getActorAt(directions.get(key));
             if (attackTarget != null){
-                AttackAction attack = new AttackAction(attackTarget, key);
+                AttackAction attack = new AttackAction(attackTarget, key, this.weapon);
                 executeString += attack.execute(actor, map) + "/n";
             }
         }
