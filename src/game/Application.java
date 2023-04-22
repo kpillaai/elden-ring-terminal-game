@@ -66,9 +66,11 @@ public class Application {
 		gameMap.at(36, 11).addActor(new LoneWolf());
 		// HINT: what does it mean to prefer composition to inheritance?
 		Player player = new Player("Tarnished", '@', 300);
-		world.addPlayer(player, gameMap.at(36, 10));
 
 		// Add newly implemented things here
+		player.getItemInventory().add(new Runes());
+		world.addPlayer(player, gameMap.at(36, 10));
+
 		HeavySkeletalSwordsman heavySkeletalSwordsman = new HeavySkeletalSwordsman();
 		heavySkeletalSwordsman.behaviours.put(1, new AOEAttackActionBehaviour(heavySkeletalSwordsman.getWeaponInventory().get(0)));
 		gameMap.at( 36, 9).addActor(heavySkeletalSwordsman);
