@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.NumberRange;
 
 
 /**
@@ -23,8 +24,8 @@ public class Graveyard extends Environment {
 		return actor.hasCapability(Status.HOSTILE_TO_ENEMY);
 	}
 
-	public String getEnemyType(Location location) {
-		if (location.x() < 38) {
+	public String getEnemyType() {
+		if (this.x < 38) {
 			enemyType = "heavySkeletalSwordsman";
 		} else {
 			enemyType = "skeletalBandit";
@@ -35,12 +36,13 @@ public class Graveyard extends Environment {
 	public void tick(Location location) {
 		int probability = RandomNumberGenerator.getRandomInt(100);
 		if (probability < 27) {
-			String enemyType = getEnemyType(location);
+			String enemyType = getEnemyType();
 			Enemy newEnemy;
 			if (enemyType.equals("heavySkeletalSwordsman")) {
 				newEnemy = new HeavySkeletalSwordsman();
 			} else {
-				newEnemy = new SkeletalBandit();
+				//newEnemy = new SkeletalBandit();
+				newEnemy = new HeavySkeletalSwordsman();
 			}
 			gameMap.at(location.x(), location.y()).addActor(newEnemy);
 		}
