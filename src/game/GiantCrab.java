@@ -6,6 +6,7 @@ public class GiantCrab extends Enemy{
     public GiantCrab(){
         super("Giant Crab", 'c', 407);
         super.setRuneDropValues(318, 4961);
+        this.behaviours.put(1, new AOEAttackActionBehaviour(this.getIntrinsicWeapon()));
     }
 
     @Override
