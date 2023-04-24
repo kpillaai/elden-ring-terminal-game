@@ -15,6 +15,7 @@ public class Floor extends Ground {
 		super('_');
 	}
 
+
 	@Override
 	public boolean canActorEnter(Actor actor) {
 		return actor.hasCapability(Status.HOSTILE_TO_ENEMY);
