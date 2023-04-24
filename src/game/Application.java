@@ -77,7 +77,7 @@ public class Application {
 
 		GiantCrab giantCrab = new GiantCrab();
 		giantCrab.behaviours.put(1, new AOEAttackActionBehaviour(giantCrab.getIntrinsicWeapon()));
-		gameMap.at( 40, 12).addActor(new GiantCrab());
+		gameMap.at( 36, 12).addActor(giantCrab);
 
 
 		world.run();
