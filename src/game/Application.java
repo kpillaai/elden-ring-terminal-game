@@ -78,6 +78,7 @@ public class Application {
 		giantCrab.behaviours.put(1, new AOEAttackActionBehaviour(giantCrab.getIntrinsicWeapon()));
 		gameMap.at( 36, 12).addActor(giantCrab);
 
+		ResetManager resetManager = ResetManager.getInstance();
 
 		world.run();
 	}
