@@ -50,8 +50,7 @@ public class Application {
 				"..####__###..................................................._.....__.#...",
 				"..............................................................###..__###...",
 				"...........................................................................");
-		GenerateMap gameMap = new GenerateMap(groundFactory, map);
-		gameMap.updateMap();
+		GameMap gameMap = new GameMap(groundFactory, map);
 		world.addGameMap(gameMap);
 
 		// BEHOLD, ELDEN RING
