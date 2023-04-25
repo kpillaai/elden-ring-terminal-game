@@ -30,6 +30,8 @@ public class Player extends Actor implements Resettable{
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addWeaponToInventory(new Club()); // remove if adding weapon when selecting class
+		this.addItemToInventory(new Runes());
+		this.addItemToInventory(new FlaskOfCrimsonTears());
 	}
 
 	@Override

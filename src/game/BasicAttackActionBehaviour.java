@@ -41,6 +41,6 @@ public class BasicAttackActionBehaviour extends AttackAction implements Behaviou
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {
-        return null;
+        return this;
     }
 }
