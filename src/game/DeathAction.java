@@ -63,7 +63,12 @@ public class DeathAction extends Action {
         for (Action drop : dropActions)
             drop.execute(target, map);
         // remove actor
-        map.removeActor(target);
+        if(target instanceof Player){
+            //respawn him in site of lost grace
+        }
+        else{
+            map.removeActor(target);
+        }
         result += System.lineSeparator() + menuDescription(target);
         return result;
     }

@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.items.Item;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class FlaskOfCrimsonTears extends Item {
@@ -20,6 +21,7 @@ public class FlaskOfCrimsonTears extends Item {
      */
     public FlaskOfCrimsonTears() {
         super("Flask of Crimson Tears", 'f', false);
+        this.addAction(new ConsumeAction(this));
     }
 
     public int getHealAmount() {
@@ -35,8 +37,8 @@ public class FlaskOfCrimsonTears extends Item {
 
     @Override
     public List<Action> getAllowableActions() {
-        if (this.usesLeft > 0){
-            this.addAction(new ConsumeAction(this));
+        if (this.usesLeft == 0){
+            this.removeAction(new ConsumeAction(this));
         }
         return super.getAllowableActions();
     }
