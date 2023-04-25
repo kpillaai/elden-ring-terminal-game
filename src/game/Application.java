@@ -79,6 +79,8 @@ public class Application {
 		giantCrab.behaviours.put(1, new AOEAttackActionBehaviour(giantCrab.getIntrinsicWeapon()));
 		gameMap.at( 36, 12).addActor(giantCrab);
 
+		MerchantKale merchantKale = new MerchantKale("Merchant Kale", 'K', 500);
+		gameMap.at( 38, 9).addActor(merchantKale);
 
 		world.run();
 	}
