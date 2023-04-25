@@ -14,6 +14,13 @@ public class ResetManager {
     private List<Resettable> resettables;
     private static ResetManager instance;
 
+    public static ResetManager getInstance() {
+        if(instance == null){
+            instance = new ResetManager();
+        }
+        return instance;
+    }
+
     /**
      * HINT 1: where have we seen a private constructor before?
      * HINT 2: see the instance attribute above.
