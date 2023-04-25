@@ -42,12 +42,12 @@ public class AOEAttackActionBehaviour extends AttackAction implements Behaviour{
         directions.put("west", map.at(xCord-1, yCord));
         directions.put("north west", map.at(xCord-1, yCord+1));
 
-        String executeString = "";
+        String executeString = "The " + actor + " " + this.weapon.verb() + " in all directions.";
         for ( String key : directions.keySet()){
             Actor attackTarget = map.getActorAt(directions.get(key));
             if (attackTarget != null){
                 AttackAction attack = new AttackAction(attackTarget, key, this.weapon);
-                executeString += attack.execute(actor, map) + "/n";
+                executeString += " \n" + attack.execute(actor, map);
             }
         }
         return executeString;
