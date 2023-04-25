@@ -23,7 +23,7 @@ public class Application {
 
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Graveyard(), new GustOfWind(), new PuddleOfWater());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Graveyard(), new GustOfWind(), new PuddleOfWater(), new SiteOfLostGrace());
 
 		List<String> map = Arrays.asList(
 				"...........................................................................",
@@ -36,7 +36,7 @@ public class Application {
 				"............&&&............................................................",
 				"......................................................nnn..................",
 				"..................................###___###................................",
-				"..................................________#................................",
+				"..........................U.......________#................................",
 				"..................................#________................................",
 				".............nnn..................#_______#................................",
 				"..................................###___###..................~~~...........",
@@ -78,8 +78,8 @@ public class Application {
 		giantCrab.behaviours.put(1, new AOEAttackActionBehaviour(giantCrab.getIntrinsicWeapon()));
 		gameMap.at( 36, 12).addActor(giantCrab);
 
-		MerchantKale merchantKale = new MerchantKale("Merchant Kale", 'K', 500);
-		gameMap.at( 38, 9).addActor(merchantKale);
+		// MerchantKale merchantKale = new MerchantKale("Merchant Kale", 'K', 500);
+		// gameMap.at( 38, 9).addActor(merchantKale);
 
 		world.run();
 	}
