@@ -12,7 +12,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
  * Modified by:
  *
  */
-public class Uchigatana extends WeaponItem {
+public class Uchigatana extends WeaponItem implements Sellable{
 
     /**
      * Constructor

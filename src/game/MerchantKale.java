@@ -44,7 +44,7 @@ public class MerchantKale extends Actor {
             //if (otherActor.getWeaponInventory().get(i). )
             if (otherActor.getWeaponInventory().contains(i)) {
                 // uchigatana there for the sake of no errors, ideally is just i
-                actions.add(new SellAction(i, uchigatana));
+                actions.add(new SellAction(i));
             }
         }
         return actions;
