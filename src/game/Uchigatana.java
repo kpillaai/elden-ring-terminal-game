@@ -21,6 +21,14 @@ public class Uchigatana extends WeaponItem {
         super("Uchigatana", ')', 115, "slices", 80);
     }
 
+    public int getBuyPrice() {
+        return 5000;
+    }
+
+    public int getSellPrice() {
+        return 500;
+    }
+
     @Override
     public void tick(Location currentLocation, Actor actor) {}
 }
