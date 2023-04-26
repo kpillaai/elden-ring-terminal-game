@@ -24,6 +24,7 @@ public class SellAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
+        // updating runes to be implemented
         // updateNumberOfRunes(uchigatana.getSellPrice());
         actor.removeItemFromInventory(weaponItem);
         return "player + sold uchigatana + for 500";
