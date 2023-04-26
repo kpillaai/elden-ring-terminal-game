@@ -1,5 +1,6 @@
 package game;
 
+import java.lang.Math;
 import edu.monash.fit2099.engine.actions.MoveActorAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
@@ -30,15 +31,16 @@ public class QuickstepAction extends AttackAction {
         // use moveActor from GameMap to move actor to a new locatio
 
         for (int i = player_location.x() - 1; i <= player_location.x() + 1; i++) {
-            for (int j = player_location.y() - 1; j <= player_location.y() + 1; i++) {
-                if (new Location(map, i, j).canActorEnter(actor)) {
-                    if (!new Location(map, i, j).canActorEnter(target)) {
-                        map.moveActor(actor, new Location(map, i, j));
+            for (int j = player_location.y() - 1; j <= player_location.y() + 1; j++) {
+                // check that (i, j) is
+                if ((Math.abs(i - enemy_location.x()) + Math.abs(j - enemy_location.y())) > 2) {
+                    if (map.at(i, j).canActorEnter(actor)) {
+                        map.moveActor(actor, map.at(i, j));
+                        break;
                     }
                 }
             }
         }
-
         return super.execute(actor, map);
     }
 
