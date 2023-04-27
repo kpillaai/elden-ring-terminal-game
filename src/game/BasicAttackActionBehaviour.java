@@ -4,6 +4,10 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import edu.monash.fit2099.engine.weapons.WeaponItem;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class BasicAttackActionBehaviour extends AttackAction implements Behaviour{
 
@@ -14,8 +18,29 @@ public class BasicAttackActionBehaviour extends AttackAction implements Behaviou
      * @param direction the direction where the attack should be performed (only used for display purposes)
      * @param weapon
      */
-    public BasicAttackActionBehaviour(Actor target) {
-        super(null, null, target.getIntrinsicWeapon());
+    public BasicAttackActionBehaviour(Weapon weapon) {
+        super(null, null, weapon);
+    }
+
+    @Override
+    public String execute(Actor actor, GameMap map) {
+        int currentX = map.locationOf(actor).x();
+        int currentY = map.locationOf(actor).y();
+        String result = "";
+        ArrayList<AttackAction> attackList = new ArrayList<AttackAction>();
+        for(int i = -1; i < 2; i++){
+            for(int j = -1; j<2; j++){
+                if (!(i == 0 && j == 0)){
+                    if (map.at(currentX+i, currentY+j).containsAnActor()){
+                        Actor target = map.at(currentX+i, currentY+j).getActor();
+                        attackList.add(new AttackAction(target, "north", this.weapon));
+                    }
+                }
+            }
+        }
+        RandomNumberGenerator rng = new RandomNumberGenerator();
+        int index = rng.getRandomInt(0, attackList.size()-1);
+        return attackList.get(index).execute(actor, map);
     }
 
     /**
@@ -39,6 +64,9 @@ public class BasicAttackActionBehaviour extends AttackAction implements Behaviou
      * @return an Action that actor can perform, or null if actor can't do this.
      * @author Riordan D. Alfredo
      */
+
+
+
     @Override
     public Action getAction(Actor actor, GameMap map) {
         return this;

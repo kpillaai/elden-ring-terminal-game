@@ -14,6 +14,7 @@ public class LoneWolf extends Enemy{
     public LoneWolf() {
         super("Lone Wolf", 'h', 102);
         super.setRuneDropValues(55, 1470);
+        this.behaviours.put(1, new BasicAttackActionBehaviour(getIntrinsicWeapon()));
     }
 
     @Override
