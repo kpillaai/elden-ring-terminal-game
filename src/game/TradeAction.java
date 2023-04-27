@@ -4,13 +4,24 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.weapons.WeaponItem;
 
-public class SellAction extends TradeAction {
-    private Sellable sellable;
+public class TradeAction extends Action {
+    public void updateRunes(int amount, Actor actor){
+        for (Item item : actor.getItemInventory()){
+            if (item instanceof Runes){
+                ((Runes) item).updateNumberOfRunes(amount);
+            }
+        }
+    }
 
-    public SellAction(Sellable sellable) {
-        this.sellable = sellable;
+    public int getRunes(Actor actor){
+        int number = 0;
+        for (Item item : actor.getItemInventory()){
+            if (item instanceof Runes){
+                number = ((Runes) item).getNumberOfRunes();
+            }
+        }
+        return number;
     }
     /**
      * Perform the Action.
@@ -21,10 +32,7 @@ public class SellAction extends TradeAction {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        int sell_price = sellable.getSellPrice();
-        updateRunes(sell_price, actor);
-        actor.removeItemFromInventory(sellable.returnWeaponItem());
-        return actor + " sold " + sellable.returnWeaponItem() + " for " + sell_price + " runes";
+        return null;
     }
 
     /**
@@ -35,6 +43,6 @@ public class SellAction extends TradeAction {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "Sell " + sellable.returnWeaponItem() + " to Merchant Kale for " + sellable.getSellPrice() + " runes";
+        return null;
     }
 }

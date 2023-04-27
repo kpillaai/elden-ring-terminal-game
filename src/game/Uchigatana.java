@@ -12,7 +12,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
  * Modified by:
  *
  */
-public class Uchigatana extends WeaponItem implements Sellable{
+public class Uchigatana extends WeaponItem implements Sellable, Buyable{
 
     /**
      * Constructor
@@ -22,7 +22,7 @@ public class Uchigatana extends WeaponItem implements Sellable{
     }
 
     public int getBuyPrice() {
-        return 5000;
+        return -5000;
     }
 
     @Override
