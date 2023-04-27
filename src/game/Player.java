@@ -43,6 +43,16 @@ public class Player extends Actor implements Resettable{
 		}
 	}
 
+	public int getRunes(){
+		int number = 0;
+		for (Item item : this.getItemInventory()){
+			if (item instanceof Runes){
+				number = ((Runes) item).getNumberOfRunes();
+			}
+		}
+		return number;
+	}
+
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 		// Handle multi-turn Actions
