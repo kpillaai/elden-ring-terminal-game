@@ -99,6 +99,11 @@ public class Player extends Actor implements Resettable {
 		this.resetMaxHp(this.getMaxHp());
 		DropAction dropItemAction;
 		if(!this.isConscious()){
+			// remove remaining runes off the ground
+			for(Item item: gameMap.at(lastDeathLocation[0], lastDeathLocation[1]).getItems()){
+				gameMap.at(lastDeathLocation[0], lastDeathLocation[1]).removeItem(item);
+			}
+
 			this.lastDeathLocation = lastLocation;
 			for (Item item : this.getItemInventory()){
 				if (item instanceof Runes){ // set current runes to 0, add new runes Item to the ground
