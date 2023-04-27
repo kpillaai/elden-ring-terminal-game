@@ -12,7 +12,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
  * Modified by:
  *
  */
-public class GreatKnife extends WeaponItem implements Sellable{
+public class GreatKnife extends WeaponItem implements Sellable, Buyable{
 
     /**
      * Constructor
@@ -27,6 +27,11 @@ public class GreatKnife extends WeaponItem implements Sellable{
     @Override
     public int getSellPrice() {
         return 350;
+    }
+
+    @Override
+    public int getBuyPrice() {
+        return -3500;
     }
 
     @Override
