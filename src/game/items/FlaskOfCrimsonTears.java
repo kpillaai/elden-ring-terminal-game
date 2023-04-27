@@ -34,6 +34,9 @@ public class FlaskOfCrimsonTears extends Item {
         }
     }
 
+    public void refresh(){
+        this.usesLeft = 2;
+    }
     @Override
     public List<Action> getAllowableActions() {
         if (this.usesLeft == 0){

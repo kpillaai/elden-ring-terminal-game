@@ -40,6 +40,7 @@ public class DeathAction extends Action {
     public String execute(Actor target, GameMap map) {
         String result = "";
 
+        // Check if the target is a skeleton as they turn into a pile of bones
         if(target instanceof Skeleton){
             if(!((Skeleton) target).getIsPileOfBones()){
                result = ((Skeleton) target).updatePileOfBones();
@@ -59,13 +60,16 @@ public class DeathAction extends Action {
         }
 
         ActionList dropActions = new ActionList();
-        // drop all items
-        for (Item item : target.getItemInventory())
-            dropActions.add(item.getDropAction(target));
-        for (WeaponItem weapon : target.getWeaponInventory())
-            dropActions.add(weapon.getDropAction(target));
-        for (Action drop : dropActions)
-            drop.execute(target, map);
+        // drop all items, but the player will not drop its items
+        if(!(target instanceof Player)){
+            for (Item item : target.getItemInventory())
+                dropActions.add(item.getDropAction(target));
+            for (WeaponItem weapon : target.getWeaponInventory())
+                dropActions.add(weapon.getDropAction(target));
+            for (Action drop : dropActions)
+                drop.execute(target, map);
+        }
+
         // remove actor
         if(target instanceof Player){
             ResetManager resetManager = ResetManager.getInstance(map);

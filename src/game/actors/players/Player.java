@@ -8,6 +8,10 @@ import edu.monash.fit2099.engine.items.DropAction;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
+import game.actors.enemies.Enemy;
+import game.environments.SiteOfLostGrace;
+import game.utils.RandomNumberGenerator;
+import game.utils.ResetManager;
 import game.utils.Resettable;
 import game.items.Runes;
 import game.utils.Status;
@@ -26,6 +30,12 @@ public class Player extends Actor implements Resettable {
 
 	private final Menu menu = new Menu();
 
+	private int[] lastLocation = {0, 0};
+
+	private int[] lastDeathLocation = lastLocation;
+
+	private int[] lastGraceSite = lastLocation;
+
 	/**
 	 * Constructor.
 	 *
@@ -37,12 +47,27 @@ public class Player extends Actor implements Resettable {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addWeaponToInventory(new Club()); // remove if adding weapon when selecting class
-		this.addItemToInventory(new Runes());
+		this.addItemToInventory(new Runes()); // always make sure the runes are at the start of the inventory
 		this.addItemToInventory(new FlaskOfCrimsonTears());
+
+		ResetManager resetManager = ResetManager.getInstance();
+		resetManager.registerResettable(this);
 	}
 
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+		// saving the coordinates of the last location
+		if(this.lastLocation[0] != map.locationOf(this).x()){
+			this.lastLocation[0] = map.locationOf(this).x();
+		}
+		if(this.lastLocation[1] != map.locationOf(this).y()){
+			this.lastLocation[1] = map.locationOf(this).y();
+		}
+		if(map.locationOf(this).getGround() instanceof SiteOfLostGrace){
+			this.lastGraceSite[0] = map.locationOf(this).x();
+			this.lastGraceSite[1] = map.locationOf(this).y();
+		}
+
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
@@ -51,19 +76,43 @@ public class Player extends Actor implements Resettable {
 		return menu.showMenu(this, actions, display);
 	}
 
+	public Runes getRunes(){
+		for (Item item : this.getItemInventory()){
+			if (item instanceof Runes){
+				return ((Runes) item);
+			}
+		}
+		return null;
+	}
 
+
+	@Override
+	public void addItemToInventory(Item item) {
+		if(){
+
+		}
+
+		super.addItemToInventory(item);
+	}
 
 	@Override
 	public void reset(GameMap gameMap) {
 		this.resetMaxHp(this.getMaxHp());
 		DropAction dropItemAction;
 		if(!this.isConscious()){
+			this.lastDeathLocation = lastLocation;
 			for (Item item : this.getItemInventory()){
-				if (item instanceof Runes){
-					dropItemAction = ((Runes) item).getDropAction(this);
-					dropItemAction.execute(this, gameMap);
+				if (item instanceof Runes){ // set current runes to 0, add new runes Item to the ground
+					Runes droppedRunes = new Runes();
+					droppedRunes.updateNumberOfRunes(Integer.parseInt(this.getItemInventory().get(1).toString()));
+					gameMap.at(lastDeathLocation[0], lastDeathLocation[1]).addItem(droppedRunes);
+					this.getRunes().setNumberOfRunes(0);
+				}
+				if (item instanceof FlaskOfCrimsonTears){
+					((FlaskOfCrimsonTears) item).refresh();
 				}
 			}
+			gameMap.moveActor(this, gameMap.at(lastGraceSite[0], lastGraceSite[1]));
 		}
 	}
 }

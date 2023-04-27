@@ -25,6 +25,13 @@ public class ResetManager {
         return instance;
     }
 
+    public static ResetManager getInstance(){
+        if(instance == null){
+            instance = new ResetManager();
+        }
+        return instance;
+    }
+
     /**
      * HINT 1: where have we seen a private constructor before?
      * HINT 2: see the instance attribute above.
@@ -34,12 +41,14 @@ public class ResetManager {
         this.gameMap = gameMap;
     }
 
+    private ResetManager(){
+        this.resettables = new ArrayList<>();
+    }
+
     public void run(GameMap gameMap) {
         for(Resettable resettable: this.resettables){ // reset the game (player hp, drop runes etc, flask of crimson tears)
             resettable.reset(gameMap);
         }
-        // tp the player back to site of lost grace, despawn all mobs
-        gameMap.
     }
 
     public void registerResettable(Resettable resettable) {}

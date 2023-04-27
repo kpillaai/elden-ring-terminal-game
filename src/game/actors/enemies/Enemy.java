@@ -9,6 +9,7 @@ import game.actions.QuickstepAction;
 import game.actions.UnsheatheAction;
 import game.behaviours.Behaviour;
 import game.behaviours.WanderBehaviour;
+import game.utils.ResetManager;
 import game.utils.Resettable;
 import game.utils.Status;
 import game.weapons.GreatKnife;
@@ -22,7 +23,7 @@ import java.util.Map;
  * @author Zilei Chen
  * @version 1.0
  */
-public abstract class Enemy extends Actor{
+public abstract class Enemy extends Actor implements Resettable{
 
     /**
      * List of behaviours an enemy can perform
@@ -43,6 +44,9 @@ public abstract class Enemy extends Actor{
     public Enemy(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
         this.behaviours.put(999, new WanderBehaviour());
+
+        ResetManager resetManager = ResetManager.getInstance();
+        resetManager.registerResettable(this);
     }
 
     /**
@@ -121,5 +125,10 @@ public abstract class Enemy extends Actor{
 
     public void setRuneDropValues(int min, int max) {
         this.runeDropValues = new int[]{min, max};
+    }
+
+    @Override
+    public void reset(GameMap gameMap) {
+        gameMap.removeActor(this);
     }
 }
