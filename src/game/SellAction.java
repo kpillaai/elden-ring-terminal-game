@@ -7,12 +7,10 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 
 public class SellAction extends Action {
     // private Uchigatana uchigatana = new Uchigatana();
-    private WeaponItem weaponItem;
-    // private Uchigatana uchigatana;
+    private Sellable sellable;
 
-    public SellAction(WeaponItem weaponItem) {
-        this.weaponItem = weaponItem;
-        // this.uchigatana = uchigatana;
+    public SellAction(Sellable sellable) {
+        this.sellable = sellable;
     }
 
     /**
@@ -25,9 +23,9 @@ public class SellAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         // updating runes to be implemented
-        // updateNumberOfRunes(uchigatana.getSellPrice());
-        actor.removeItemFromInventory(weaponItem);
-        return "player + sold uchigatana + for 500";
+        //updateNumberOfRunes(sellable.getSellPrice());
+        actor.removeItemFromInventory(sellable.returnWeaponItem());
+        return actor + " sold " + sellable + " for";
     }
 
     /**
