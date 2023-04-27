@@ -25,8 +25,14 @@ public class Uchigatana extends WeaponItem implements Sellable{
         return 5000;
     }
 
+    @Override
     public int getSellPrice() {
         return 500;
+    }
+
+    @Override
+    public WeaponItem returnWeaponItem() {
+        return this;
     }
 
     @Override
