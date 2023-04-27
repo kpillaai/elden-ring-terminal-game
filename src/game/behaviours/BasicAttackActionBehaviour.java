@@ -39,6 +39,9 @@ public class BasicAttackActionBehaviour extends AttackAction implements Behaviou
             }
         }
         RandomNumberGenerator rng = new RandomNumberGenerator();
+        if(attackList.isEmpty()){
+            return null;
+        }
         int index = rng.getRandomInt(0, attackList.size()-1);
         return attackList.get(index).execute(actor, map);
     }

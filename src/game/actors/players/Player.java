@@ -45,7 +45,7 @@ public class Player extends Actor implements Resettable {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addWeaponToInventory(new Club()); // remove if adding weapon when selecting class
-		this.addItemToInventory(new Runes()); // always make sure the runes are at the start of the inventory
+		super.addItemToInventory(new Runes()); // always make sure the runes are at the start of the inventory
 		this.addItemToInventory(new FlaskOfCrimsonTears());
 
 		ResetManager resetManager = ResetManager.getInstance();
