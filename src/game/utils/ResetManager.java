@@ -1,5 +1,7 @@
 package game.utils;
 
+import edu.monash.fit2099.engine.positions.GameMap;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +16,11 @@ public class ResetManager {
     private List<Resettable> resettables;
     private static ResetManager instance;
 
-    public static ResetManager getInstance() {
+    private GameMap gameMap;
+
+    public static ResetManager getInstance(GameMap gameMap) {
         if(instance == null){
-            instance = new ResetManager();
+            instance = new ResetManager(gameMap);
         }
         return instance;
     }
@@ -25,11 +29,18 @@ public class ResetManager {
      * HINT 1: where have we seen a private constructor before?
      * HINT 2: see the instance attribute above.
      */
-    private ResetManager() {
+    private ResetManager(GameMap gameMap) {
         this.resettables = new ArrayList<>();
+        this.gameMap = gameMap;
     }
 
-    public void run() {}
+    public void run(GameMap gameMap) {
+        for(Resettable resettable: this.resettables){ // reset the game (player hp, drop runes etc, flask of crimson tears)
+            resettable.reset(gameMap);
+        }
+        // tp the player back to site of lost grace, despawn all mobs
+        gameMap.
+    }
 
     public void registerResettable(Resettable resettable) {}
 

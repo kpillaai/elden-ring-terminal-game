@@ -11,6 +11,7 @@ import game.utils.RandomNumberGenerator;
 import game.items.Runes;
 import game.actors.enemies.Skeleton;
 import game.actors.enemies.Enemy;
+import game.utils.ResetManager;
 
 /**
  * An action executed if an actor is killed.
@@ -67,7 +68,10 @@ public class DeathAction extends Action {
             drop.execute(target, map);
         // remove actor
         if(target instanceof Player){
-            //respawn him in site of lost grace
+            ResetManager resetManager = ResetManager.getInstance(map);
+            result += System.lineSeparator() + menuDescription(target) + " Respawning at the last visited Site of Lost Grace.";
+            resetManager.run(map);
+            return result;
         }
         else{
             map.removeActor(target);

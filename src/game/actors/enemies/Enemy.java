@@ -9,6 +9,7 @@ import game.actions.QuickstepAction;
 import game.actions.UnsheatheAction;
 import game.behaviours.Behaviour;
 import game.behaviours.WanderBehaviour;
+import game.utils.Resettable;
 import game.utils.Status;
 import game.weapons.GreatKnife;
 import game.weapons.Uchigatana;

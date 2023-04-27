@@ -29,8 +29,8 @@ public class RestAction extends Action {
 
         // if the ground is the Site of Lost Grace
         if (ground instanceof SiteOfLostGrace) {
-            ResetManager resetManager = ResetManager.getInstance();
-            resetManager.run();
+            ResetManager resetManager = ResetManager.getInstance(map);
+            resetManager.run(map);
         }
         return actor + " rests at the Site of Lost Grace";
     }
