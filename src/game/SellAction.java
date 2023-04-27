@@ -2,17 +2,16 @@ package game;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 
-public class SellAction extends Action {
-    // private Uchigatana uchigatana = new Uchigatana();
+public class SellAction extends TradeAction {
     private Sellable sellable;
 
     public SellAction(Sellable sellable) {
         this.sellable = sellable;
     }
-
     /**
      * Perform the Action.
      *
@@ -22,11 +21,10 @@ public class SellAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        // updating runes to be implemented
-        // committing branch
-        //updateNumberOfRunes(sellable.getSellPrice());
+        int sell_price = sellable.getSellPrice();
+        updateRunes(sell_price, actor);
         actor.removeItemFromInventory(sellable.returnWeaponItem());
-        return actor + " sold " + sellable + " for";
+        return actor + " sold " + sellable.returnWeaponItem() + " for " + sell_price + " runes";
     }
 
     /**
@@ -37,6 +35,6 @@ public class SellAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return null;
+        return "Sell " + sellable.returnWeaponItem() + " to Merchant Kale for " + sellable.getSellPrice() + " runes";
     }
 }
