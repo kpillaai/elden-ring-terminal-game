@@ -12,7 +12,7 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
  * Modified by:
  *
  */
-public class Club extends WeaponItem {
+public class Club extends WeaponItem implements Sellable, Buyable {
 
     /**
      * Constructor
@@ -23,4 +23,19 @@ public class Club extends WeaponItem {
 
     @Override
     public void tick(Location currentLocation, Actor actor) {}
+
+    @Override
+    public int getSellPrice() {
+        return 100;
+    }
+
+    @Override
+    public int getBuyPrice() {
+        return -600;
+    }
+
+    @Override
+    public WeaponItem returnWeaponItem() {
+        return this;
+    }
 }
