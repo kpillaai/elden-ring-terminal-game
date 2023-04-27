@@ -8,9 +8,7 @@ import edu.monash.fit2099.engine.items.DropAction;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
-import game.actors.enemies.Enemy;
 import game.environments.SiteOfLostGrace;
-import game.utils.RandomNumberGenerator;
 import game.utils.ResetManager;
 import game.utils.Resettable;
 import game.items.Runes;
@@ -88,11 +86,12 @@ public class Player extends Actor implements Resettable {
 
 	@Override
 	public void addItemToInventory(Item item) {
-		if(){
-
+		if(item instanceof Runes){
+			getRunes().updateNumberOfRunes(Integer.parseInt(item.toString()));
 		}
-
-		super.addItemToInventory(item);
+		else{
+			super.addItemToInventory(item);
+		}
 	}
 
 	@Override
