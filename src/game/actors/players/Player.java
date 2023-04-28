@@ -45,7 +45,7 @@ public class Player extends Actor implements Resettable {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addWeaponToInventory(new Club()); // remove if adding weapon when selecting class
-		super.addItemToInventory(new Runes()); // always make sure the runes are at the start of the inventory
+		super.addItemToInventory(new Runes(false)); // always make sure the runes are at the start of the inventory
 		this.addItemToInventory(new FlaskOfCrimsonTears());
 
 		ResetManager resetManager = ResetManager.getInstance();
@@ -97,7 +97,6 @@ public class Player extends Actor implements Resettable {
 	@Override
 	public void reset(GameMap gameMap) {
 		this.resetMaxHp(this.getMaxHp());
-		DropAction dropItemAction;
 		if(!this.isConscious()){
 			// remove remaining runes off the ground
 			for(Item item: gameMap.at(lastDeathLocation[0], lastDeathLocation[1]).getItems()){
@@ -107,7 +106,7 @@ public class Player extends Actor implements Resettable {
 			this.lastDeathLocation = lastLocation;
 			for (Item item : this.getItemInventory()){
 				if (item instanceof Runes){ // set current runes to 0, add new runes Item to the ground
-					Runes droppedRunes = new Runes();
+					Runes droppedRunes = new Runes(true);
 					droppedRunes.updateNumberOfRunes(Integer.parseInt(this.getItemInventory().get(1).toString()));
 					gameMap.at(lastDeathLocation[0], lastDeathLocation[1]).addItem(droppedRunes);
 					this.getRunes().setNumberOfRunes(0);

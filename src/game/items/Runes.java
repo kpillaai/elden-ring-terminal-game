@@ -10,8 +10,8 @@ public class Runes extends Item {
      * @param portable true if and only if the Item can be picked up
      */
     int numberOfRunes = 0;
-    public Runes() {
-        super("Runes", '$', true);
+    public Runes(Boolean portable) {
+        super("Runes", '$', portable);
     }
 
     public int getNumberOfRunes() {
