@@ -65,7 +65,7 @@ public abstract class Enemy extends Actor implements Resettable{
             if(action != null)
                 return action;
         }
-        return new DoNothingAction(); // need to change this to random action
+        return new DoNothingAction();
     }
 
     /**

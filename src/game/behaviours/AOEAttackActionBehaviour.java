@@ -57,6 +57,14 @@ public class AOEAttackActionBehaviour extends AttackAction implements Behaviour 
 
     @Override
     public Action getAction(Actor actor, GameMap map) {
-        return this;
+        for(int i = -1; i<2; i++){
+            for(int j = -1; j<2; j++){
+                Location currentLocation = map.locationOf(actor);
+                if(map.at(currentLocation.x()+i, currentLocation.y()+j).containsAnActor() && !(i == 0 && j == 0)){
+                    return this;
+                }
+            }
+        }
+        return null;
     }
 }

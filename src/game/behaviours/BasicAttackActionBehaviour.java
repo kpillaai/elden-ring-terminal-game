@@ -72,6 +72,17 @@ public class BasicAttackActionBehaviour extends AttackAction implements Behaviou
 
     @Override
     public Action getAction(Actor actor, GameMap map) {
-        return this;
+        int currentX = map.locationOf(actor).x();
+        int currentY = map.locationOf(actor).y();
+        for(int i = -1; i < 2; i++){
+            for(int j = -1; j<2; j++){
+                if (!(i == 0 && j == 0)){
+                    if (map.at(currentX+i, currentY+j).containsAnActor()){
+                        return this;
+                    }
+                }
+            }
+        }
+        return null;
     }
 }
