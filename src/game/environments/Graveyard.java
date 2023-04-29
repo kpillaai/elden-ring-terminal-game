@@ -41,7 +41,8 @@ public class Graveyard extends Ground {
 			String enemyType = getEnemyType();
 			Enemy newEnemy;
 			newEnemy = new HeavySkeletalSwordsman();
-			location.addActor(newEnemy);
+			if (!location.containsAnActor())
+				location.addActor(newEnemy);
 		}
 	}
 }

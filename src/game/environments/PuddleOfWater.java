@@ -42,7 +42,8 @@ public class PuddleOfWater extends Ground {
 			String enemyType = getEnemyType();
 			Enemy newEnemy;
 			newEnemy = new GiantCrab();
-			location.addActor(newEnemy);
+			if (!location.containsAnActor())
+				location.addActor(newEnemy);
 		}
 	}
 }

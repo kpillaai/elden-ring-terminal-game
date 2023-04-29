@@ -42,7 +42,8 @@ public class GustOfWind extends Ground {
 			String enemyType = getEnemyType();
 			Enemy newEnemy;
 			newEnemy = new LoneWolf();
-			location.addActor(newEnemy);
+			if (!location.containsAnActor())
+				location.addActor(newEnemy);
 		}
 	}
 }
