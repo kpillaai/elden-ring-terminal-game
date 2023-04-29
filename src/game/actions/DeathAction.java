@@ -3,10 +3,12 @@ package game.actions;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actors.players.Player;
+import game.utils.FancyMessage;
 import game.utils.RandomNumberGenerator;
 import game.items.Runes;
 import game.actors.enemies.Skeleton;
@@ -74,9 +76,18 @@ public class DeathAction extends Action {
         // remove actor
         if(target instanceof Player){
             ResetManager resetManager = ResetManager.getInstance(map);
+            for (String line : FancyMessage.YOU_DIED.split("\n")) {
+                new Display().println(line);
+                try {
+                    Thread.sleep(200);
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+            }
             result += System.lineSeparator() + menuDescription(target) + " Respawning at the last visited Site of Lost Grace.";
             resetManager.run(map);
             return result;
+
         }
         else{
             map.removeActor(target);
