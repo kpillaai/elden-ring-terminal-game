@@ -3,6 +3,8 @@ package game.environments;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.actors.enemies.SkeletalBandit;
+import game.actors.enemies.Spawner;
 import game.utils.RandomNumberGenerator;
 import game.utils.Status;
 import game.actors.enemies.Enemy;
@@ -14,41 +16,29 @@ import game.actors.enemies.HeavySkeletalSwordsman;
  * @author Jason Skurr
  *
  */
-public class Graveyard extends Ground {
-	private String enemyType;
+public class Graveyard extends Spawner {
+	private Enemy heavySkeletalSwordsman;
+	private Enemy skeletalBandit;
 	public Graveyard() {
 		super('n');
 	}
-	private Enemy newEnemy;
 
 	@Override
 	public boolean canActorEnter(Actor actor) {
 		return actor.hasCapability(Status.HOSTILE_TO_ENEMY);
 	}
-
-	/**
-	 * Defining the enemyType for this specific environment
-	 */
-	public String getEnemyType(){
-		enemyType = "heavySkeletalSwordsman";
-		return enemyType;
-	}
 	/**
 	 * At each turn, this environment has a 27% chance of spawning its enemyType
 	 */
+	@Override
 	public void tick (Location location){
-		int probability = RandomNumberGenerator.getRandomInt(100);
-		if (probability < 27) {
-			String enemyType = getEnemyType();
-			this.newEnemy = new HeavySkeletalSwordsman();
-			if (!location.containsAnActor())
-				location.addActor(this.newEnemy);
+		this.heavySkeletalSwordsman = new HeavySkeletalSwordsman();
+		this.skeletalBandit = new SkeletalBandit();
+		if (location.x() < 37) {
+			spawnEnemy(27, heavySkeletalSwordsman, location);
 		}
-		if (this.newEnemy != null){
-			probability = RandomNumberGenerator.getRandomInt(100);
-			if (probability < 10) {
-				location.map().removeActor(this.newEnemy);
-			}
+		else {
+			spawnEnemy(27, skeletalBandit, location);
 		}
 	}
 }
