@@ -58,6 +58,7 @@ public class DeathAction extends Action {
                     int[] ranges = ((Enemy) target).getRuneDropValues();
                     killRunes = new RandomNumberGenerator().getRandomInt(ranges[0], ranges[1]);
                     ((Runes) item).updateNumberOfRunes(killRunes);
+                    result += target + " drops " + killRunes + " runes.";
                 }
             }
         }
@@ -98,6 +99,6 @@ public class DeathAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " is killed.\n" + actor + " drops " + killRunes + " runes.";
+        return actor + " is killed.";
     }
 }
