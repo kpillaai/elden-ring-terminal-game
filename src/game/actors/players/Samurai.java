@@ -11,8 +11,8 @@ public class Samurai extends Player {
      * @param displayChar Character to represent the player in the UI
      * @param hitPoints   Player's starting number of hitpoints
      */
-    public Samurai(String name, char displayChar, int hitPoints) {
-        super(name, displayChar, 455);
+    public Samurai() {
+        super(455);
         this.addWeaponToInventory(new Uchigatana());
     }
 
