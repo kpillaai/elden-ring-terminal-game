@@ -71,8 +71,9 @@ public class Player extends Actor implements Resettable {
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
-		System.out.println("HP: " + this.printHp());
-		System.out.println("Flask: " + this.getUsesLeft());
+		display.println("HP: " + this.printHp());
+		display.println("Flask: " + this.getUsesLeft());
+		display.println("Runes: " + this.getRunes());
 
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
