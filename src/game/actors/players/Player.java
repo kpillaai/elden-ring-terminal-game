@@ -42,8 +42,8 @@ public class Player extends Actor implements Resettable {
 	 * @param displayChar Character to represent the player in the UI
 	 * @param hitPoints   Player's starting number of hitpoints
 	 */
-	public Player(String name, char displayChar, int hitPoints) {
-		super(name, displayChar, hitPoints);
+	public Player(int hitPoints) {
+		super("Tarnished", '@', hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addWeaponToInventory(new Club()); // remove if adding weapon when selecting class
 		super.addItemToInventory(new Runes(false)); // always make sure the runes are at the start of the inventory
