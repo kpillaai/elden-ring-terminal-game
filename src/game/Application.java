@@ -81,13 +81,13 @@ public class Application {
 		display.println("3) Wretch");
 		char input = display.readChar();
 
-		if (input == 1) {
+		if (input == '1') {
 			Player player = new Samurai();
 			world.addPlayer(player, gameMap.at(37, 10));
-		} else if (input == 2) {
+		} else if (input == '2') {
 			Player player = new Bandit();
 			world.addPlayer(player, gameMap.at(37, 10));
-		} else if (input == 3) {
+		} else if (input == '3') {
 			Player player = new Wretch();
 			world.addPlayer(player, gameMap.at(37, 10));
 		}
