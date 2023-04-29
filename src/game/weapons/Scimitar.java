@@ -18,7 +18,7 @@ public class Scimitar extends WeaponItem implements Sellable, Buyable {
      * Constructor
      */
     public Scimitar() {
-        super("Scimitar", 's', 118, "stabs", 88);
+        super("Scimitar", 's', 118, "swings", 88);
     }
 
     @Override

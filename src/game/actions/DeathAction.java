@@ -22,6 +22,7 @@ import game.utils.ResetManager;
  */
 public class DeathAction extends Action {
     private Actor attacker;
+    private int killRunes;
 
     public DeathAction(Actor actor) {
         this.attacker = actor;
@@ -53,7 +54,7 @@ public class DeathAction extends Action {
             for (Item item : attacker.getItemInventory()){
                 if (item instanceof Runes){
                     int[] ranges = ((Enemy) target).getRuneDropValues();
-                    int killRunes = new RandomNumberGenerator().getRandomInt(ranges[0], ranges[1]);
+                    killRunes = new RandomNumberGenerator().getRandomInt(ranges[0], ranges[1]);
                     ((Runes) item).updateNumberOfRunes(killRunes);
                 }
             }
@@ -86,6 +87,6 @@ public class DeathAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " is killed.";
+        return actor + " is killed.\n" + actor + " drops " + killRunes + " runes.";
     }
 }
