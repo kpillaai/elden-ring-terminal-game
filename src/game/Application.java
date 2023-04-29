@@ -12,6 +12,7 @@ import game.behaviours.AOEAttackActionBehaviour;
 import game.actors.enemies.GiantCrab;
 import game.actors.enemies.HeavySkeletalSwordsman;
 import game.actors.enemies.LoneWolf;
+import game.behaviours.BasicAttackActionBehaviour;
 import game.environments.*;
 import game.utils.FancyMessage;
 import game.actors.MerchantKale;
@@ -78,11 +79,9 @@ public class Application {
 		world.addPlayer(player, gameMap.at(36, 10));
 
 		HeavySkeletalSwordsman heavySkeletalSwordsman = new HeavySkeletalSwordsman();
-		heavySkeletalSwordsman.behaviours.put(1, new AOEAttackActionBehaviour(heavySkeletalSwordsman.getWeaponInventory().get(0)));
 		gameMap.at( 36, 9).addActor(heavySkeletalSwordsman);
 
 		GiantCrab giantCrab = new GiantCrab();
-		giantCrab.behaviours.put(1, new AOEAttackActionBehaviour(giantCrab.getIntrinsicWeapon()));
 		gameMap.at( 36, 12).addActor(giantCrab);
 
 		MerchantKale merchantKale = new MerchantKale();

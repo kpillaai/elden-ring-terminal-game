@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
+import game.utils.RandomNumberGenerator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,11 +58,14 @@ public class AOEAttackActionBehaviour extends AttackAction implements Behaviour 
 
     @Override
     public Action getAction(Actor actor, GameMap map) {
-        for(int i = -1; i<2; i++){
-            for(int j = -1; j<2; j++){
-                Location currentLocation = map.locationOf(actor);
-                if(map.at(currentLocation.x()+i, currentLocation.y()+j).containsAnActor() && !(i == 0 && j == 0)){
-                    return this;
+        int probability = RandomNumberGenerator.getRandomInt(100);
+        if (probability > 50) {
+            for(int i = -1; i<2; i++) {
+                for (int j = -1; j < 2; j++) {
+                    Location currentLocation = map.locationOf(actor);
+                    if (map.at(currentLocation.x() + i, currentLocation.y() + j).containsAnActor() && !(i == 0 && j == 0)) {
+                        return this;
+                    }
                 }
             }
         }

@@ -6,6 +6,8 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.behaviours.AOEAttackActionBehaviour;
+import game.behaviours.BasicAttackActionBehaviour;
 import game.weapons.Grossmesser;
 
 public class HeavySkeletalSwordsman extends Enemy implements Skeleton {
@@ -32,6 +34,8 @@ public class HeavySkeletalSwordsman extends Enemy implements Skeleton {
         this.isPileOfBones = false;
         this.addWeaponToInventory(new Grossmesser());
         super.setRuneDropValues(35, 892);
+        this.behaviours.put(1, new AOEAttackActionBehaviour(this.getWeaponInventory().get(0)));
+        this.behaviours.put(2, new BasicAttackActionBehaviour(this.getWeaponInventory().get(0)));
     }
 
     @Override // not sure if a skeleton has an intrinsic weapon or what its meant to be
