@@ -17,6 +17,8 @@ import game.weapons.Club;
 import game.weapons.GreatKnife;
 import game.weapons.Grossmesser;
 import game.weapons.Uchigatana;
+import game.weapons.Scimitar;
+
 
 import java.util.ArrayList;
 
@@ -29,12 +31,14 @@ public class MerchantKale extends Actor {
      * @param hitPoints   the Actor's starting hit points
      */
     private Sellable uchigatana_sell = new Uchigatana();
+    private Sellable scimitar_sell = new Scimitar();
     private Sellable greatKnife_sell = new GreatKnife();
     private Sellable club_sell = new Club();
     private Sellable grossmesser = new Grossmesser();
     private Buyable uchigatana_buy = new Uchigatana();
     private Buyable greatKnife_buy = new GreatKnife();
     private Buyable club_buy = new Club();
+    private Buyable scimitar_buy = new Scimitar();
     private final ArrayList<Sellable> SELLABLE_ITEMS = new ArrayList<>();
     private final ArrayList<Buyable> BUYABLE_ITEMS = new ArrayList<>();
     public MerchantKale() {
@@ -43,9 +47,11 @@ public class MerchantKale extends Actor {
         SELLABLE_ITEMS.add(greatKnife_sell);
         SELLABLE_ITEMS.add(club_sell);
         SELLABLE_ITEMS.add(grossmesser);
+        SELLABLE_ITEMS.add(scimitar_sell);
         BUYABLE_ITEMS.add(uchigatana_buy);
         BUYABLE_ITEMS.add(greatKnife_buy);
         BUYABLE_ITEMS.add(club_buy);
+        BUYABLE_ITEMS.add(scimitar_buy);
     }
 
     @Override
