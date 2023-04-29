@@ -9,11 +9,12 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.behaviours.Behaviour;
+import game.utils.RandomNumberGenerator;
 
 /**
  * Created by:
  * @author Riordan D. Alfredo
- * Modified by:
+ * Modified by: Jason SKurr
  *
  */
 public class WanderBehaviour implements Behaviour {
@@ -31,20 +32,20 @@ public class WanderBehaviour implements Behaviour {
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
 		ArrayList<Action> actions = new ArrayList<>();
-		
 		for (Exit exit : map.locationOf(actor).getExits()) {
             Location destination = exit.getDestination();
             if (destination.canActorEnter(actor)) {
             	actions.add(exit.getDestination().getMoveAction(actor, "around", exit.getHotKey()));
             }
         }
-		
 		if (!actions.isEmpty()) {
-			return actions.get(random.nextInt(actions.size()));
+			int despawnChance = RandomNumberGenerator.getRandomInt(100);
+			if (despawnChance < 10) {
+				map.removeActor(actor);}
+			else{
+				return actions.get(random.nextInt(actions.size()));
 		}
-		else {
-			return null;
-		}
-
+			}
+		return null;
 	}
 }

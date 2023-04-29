@@ -21,11 +21,5 @@ public class Spawner extends Ground {
             if (!location.containsAnActor())
                 location.addActor(enemy);
         }
-        if (enemy != null){
-            int despawnChance = RandomNumberGenerator.getRandomInt(100);
-            if (despawnChance < 10) {
-                location.map().removeActor(enemy);
-            }
-        }
     }
 }
