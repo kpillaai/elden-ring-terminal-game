@@ -20,6 +20,10 @@ public class Grossmesser extends WeaponItem implements Sellable {
     public int getSellPrice() {
         return 1000;
     }
+    @Override
+    public String toString() {
+        return "Grossmesser";
+    }
 
     @Override
     public WeaponItem returnWeaponItem() {

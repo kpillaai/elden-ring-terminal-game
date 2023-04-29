@@ -33,6 +33,10 @@ public class Club extends WeaponItem implements Sellable, Buyable {
     public int getBuyPrice() {
         return -600;
     }
+    @Override
+    public String toString() {
+        return "Club";
+    }
 
     @Override
     public WeaponItem returnWeaponItem() {

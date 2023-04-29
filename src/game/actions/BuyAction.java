@@ -24,8 +24,11 @@ public class BuyAction extends TradeAction {
         if (getRunes(actor) > (-1*(buy_price))) {
             updateRunes(buy_price, actor);
             actor.addWeaponToInventory(buyable.returnWeaponItem());
+            return actor + " bought " + buyable.returnWeaponItem() + " for " + -buy_price + " runes";
         }
-        return actor + " bought " + buyable.returnWeaponItem() + " for " + buy_price + " runes";
+        else {
+            return "Tarnished does not have enough runes";
+        }
     }
 
     /**

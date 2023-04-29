@@ -33,6 +33,10 @@ public class GreatKnife extends WeaponItem implements Sellable, Buyable {
     public int getBuyPrice() {
         return -3500;
     }
+    @Override
+    public String toString() {
+        return "GreatKnife";
+    }
 
     @Override
     public WeaponItem returnWeaponItem() {

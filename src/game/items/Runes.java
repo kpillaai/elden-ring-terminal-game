@@ -9,7 +9,7 @@ public class Runes extends Item {
      * @param displayChar the character to use to represent this item if it is on the ground
      * @param portable true if and only if the Item can be picked up
      */
-    int numberOfRunes = 0;
+    int numberOfRunes = 100000;
     public Runes(Boolean portable) {
         super("Runes", '$', portable);
     }
