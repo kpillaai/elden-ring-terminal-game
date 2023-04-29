@@ -21,11 +21,14 @@ public class ConsumeAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        String result = "";
-        result = actor + " uses " + item + " and heals for " + this.item.getHealAmount() + " HP.";
-        actor.heal(this.item.getHealAmount());
-        item.use();
-        return result;
+        if(item.getUsesLeft() > 0){
+            String result = "";
+            result = actor + " uses " + item + " and heals for " + this.item.getHealAmount() + " HP.";
+            actor.heal(this.item.getHealAmount());
+            item.use();
+            return result;
+        }
+        return "No uses left!";
     }
 
     /**
