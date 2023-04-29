@@ -3,11 +3,9 @@ package game.environments;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
-import game.actors.enemies.LoneWolf;
+import game.actors.enemies.*;
 import game.utils.RandomNumberGenerator;
 import game.utils.Status;
-import game.actors.enemies.Enemy;
-import game.actors.enemies.GiantCrab;
 
 
 /**
@@ -15,41 +13,30 @@ import game.actors.enemies.GiantCrab;
  * @author Jason Skurr
  *
  */
-public class PuddleOfWater extends Ground {
-	private String enemyType;
+public class PuddleOfWater extends Spawner {
+	private Enemy giantCrab;
+	private Enemy giantCrayFish;
 	public PuddleOfWater() {
 		super('~');
 	}
 
-	private Enemy newEnemy;
 	@Override
 	public boolean canActorEnter(Actor actor) {
 		return actor.hasCapability(Status.HOSTILE_TO_ENEMY);
 	}
 
 	/**
-	 * Defining the enemytype for this specific environment
-	 */
-	public String getEnemyType(){
-		enemyType = "giantCrab";
-		return enemyType;
-	}
-	/**
 	 * At each turn, this environment has a 2% chance of spawning its enemyType
 	 */
+	@Override
 	public void tick (Location location){
-		int probability = RandomNumberGenerator.getRandomInt(100);
-		if (probability < 2) {
-			String enemyType = getEnemyType();
-			this.newEnemy = new LoneWolf();
-			if (!location.containsAnActor())
-				location.addActor(this.newEnemy);
+		this.giantCrab = new GiantCrab();
+		this.giantCrayFish = new GiantCrayfish();
+		if (location.x() < 37) {
+			spawnEnemy(2, giantCrab, location);
 		}
-		if (this.newEnemy != null){
-			probability = RandomNumberGenerator.getRandomInt(100);
-			if (probability < 10) {
-				location.map().removeActor(this.newEnemy);
-			}
+		else {
+			spawnEnemy(1, giantCrayFish, location);
 		}
 	}
 }
