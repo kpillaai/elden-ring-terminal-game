@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.environments.SiteOfLostGrace;
+import game.utils.FancyMessage;
 import game.utils.ResetManager;
 import game.utils.Resettable;
 import game.items.Runes;

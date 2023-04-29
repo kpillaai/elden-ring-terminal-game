@@ -93,7 +93,7 @@ public class Application {
 		}
 
 		// (23, 17)
-		//gameMap.at(36, 11).addActor(new LoneWolf());
+		// gameMap.at(36, 11).addActor(new LoneWolf());
 		// HINT: what does it mean to prefer composition to inheritance?
 		//Player player = new Player("Tarnished", '@', 300);
 
@@ -105,7 +105,6 @@ public class Application {
 
 		GiantCrab giantCrab = new GiantCrab();
 		gameMap.at( 36, 12).addActor(giantCrab);
-
 		 */
 
 		MerchantKale merchantKale = new MerchantKale();

@@ -19,7 +19,8 @@ public class Graveyard extends Ground {
 	public Graveyard() {
 		super('n');
 	}
-	private String newEnemy;
+	private Enemy newEnemy;
+
 	@Override
 	public boolean canActorEnter(Actor actor) {
 		return actor.hasCapability(Status.HOSTILE_TO_ENEMY);
@@ -39,10 +40,15 @@ public class Graveyard extends Ground {
 		int probability = RandomNumberGenerator.getRandomInt(100);
 		if (probability < 27) {
 			String enemyType = getEnemyType();
-			Enemy newEnemy;
-			newEnemy = new HeavySkeletalSwordsman();
+			this.newEnemy = new HeavySkeletalSwordsman();
 			if (!location.containsAnActor())
-				location.addActor(newEnemy);
+				location.addActor(this.newEnemy);
+		}
+		if (this.newEnemy != null){
+			probability = RandomNumberGenerator.getRandomInt(100);
+			if (probability < 10) {
+				location.map().removeActor(this.newEnemy);
+			}
 		}
 	}
 }

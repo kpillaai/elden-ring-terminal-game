@@ -3,6 +3,7 @@ package game.environments;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.actors.enemies.LoneWolf;
 import game.utils.RandomNumberGenerator;
 import game.utils.Status;
 import game.actors.enemies.Enemy;
@@ -20,7 +21,7 @@ public class PuddleOfWater extends Ground {
 		super('~');
 	}
 
-	private String newEnemy;
+	private Enemy newEnemy;
 	@Override
 	public boolean canActorEnter(Actor actor) {
 		return actor.hasCapability(Status.HOSTILE_TO_ENEMY);
@@ -40,10 +41,15 @@ public class PuddleOfWater extends Ground {
 		int probability = RandomNumberGenerator.getRandomInt(100);
 		if (probability < 2) {
 			String enemyType = getEnemyType();
-			Enemy newEnemy;
-			newEnemy = new GiantCrab();
+			this.newEnemy = new LoneWolf();
 			if (!location.containsAnActor())
-				location.addActor(newEnemy);
+				location.addActor(this.newEnemy);
+		}
+		if (this.newEnemy != null){
+			probability = RandomNumberGenerator.getRandomInt(100);
+			if (probability < 10) {
+				location.map().removeActor(this.newEnemy);
+			}
 		}
 	}
 }
