@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
 import game.utils.RandomNumberGenerator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,24 +33,24 @@ public class AOEAttackActionBehaviour extends AttackAction implements Behaviour 
     @Override
     public String execute(Actor actor, GameMap map) {
         Location currentLocation = map.locationOf(actor);
-        Map<String, Location> directions = new HashMap<String, Location>();
         int xCord = currentLocation.x();
         int yCord = currentLocation.y();
-        directions.put("north", map.at(xCord, yCord+1));
-        directions.put("north east", map.at(xCord+1, yCord+1));
-        directions.put("east", map.at(xCord+1, yCord));
-        directions.put("south east", map.at(xCord+1, yCord-1));
-        directions.put("south", map.at(xCord, yCord-1));
-        directions.put("south west", map.at(xCord-1, yCord-1));
-        directions.put("west", map.at(xCord-1, yCord));
-        directions.put("north west", map.at(xCord-1, yCord+1));
+        int xMax = map.getXRange().max();
+        int yMax = map.getYRange().max();
+        String[] directions = {"north", "north east", "east", "south east", "south", "south west", "west", "north west"};
 
         String executeString = "The " + actor + " " + this.weapon.verb() + " in all directions.";
-        for ( String key : directions.keySet()){
-            Actor attackTarget = map.getActorAt(directions.get(key));
-            if (attackTarget != null){
-                AttackAction attack = new AttackAction(attackTarget, key, this.weapon);
-                executeString += " \n" + attack.execute(actor, map);
+        for(int i = -1; i<2; i++) {
+            for (int j = -1; j < 2; j++) {
+                if((xCord + i) > 0 && (xCord + i) < xMax && yCord + j > 0 && yCord + j < yMax){
+                    if(i != 0 || j != 0){
+                        Actor attackTarget = map.at(xCord+i, yCord+j).getActor();
+                        if(attackTarget != null){
+                            AttackAction attack = new AttackAction(attackTarget, directions[0], this.weapon);
+                            executeString += " \n" + attack.execute(actor, map);
+                        }
+                    }
+                }
             }
         }
         return executeString;
@@ -58,13 +59,17 @@ public class AOEAttackActionBehaviour extends AttackAction implements Behaviour 
 
     @Override
     public Action getAction(Actor actor, GameMap map) {
-        int probability = RandomNumberGenerator.getRandomInt(100);
-        if (probability > 50) {
-            for(int i = -1; i<2; i++) {
-                for (int j = -1; j < 2; j++) {
-                    Location currentLocation = map.locationOf(actor);
-                    if (map.at(currentLocation.x() + i, currentLocation.y() + j).containsAnActor() && !(i == 0 && j == 0)) {
-                        return this;
+        int currentX = map.locationOf(actor).x();
+        int currentY = map.locationOf(actor).y();
+        int xMax = map.getXRange().max();
+        int yMax = map.getYRange().max();
+        for(int i = -1; i < 2; i++){
+            for(int j = -1; j<2; j++){
+                if (!(i == 0 && j == 0)){
+                    if((currentX + i) > 0 && (currentX + i) < xMax && currentY + j > 0 && currentY + j < yMax){
+                        if (map.at(currentX+i, currentY+j).containsAnActor()){
+                            return this;
+                        }
                     }
                 }
             }

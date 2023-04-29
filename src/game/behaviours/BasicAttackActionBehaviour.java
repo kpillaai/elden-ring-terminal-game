@@ -26,14 +26,17 @@ public class BasicAttackActionBehaviour extends AttackAction implements Behaviou
     public String execute(Actor actor, GameMap map) {
         int currentX = map.locationOf(actor).x();
         int currentY = map.locationOf(actor).y();
-        String result = "";
+        int xMax = map.getXRange().max();
+        int yMax = map.getYRange().max();
         ArrayList<AttackAction> attackList = new ArrayList<AttackAction>();
         for(int i = -1; i < 2; i++){
             for(int j = -1; j<2; j++){
                 if (!(i == 0 && j == 0)){
-                    if (map.at(currentX+i, currentY+j).containsAnActor()){
-                        Actor target = map.at(currentX+i, currentY+j).getActor();
-                        attackList.add(new AttackAction(target, "north", this.weapon));
+                    if((currentX + i) > 0 && (currentX + i) < xMax && currentY + j > 0 && currentY + j < yMax){
+                        if (map.at(currentX+i, currentY+j).containsAnActor()){
+                            Actor target = map.at(currentX+i, currentY+j).getActor();
+                            attackList.add(new AttackAction(target, "north", this.weapon));
+                        }
                     }
                 }
             }
@@ -74,11 +77,15 @@ public class BasicAttackActionBehaviour extends AttackAction implements Behaviou
     public Action getAction(Actor actor, GameMap map) {
         int currentX = map.locationOf(actor).x();
         int currentY = map.locationOf(actor).y();
+        int xMax = map.getXRange().max();
+        int yMax = map.getYRange().max();
         for(int i = -1; i < 2; i++){
             for(int j = -1; j<2; j++){
                 if (!(i == 0 && j == 0)){
-                    if (map.at(currentX+i, currentY+j).containsAnActor()){
-                        return this;
+                    if((currentX + i) > 0 && (currentX + i) < xMax && currentY + j > 0 && currentY + j < yMax){
+                        if (map.at(currentX+i, currentY+j).containsAnActor()){
+                            return this;
+                        }
                     }
                 }
             }
