@@ -71,6 +71,7 @@ public class Player extends Actor implements Resettable {
 			return lastAction.getNextAction();
 
 		System.out.println("HP: " + this.printHp());
+		System.out.println("Flask: " + this.getUsesLeft());
 
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
@@ -83,6 +84,15 @@ public class Player extends Actor implements Resettable {
 			}
 		}
 		return null;
+	}
+
+	public int getUsesLeft(){
+		for (Item item : this.getItemInventory()){
+			if (item instanceof FlaskOfCrimsonTears){
+				return ((FlaskOfCrimsonTears) item).getUsesLeft();
+			}
+		}
+		return 0;
 	}
 
 

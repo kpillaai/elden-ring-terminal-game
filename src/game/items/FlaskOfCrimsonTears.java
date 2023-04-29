@@ -2,6 +2,7 @@ package game.items;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.positions.Location;
 import game.actions.ConsumeAction;
 
 import java.util.List;
@@ -32,6 +33,10 @@ public class FlaskOfCrimsonTears extends Item {
         if (this.usesLeft > 0){
             this.usesLeft -= 1;
         }
+    }
+
+    public int getUsesLeft(){
+        return this.usesLeft;
     }
 
     public void refresh(){
