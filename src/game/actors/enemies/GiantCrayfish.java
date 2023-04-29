@@ -1,14 +1,19 @@
 package game.actors.enemies;
+import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.behaviours.AOEAttackActionBehaviour;
+import game.behaviours.BasicAttackActionBehaviour;
 
-public class GiantCrayfish extends Enemy{
-    /**
-     * Abstract constructor for Enemy class
-     *
-     * @param name        Name of the enemy
-     * @param displayChar The character that represents the enemy
-     * @param hitPoints   The number of hit points (HP) this enemy has
-     */
-    public GiantCrayfish(String name, char displayChar, int hitPoints) {
-        super(name, displayChar, hitPoints);
+public class GiantCrayfish extends Enemy {
+
+    public GiantCrayfish(){
+        super("Giant Crayfish", 'R', 4803);
+        super.setRuneDropValues(318, 4961);
+        this.behaviours.put(1, new AOEAttackActionBehaviour(this.getIntrinsicWeapon()));
+        this.behaviours.put(2, new BasicAttackActionBehaviour(this.getIntrinsicWeapon()));
+    }
+
+    @Override
+    public IntrinsicWeapon getIntrinsicWeapon() {
+        return new IntrinsicWeapon(527, "slams", 100);
     }
 }
