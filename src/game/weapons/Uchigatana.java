@@ -34,6 +34,10 @@ public class Uchigatana extends WeaponItem implements Sellable, Buyable {
     public WeaponItem returnWeaponItem() {
         return this;
     }
+    @Override
+    public String toString() {
+        return "Uchigatana";
+    }
 
     @Override
     public void tick(Location currentLocation, Actor actor) {}

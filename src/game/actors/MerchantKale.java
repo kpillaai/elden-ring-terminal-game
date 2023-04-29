@@ -6,7 +6,10 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.weapons.Weapon;
+import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.BuyAction;
+import game.environments.Wall;
 import game.weapons.Buyable;
 import game.actions.SellAction;
 import game.weapons.Sellable;
@@ -48,10 +51,11 @@ public class MerchantKale extends Actor {
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
-        for(Sellable i : SELLABLE_ITEMS) {
-            //if (otherActor.getWeaponInventory().get(i). )
-            if (otherActor.getWeaponInventory().contains(i.returnWeaponItem())) {
-                actions.add(new SellAction(i));
+        for (int i = 0; i < otherActor.getWeaponInventory().size(); i++) {
+            for (int j = 0; j < SELLABLE_ITEMS.size(); j++) {
+                if (otherActor.getWeaponInventory().get(i).toString().equals(SELLABLE_ITEMS.get(j).toString())) {
+                    actions.add(new SellAction(SELLABLE_ITEMS.get(j)));
+                }
             }
         }
         for (Buyable i : BUYABLE_ITEMS) {
