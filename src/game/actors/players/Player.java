@@ -45,7 +45,6 @@ public class Player extends Actor implements Resettable {
 	public Player(int hitPoints) {
 		super("Tarnished", '@', hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
-		this.addWeaponToInventory(new Club()); // remove if adding weapon when selecting class
 		super.addItemToInventory(new Runes(false)); // always make sure the runes are at the start of the inventory
 		this.addItemToInventory(new FlaskOfCrimsonTears());
 

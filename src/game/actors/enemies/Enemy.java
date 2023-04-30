@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.actions.AttackAction;
 import game.actions.QuickstepAction;
 import game.actions.UnsheatheAction;
+import game.behaviours.AOEAttackActionBehaviour;
 import game.behaviours.BasicAttackActionBehaviour;
 import game.behaviours.Behaviour;
 import game.behaviours.WanderBehaviour;
@@ -14,6 +15,8 @@ import game.utils.ResetManager;
 import game.utils.Resettable;
 import game.utils.Status;
 import game.weapons.GreatKnife;
+import game.weapons.Grossmesser;
+import game.weapons.Scimitar;
 import game.weapons.Uchigatana;
 
 import java.util.HashMap;
@@ -92,6 +95,12 @@ public abstract class Enemy extends Actor implements Resettable{
                 }
                 if (otherActor.getWeaponInventory().get(i) instanceof GreatKnife) {
                     actions.add(new QuickstepAction(this, direction, new GreatKnife()));
+                }
+                if (otherActor.getWeaponInventory().get(i) instanceof Grossmesser) {
+                    actions.add(new AOEAttackActionBehaviour(otherActor.getWeaponInventory().get(i)));
+                }
+                if (otherActor.getWeaponInventory().get(i) instanceof Scimitar) {
+                    actions.add(new AOEAttackActionBehaviour(otherActor.getWeaponInventory().get(i)));
                 }
             }
         }
