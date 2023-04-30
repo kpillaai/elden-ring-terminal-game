@@ -1,6 +1,5 @@
 package game.actors.enemies;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-import game.behaviours.BasicAttackActionBehaviour;
 
 /**
  * BEHOLD, DOG!
@@ -10,16 +9,23 @@ import game.behaviours.BasicAttackActionBehaviour;
  * Modified by: Jason Skurr
  *
  */
-public class GiantDog extends Enemy {
+public class GiantDog extends GiantEnemy {
 
     public GiantDog() {
         super("Giant Dog", 'G', 693);
-        super.setRuneDropValues(55, 1470);
-        this.behaviours.put(1, new BasicAttackActionBehaviour(getIntrinsicWeapon()));
+        super.setRuneDropValues(313, 1808);
     }
 
     @Override
     public IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(314, "slams", 90);
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public int getSpawnChance() {
+        return 4;
     }
 }

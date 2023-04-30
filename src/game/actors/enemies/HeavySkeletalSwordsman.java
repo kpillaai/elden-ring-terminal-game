@@ -44,6 +44,14 @@ public class HeavySkeletalSwordsman extends Enemy implements Skeleton {
     }
 
     /**
+     * @return
+     */
+    @Override
+    public int getSpawnChance() {
+        return 27;
+    }
+
+    /**
      * Getter for isPileOfBones
      * @return boolean stating whether this Skeleton is a Pile of Bones
      */

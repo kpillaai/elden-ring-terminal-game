@@ -26,10 +26,10 @@ public class GustOfWind extends Spawner {
 		this.loneWolf = new LoneWolf();
 		this.giantDog = new GiantDog();
 		if (location.x() < 37) {
-			spawnEnemy(33, loneWolf, location);
+			spawnEnemy(loneWolf.getSpawnChance(), loneWolf, location);
 		}
 		else {
-			spawnEnemy(4, giantDog, location);
+			spawnEnemy(giantDog.getSpawnChance(), giantDog, location);
 		}
 	}
 }
