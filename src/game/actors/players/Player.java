@@ -72,7 +72,7 @@ public class Player extends Actor implements Resettable {
 
 		display.println("HP: " + this.printHp());
 		display.println("Flask: " + this.getUsesLeft());
-		display.println("Runes: " + this.getRunes());
+		display.println("Runes: " + this.getRunes().getNumberOfRunes());
 
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
@@ -100,7 +100,7 @@ public class Player extends Actor implements Resettable {
 	@Override
 	public void addItemToInventory(Item item) {
 		if(item instanceof Runes){
-			getRunes().updateNumberOfRunes(Integer.parseInt(item.toString()));
+			getRunes().updateNumberOfRunes(((Runes) item).getNumberOfRunes());
 		}
 		else{
 			super.addItemToInventory(item);
@@ -116,10 +116,10 @@ public class Player extends Actor implements Resettable {
 			}
 
 			this.lastDeathLocation = lastLocation;
-			for (Item item : this.getItemInventory()){
-				if (item instanceof Runes){ // set current runes to 0, add new runes Item to the ground
+			for (int i = 0; i < this.getItemInventory().size(); i++) {
+				if (this.getItemInventory().get(i) instanceof Runes) {
 					Runes droppedRunes = new Runes(true);
-					droppedRunes.updateNumberOfRunes(Integer.parseInt(this.getItemInventory().get(0).toString()));
+					droppedRunes.updateNumberOfRunes(((Runes) this.getItemInventory().get(i)).getNumberOfRunes());
 					gameMap.at(lastDeathLocation[0], lastDeathLocation[1]).addItem(droppedRunes);
 					this.getRunes().setNumberOfRunes(0);
 				}
