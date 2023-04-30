@@ -1,10 +1,8 @@
 package game.environments;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actors.enemies.*;
-import game.utils.RandomNumberGenerator;
 import game.utils.Status;
 
 
@@ -18,11 +16,6 @@ public class GustOfWind extends Spawner {
 	private Enemy giantDog;
 	public GustOfWind() {
 		super('&');
-	}
-
-	@Override
-	public boolean canActorEnter(Actor actor) {
-		return actor.hasCapability(Status.HOSTILE_TO_ENEMY);
 	}
 
 	/**

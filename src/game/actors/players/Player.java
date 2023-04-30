@@ -33,7 +33,7 @@ public class Player extends Actor implements Resettable {
 
 	private int[] lastDeathLocation = lastLocation;
 
-	private int[] lastGraceSite = lastLocation;
+	private int[] lastGraceSite = {37, 10};
 
 	/**
 	 * Constructor.
@@ -110,12 +110,6 @@ public class Player extends Actor implements Resettable {
 
 	@Override
 	public void reset(GameMap gameMap) {
-		this.resetMaxHp(this.getMaxHp());
-		for (Item item : this.getItemInventory()){
-			if (item instanceof FlaskOfCrimsonTears){
-				((FlaskOfCrimsonTears) item).refresh();
-			}
-		}
 		if(!this.isConscious()){
 			// remove remaining runes off the ground
 			for(Item item: gameMap.at(lastDeathLocation[0], lastDeathLocation[1]).getItems()){
@@ -126,15 +120,20 @@ public class Player extends Actor implements Resettable {
 			for (Item item : this.getItemInventory()){
 				if (item instanceof Runes){ // set current runes to 0, add new runes Item to the ground
 					Runes droppedRunes = new Runes(true);
-					droppedRunes.updateNumberOfRunes(Integer.parseInt(this.getItemInventory().get(1).toString()));
+					droppedRunes.updateNumberOfRunes(Integer.parseInt(this.getItemInventory().get(0).toString()));
 					gameMap.at(lastDeathLocation[0], lastDeathLocation[1]).addItem(droppedRunes);
 					this.getRunes().setNumberOfRunes(0);
 				}
-				if (item instanceof FlaskOfCrimsonTears){
-					((FlaskOfCrimsonTears) item).refresh();
-				}
 			}
-			gameMap.moveActor(this, gameMap.at(lastGraceSite[0], lastGraceSite[1]));
+			if (gameMap.at(lastGraceSite[0], lastGraceSite[1]).canActorEnter(this)) {
+				gameMap.moveActor(this, gameMap.at(lastGraceSite[0], lastGraceSite[1]));
+			}
+		}
+		this.resetMaxHp(this.getMaxHp());
+		for (Item item : this.getItemInventory()){
+			if (item instanceof FlaskOfCrimsonTears){
+				((FlaskOfCrimsonTears) item).refresh();
+			}
 		}
 	}
 }
