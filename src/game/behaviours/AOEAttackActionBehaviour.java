@@ -56,6 +56,16 @@ public class AOEAttackActionBehaviour extends AttackAction implements Behaviour 
         return executeString;
     }
 
+    /**
+     * Describes which target the actor is attacking with which weapon
+     *
+     * @param actor The actor performing the action.
+     * @return a description used for the menu UI
+     */
+    @Override
+    public String menuDescription(Actor actor) {
+        return actor + " uses spinning attack with " + weapon;
+    }
 
     @Override
     public Action getAction(Actor actor, GameMap map) {
