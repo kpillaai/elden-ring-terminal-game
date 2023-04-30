@@ -23,4 +23,9 @@ public class Spawner extends Ground {
                 location.addActor(enemy);
         }
     }
+
+    public boolean isWest(Location location) {
+        int middle = Math.floorDiv(location.map().getXRange().max(), 2);
+        return location.x() < middle;
+    }
 }

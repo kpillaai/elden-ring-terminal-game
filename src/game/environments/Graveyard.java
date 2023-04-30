@@ -27,7 +27,7 @@ public class Graveyard extends Spawner {
 	public void tick (Location location){
 		this.heavySkeletalSwordsman = new HeavySkeletalSwordsman();
 		this.skeletalBandit = new SkeletalBandit();
-		if (location.x() < 37) {
+		if (this.isWest(location)) {
 			spawnEnemy(heavySkeletalSwordsman.getSpawnChance(), heavySkeletalSwordsman, location);
 		}
 		else {

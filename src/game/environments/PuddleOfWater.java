@@ -25,12 +25,11 @@ public class PuddleOfWater extends Spawner {
 	public void tick (Location location){
 		this.giantCrab = new GiantCrab();
 		this.giantCrayFish = new GiantCrayfish();
-		if (location.x() < 37) { // CHANGE 37 TO METHOD IN GAMEMAP
+		if (this.isWest(location)) {
 			spawnEnemy(giantCrab.getSpawnChance(), giantCrab, location);
 		}
 		else {
 			spawnEnemy(giantCrayFish.getSpawnChance(), giantCrayFish, location);
 		}
-		// Math.floor(location.map().getXRange().max() / 2); GO INTO PARENT
 	}
 }

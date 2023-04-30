@@ -25,7 +25,7 @@ public class GustOfWind extends Spawner {
 	public void tick (Location location){
 		this.loneWolf = new LoneWolf();
 		this.giantDog = new GiantDog();
-		if (location.x() < 37) {
+		if (this.isWest(location)) {
 			spawnEnemy(loneWolf.getSpawnChance(), loneWolf, location);
 		}
 		else {
