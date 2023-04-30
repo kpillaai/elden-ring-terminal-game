@@ -26,10 +26,10 @@ public class PuddleOfWater extends Spawner {
 		this.giantCrab = new GiantCrab();
 		this.giantCrayFish = new GiantCrayfish();
 		if (location.x() < 37) { // CHANGE 37 TO METHOD IN GAMEMAP
-			spawnEnemy(2, giantCrab, location); // PUT PROBS AND SPAWN CHANCE IN PARENT, OVERWRITE IN CHILD ENEMIES
+			spawnEnemy(giantCrab.getSpawnChance(), giantCrab, location);
 		}
 		else {
-			spawnEnemy(1, giantCrayFish, location);
+			spawnEnemy(giantCrayFish.getSpawnChance(), giantCrayFish, location);
 		}
 		// Math.floor(location.map().getXRange().max() / 2); GO INTO PARENT
 	}

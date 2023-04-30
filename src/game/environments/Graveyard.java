@@ -28,10 +28,10 @@ public class Graveyard extends Spawner {
 		this.heavySkeletalSwordsman = new HeavySkeletalSwordsman();
 		this.skeletalBandit = new SkeletalBandit();
 		if (location.x() < 37) {
-			spawnEnemy(27, heavySkeletalSwordsman, location);
+			spawnEnemy(heavySkeletalSwordsman.getSpawnChance(), heavySkeletalSwordsman, location);
 		}
 		else {
-			spawnEnemy(27, skeletalBandit, location);
+			spawnEnemy(skeletalBandit.getSpawnChance(), skeletalBandit, location);
 		}
 	}
 }

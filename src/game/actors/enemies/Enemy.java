@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.actions.AttackAction;
 import game.actions.QuickstepAction;
 import game.actions.UnsheatheAction;
+import game.behaviours.BasicAttackActionBehaviour;
 import game.behaviours.Behaviour;
 import game.behaviours.WanderBehaviour;
 import game.utils.ResetManager;
@@ -43,6 +44,7 @@ public abstract class Enemy extends Actor implements Resettable{
      */
     public Enemy(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
+        this.behaviours.put(2, new BasicAttackActionBehaviour(this.getIntrinsicWeapon()));
         this.behaviours.put(999, new WanderBehaviour());
 
         ResetManager resetManager = ResetManager.getInstance();
@@ -86,23 +88,12 @@ public abstract class Enemy extends Actor implements Resettable{
                 actions.add(new AttackAction(this, direction, otherActor.getWeaponInventory().get(i)));
                 // if player has an Uchigatana, allow UnsheatheAction
                 if (otherActor.getWeaponInventory().get(i) instanceof Uchigatana) {
-                    // if (otherActor.getWeaponInventory().contains(new Uchigatana()))
                     actions.add(new UnsheatheAction(this, direction, new Uchigatana()));
                 }
                 if (otherActor.getWeaponInventory().get(i) instanceof GreatKnife) {
                     actions.add(new QuickstepAction(this, direction, new GreatKnife()));
-                    // actions.add(new MoveActorAction())
                 }
-
-                // if player has GreatKnife, allow Quickstep
-                // do AttackAction and then QuickstepAction? this would mean Quickstep is just responsible for moving
-                // cant do this, should be one action
-                //if (otherActor.getWeaponInventory().contains(new GreatKnife())) {
-                // actions.add(new QuickstepAction()
-                //}
             }
-            // HINT 1: The AttackAction above allows you to attack the enemy with your intrinsic weapon.
-            // HINT 1: How would you attack the enemy with a weapon?
         }
         return actions;
     }
@@ -126,6 +117,8 @@ public abstract class Enemy extends Actor implements Resettable{
     public void setRuneDropValues(int min, int max) {
         this.runeDropValues = new int[]{min, max};
     }
+
+    public abstract int getSpawnChance();
 
     @Override
     public void reset(GameMap gameMap) {
