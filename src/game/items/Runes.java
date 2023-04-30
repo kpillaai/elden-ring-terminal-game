@@ -26,9 +26,5 @@ public class Runes extends Item {
         this.numberOfRunes += number;
     }
 
-    @Override
-    public String toString() {
-        // change this so that it says pick up no. Runes
-        return Integer.toString(numberOfRunes);
-    }
+
 }
