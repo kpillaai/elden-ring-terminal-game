@@ -65,7 +65,7 @@ public class DeathAction extends Action {
 
         ActionList dropActions = new ActionList();
         // drop all items, but the player will not drop its items
-        if(!(target instanceof Player)){
+        if(attacker instanceof Player){
             for (Item item : target.getItemInventory())
                 dropActions.add(item.getDropAction(target));
             for (WeaponItem weapon : target.getWeaponInventory())
