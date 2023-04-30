@@ -35,7 +35,6 @@ public class SkeletalBandit extends Enemy implements Skeleton {
         this.addWeaponToInventory(new Scimitar());
         super.setRuneDropValues(35, 892);
         this.behaviours.put(1, new AOEAttackActionBehaviour(this.getWeaponInventory().get(0)));
-        this.behaviours.put(2, new BasicAttackActionBehaviour(this.getWeaponInventory().get(0)));
     }
 
     @Override // not sure if a skeleton has an intrinsic weapon or what its meant to be
