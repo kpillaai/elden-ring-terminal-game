@@ -1,11 +1,8 @@
 package game.environments;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actors.enemies.SkeletalBandit;
-import game.actors.enemies.Spawner;
-import game.utils.RandomNumberGenerator;
 import game.utils.Status;
 import game.actors.enemies.Enemy;
 import game.actors.enemies.HeavySkeletalSwordsman;
@@ -23,10 +20,6 @@ public class Graveyard extends Spawner {
 		super('n');
 	}
 
-	@Override
-	public boolean canActorEnter(Actor actor) {
-		return actor.hasCapability(Status.HOSTILE_TO_ENEMY);
-	}
 	/**
 	 * At each turn, this environment has a 27% chance of spawning its enemyType
 	 */
