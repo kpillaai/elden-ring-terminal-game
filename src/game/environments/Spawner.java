@@ -6,7 +6,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.actors.enemies.Enemy;
 import game.utils.RandomNumberGenerator;
 
-public class Spawner extends Ground {
+public abstract class Spawner extends Ground {
 
     /**
      * Constructor.
