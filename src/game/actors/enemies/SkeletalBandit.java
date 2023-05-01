@@ -10,18 +10,7 @@ import game.behaviours.AOEAttackActionBehaviour;
 import game.behaviours.BasicAttackActionBehaviour;
 import game.weapons.Scimitar;
 
-public class SkeletalBandit extends Enemy implements Skeleton {
-
-    /**
-     * A boolean stating whether this enemy is a Pile Of Bones or not
-     */
-    boolean isPileOfBones;
-
-    /**
-     * The number of turns in Pile of Bones form
-     */
-    int pileOfBonesTurns = 0;
-
+public class SkeletalBandit extends Skeleton {
     /**
      * Abstract constructor for Enemy class
      *
@@ -48,62 +37,6 @@ public class SkeletalBandit extends Enemy implements Skeleton {
     @Override
     public int getSpawnChance() {
         return 27;
-    }
-
-    /**
-     * Getter for isPileOfBones
-     * @return boolean stating whether this Skeleton is a Pile of Bones
-     */
-    @Override
-    public boolean getIsPileOfBones() {
-        return isPileOfBones;
-    }
-
-    /**
-     * Updates the isPileOfBones to the opposite boolean
-     * Also updates the state of the Enemy which includes changing its hp and display character
-     * @return String describing the change the skeleton enemy went through
-     */
-    @Override
-    public String updatePileOfBones() {
-        String result = "";
-        this.isPileOfBones = !isPileOfBones;
-        if(getIsPileOfBones()){
-            this.setDisplayChar('X');
-            this.resetMaxHp(1);
-            updatePileOfBonesTurns();
-            result = "The Skeletal Bandit crumbles into a Pile of Bones";
-        }
-        else{
-            this.setDisplayChar('q');
-            this.resetMaxHp(153);
-            result = "The Pile of Bones revives back into the Skeletal Bandit!";
-        }
-        return result;
-    }
-
-    /**
-     * Getter for pileOfBonesTurns
-     *
-     * @return the number of turns the skeleton is in Pile of Bones form
-     */
-    @Override
-    public int getPileOfBonesTurns() {
-        return this.pileOfBonesTurns;
-    }
-
-    /**
-     * Updates the number of turns the skeleton is in Pile of Bones form
-     *
-     * @return a string if any changes are made to the skeleton during this form
-     */
-    @Override
-    public void updatePileOfBonesTurns() {
-        String result = "";
-        this.pileOfBonesTurns += 1;
-        if(this.pileOfBonesTurns > 3){
-            this.updatePileOfBones();
-        }
     }
 
     /**
