@@ -2,8 +2,7 @@ package game.items;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.items.Item;
-import edu.monash.fit2099.engine.positions.Location;
-import game.actions.ConsumeAction;
+import game.actions.ConsumeHealAction;
 
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class FlaskOfCrimsonTears extends Item {
      */
     public FlaskOfCrimsonTears() {
         super("Flask of Crimson Tears", 'f', false);
-        this.addAction(new ConsumeAction(this));
+        this.addAction(new ConsumeHealAction(this));
     }
 
     public int getHealAmount() {
@@ -45,7 +44,7 @@ public class FlaskOfCrimsonTears extends Item {
     @Override
     public List<Action> getAllowableActions() {
         if (this.usesLeft == 0){
-            this.removeAction(new ConsumeAction(this));
+            this.removeAction(new ConsumeHealAction(this));
         }
         return super.getAllowableActions();
     }

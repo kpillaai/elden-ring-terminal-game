@@ -5,15 +5,29 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.items.FlaskOfCrimsonTears;
 
-public class ConsumeAction extends Action {
+/**
+ * An Action to consume a healing item.
+ * Created by: Zilei Chen
+ * @author Zilei Chen
+ * Modified by: Zilei Chen
+ */
+public class ConsumeHealAction extends Action {
 
+    /**
+     * The Flask of Crimson Tears that is being consumed
+     */
     FlaskOfCrimsonTears item;
-    public ConsumeAction(FlaskOfCrimsonTears item){
+
+    /**
+     * The constructor for ConsumeHealAction
+     * @param item The Flask of Crimson Tears that is being consumed
+     */
+    public ConsumeHealAction(FlaskOfCrimsonTears item){
         this.item = item;
     }
 
     /**
-     * Perform the Action.
+     * Perform the ConsumeHealAction. This updates the player current hp and reduces the number of uses of the item.
      *
      * @param actor The actor performing the action.
      * @param map   The map the actor is on.
@@ -32,7 +46,7 @@ public class ConsumeAction extends Action {
     }
 
     /**
-     * Returns a descriptive string
+     * Returns a descriptive string of consuming the item
      *
      * @param actor The actor performing the action.
      * @return the text we put on the menu

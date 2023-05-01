@@ -23,19 +23,30 @@ import game.utils.ResetManager;
  *
  */
 public class DeathAction extends Action {
+
+    /**
+     * The actor that is attacking
+     */
     private Actor attacker;
+
+    /**
+     * The number of runes that is dropped when an enemy is killed
+     */
     private int killRunes;
 
+    /**
+     * The constructor for DeathAction class
+     * @param actor the actor that is killed
+     */
     public DeathAction(Actor actor) {
         this.attacker = actor;
     }
 
     /**
-     * When the target is killed, the items & weapons carried by target
-     * will be dropped to the location in the game map where the target was
-     * If there are special interaction on death such as skeletons turning into a Pile of Bones it will also perform
-     * those actions
-     * @param target The actor performing the action.
+     * When the actor is killed, it will check if the target was a Skeleton, which will have a unique death sequence.
+     * It will also check if a player killed an Enemy, which will also grant the player dropped runes.
+     * It will then drop all items of the enemy. If the player dies, then it will trigger a game reset.
+     * @param target The actor that died
      * @param map The map the actor is on.
      * @return result of the action to be displayed on the UI
      */
@@ -97,6 +108,11 @@ public class DeathAction extends Action {
         return result;
     }
 
+    /**
+     * A string description of which actor died.
+     * @param actor The actor performing the action.
+     * @return A string description of which actor died.
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " is killed.";

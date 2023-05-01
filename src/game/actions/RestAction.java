@@ -1,5 +1,4 @@
 package game.actions;
-
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
@@ -8,12 +7,23 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.utils.ResetManager;
 import game.environments.SiteOfLostGrace;
 
+/**
+ * An action executed when a player rests at a Site of Lost Grace
+ * Created by: Zilei Chen
+ * @author Adrian Kristanto
+ * Modified by: Zilei Chen
+ *
+ */
 public class RestAction extends Action {
+
+    /**
+     * A constructor for RestAction. Created for formalities.
+     */
     public RestAction() {
     }
 
     /**
-     * Perform the Action.
+     * Perform the rest action. It will heal the player and reset the game.
      *
      * @param actor The actor performing the action.
      * @param map   The map the actor is on.
@@ -36,7 +46,7 @@ public class RestAction extends Action {
     }
 
     /**
-     * Returns a descriptive string
+     * Returns a descriptive string of healing at the Site of Lost Grace
      *
      * @param actor The actor performing the action.
      * @return the text we put on the menu

@@ -4,19 +4,33 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.weapons.Buyable;
 
+/**
+ * An Action to purchase items from a trader.
+ * Created by: Zilei Chen
+ * @author Zilei Chen
+ * Modified by: Zilei Chen
+ */
 public class BuyAction extends TradeAction {
+
+    /**
+     * The item that is being purchased
+     */
     private Buyable buyable;
 
+    /**
+     * Constructor for BuyAction class
+     * @param buyable The item that is being purchased
+     */
     public BuyAction(Buyable buyable) {
         this.buyable = buyable;
     }
 
     /**
-     * Perform the Action.
+     * Perform the BuyAction, by updating the number of runes and adding it to the actors inventory
      *
      * @param actor The actor performing the action.
      * @param map   The map the actor is on.
-     * @return a description of what happened that can be displayed to the user.
+     * @return A string that describes the purchase action that is being made
      */
     @Override
     public String execute(Actor actor, GameMap map) {
@@ -32,7 +46,7 @@ public class BuyAction extends TradeAction {
     }
 
     /**
-     * Returns a descriptive string
+     * Returns a descriptive string of buying from Merchant
      *
      * @param actor The actor performing the action.
      * @return the text we put on the menu

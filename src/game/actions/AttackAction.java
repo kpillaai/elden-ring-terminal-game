@@ -11,7 +11,7 @@ import edu.monash.fit2099.engine.weapons.Weapon;
  * An Action to attack another Actor.
  * Created by:
  * @author Adrian Kristanto
- * Modified by:
+ * Modified by: Zilei Chen
  *
  */
 public class AttackAction extends Action {
