@@ -82,10 +82,21 @@ public class AOEAttackActionBehaviour extends AttackAction implements Behaviour 
 
     @Override
     public Action getAction(Actor actor, GameMap map) {
+        Location actor_location = map.locationOf(actor);
         int currentX = map.locationOf(actor).x();
         int currentY = map.locationOf(actor).y();
         int xMax = map.getXRange().max();
         int yMax = map.getYRange().max();
+        for (int i = 0; i < actor_location.getExits().size(); i++) {
+            if (!((actor_location.getExits().get(i).getDestination().x() == 0) && (actor_location.getExits().get(i).getDestination().y() == 0))) {
+                if ((actor_location.getExits().get(i).getDestination().x() > 0) && (actor_location.getExits().get(i).getDestination().x() < xMax) && (actor_location.getExits().get(i).getDestination().y() > 0) && (actor_location.getExits().get(i).getDestination().y() < yMax)) {
+                    if (map.at(actor_location.getExits().get(i).getDestination().x(), actor_location.getExits().get(i).getDestination().y()).containsAnActor()) {
+                        return this;
+                    }
+                }
+            }
+        }
+        /*
         for(int i = -1; i < 2; i++){
             for(int j = -1; j<2; j++){
                 if (!(i == 0 && j == 0)){
@@ -97,6 +108,7 @@ public class AOEAttackActionBehaviour extends AttackAction implements Behaviour 
                 }
             }
         }
+         */
         return null;
     }
 }
