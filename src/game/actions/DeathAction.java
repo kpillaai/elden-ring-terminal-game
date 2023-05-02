@@ -63,7 +63,7 @@ public class DeathAction extends Action {
             }
         }
 
-        // Grant gold to player on kill
+        // Grant runes to player on kill
         if(attacker.hasCapability(Status.HOSTILE_TO_ENEMY) && target.hasCapability(Status.HOSTILE_TO_PLAYER)){
             for (Item item : attacker.getItemInventory()){
                 if (item.hasCapability(Status.CURRENCY)) {

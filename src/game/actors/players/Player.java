@@ -44,6 +44,16 @@ public class Player extends Actor implements Resettable {
 	private int[] lastGraceSite = {37, 10};
 
 	/**
+	 * Runes that the player has
+	 */
+	private Runes runes = new Runes(false);
+
+	/**
+	 * The Flask of Crimson Tears that the player has
+	 */
+	private FlaskOfCrimsonTears flaskOfCrimsonTears = new FlaskOfCrimsonTears();
+
+	/**
 	 * Constructor for Player class. It also adds items to the player inventory that is necessary.
 	 * It also adds the player to the ResetManager.
 	 * @param hitPoints The number of hit points (HP) the player has.
@@ -51,8 +61,8 @@ public class Player extends Actor implements Resettable {
 	public Player(int hitPoints) {
 		super("Tarnished", '@', hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
-		super.addItemToInventory(new Runes(false)); // always make sure the runes are at the start of the inventory
-		this.addItemToInventory(new FlaskOfCrimsonTears());
+		super.addItemToInventory(this.runes); // always make sure the runes are at the start of the inventory
+		this.addItemToInventory(this.flaskOfCrimsonTears);
 
 		ResetManager resetManager = ResetManager.getInstance();
 		resetManager.registerResettable(this);
@@ -98,12 +108,7 @@ public class Player extends Actor implements Resettable {
 	 * @return A Runes object representing the runes in the players inventory
 	 */
 	public Runes getRunes(){
-		for (Item item : this.getItemInventory()){
-			if (item.hasCapability(Status.CURRENCY)){
-				return ((Runes) item);
-			}
-		}
-		return null;
+		return this.runes;
 	}
 
 	/**
@@ -111,12 +116,7 @@ public class Player extends Actor implements Resettable {
 	 * @return An integer representing the number of uses left in the players Flask of Crimson Tears
 	 */
 	public int getUsesLeft(){
-		for (Item item : this.getItemInventory()){
-			if (item.hasCapability(Status.HEALING)){
-				return ((FlaskOfCrimsonTears) item).getUsesLeft();
-			}
-		}
-		return 0;
+		return this.flaskOfCrimsonTears.getUsesLeft();
 	}
 
 	/**
@@ -126,7 +126,7 @@ public class Player extends Actor implements Resettable {
 	@Override
 	public void addItemToInventory(Item item) {
 		if(item.hasCapability(Status.CURRENCY)){
-			getRunes().updateNumberOfRunes(((Runes) item).getNumberOfRunes());
+			this.runes.updateNumberOfRunes(Integer.parseInt(item.toString().substring(0, item.toString().length() - 6)));
 		}
 		else{
 			super.addItemToInventory(item);
@@ -152,7 +152,7 @@ public class Player extends Actor implements Resettable {
 			for (int i = 0; i < this.getItemInventory().size(); i++) {
 				if (this.getItemInventory().get(i).hasCapability(Status.CURRENCY)) {
 					Runes droppedRunes = new Runes(true);
-					droppedRunes.updateNumberOfRunes(((Runes) this.getItemInventory().get(i)).getNumberOfRunes());
+					droppedRunes.updateNumberOfRunes(this.getRunes().getNumberOfRunes());
 					gameMap.at(lastDeathLocation[0], lastDeathLocation[1]).addItem(droppedRunes);
 					this.getRunes().setNumberOfRunes(0);
 				}
@@ -162,10 +162,6 @@ public class Player extends Actor implements Resettable {
 			}
 		}
 		this.resetMaxHp(this.getMaxHp());
-		for (Item item : this.getItemInventory()){
-			if (item.hasCapability(Status.HEALING)){
-				((FlaskOfCrimsonTears) item).refresh();
-			}
-		}
+		this.flaskOfCrimsonTears.refresh();
 	}
 }

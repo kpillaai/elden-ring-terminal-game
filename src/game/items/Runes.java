@@ -49,4 +49,8 @@ public class Runes extends Item {
     public void updateNumberOfRunes(int number){
         this.numberOfRunes += number;
     }
+
+    public String toString(){
+        return Integer.toString(this.numberOfRunes) + " Runes";
+    }
 }
