@@ -38,15 +38,11 @@ public class QuickstepAction extends AttackAction {
 
         // move to a square that ISN'T the intersection of enemies possible movements and our possible movements
         // use moveActor from GameMap to move actor to a new locatio
-
-        for (int i = player_location.x() - 1; i <= player_location.x() + 1; i++) {
-            for (int j = player_location.y() - 1; j <= player_location.y() + 1; j++) {
-                // check that (i, j) is
-                if ((Math.abs(i - enemy_location.x()) + Math.abs(j - enemy_location.y())) > 2) {
-                    if (map.at(i, j).canActorEnter(actor)) {
-                        map.moveActor(actor, map.at(i, j));
-                        break;
-                    }
+        for (int i = 0; i < player_location.getExits().size(); i++) {
+            if ((Math.abs(player_location.getExits().get(i).getDestination().x() - enemy_location.x())) + (Math.abs(player_location.getExits().get(i).getDestination().y() - enemy_location.y())) > 2) {
+                if (map.at(player_location.getExits().get(i).getDestination().x(), player_location.getExits().get(i).getDestination().y()).canActorEnter(actor)) {
+                    map.moveActor(actor, map.at(player_location.getExits().get(i).getDestination().x(), player_location.getExits().get(i).getDestination().y()));
+                    break;
                 }
             }
         }
