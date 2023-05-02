@@ -7,16 +7,17 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.behaviours.AOEAttackActionBehaviour;
-import game.behaviours.BasicAttackActionBehaviour;
 import game.weapons.Scimitar;
 
+/**
+ * SkeletalBandit is a concrete class inheriting from Skeleton abstract class
+ * @author Zilei Chen
+ * @version 1.0
+ */
 public class SkeletalBandit extends Skeleton {
+
     /**
-     * Abstract constructor for Enemy class
-     *
-     * @param name        Name of the enemy
-     * @param displayChar The character that represents the enemy
-     * @param hitPoints   The number of hit points (HP) this enemy has
+     * Abstract constructor for SkeletalBandit class
      */
     public SkeletalBandit(){
         super("Skeletal Bandit", 'b', 184);
@@ -26,13 +27,18 @@ public class SkeletalBandit extends Skeleton {
         this.behaviours.put(1, new AOEAttackActionBehaviour(this.getWeaponInventory().get(0)));
     }
 
+    /**
+     * This is the default weapon for a SkeletalBandit
+     * @return An IntrinsicWeapon object for SkeletalBandit
+     */
     @Override // not sure if a skeleton has an intrinsic weapon or what its meant to be
     public IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(97, "hits", 95);
     }
 
     /**
-     * @return
+     * Getter for the spawn chance of SkeletalBandit out of 100
+     * @return the spawn chance of SkeletalBandit out of 100
      */
     @Override
     public int getSpawnChance() {

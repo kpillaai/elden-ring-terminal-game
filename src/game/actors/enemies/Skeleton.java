@@ -9,9 +9,16 @@ import game.utils.Status;
  */
 public abstract class Skeleton extends Enemy {
 
+    /**
+     * A status checking if the enemy is a pile of bones
+     */
     boolean isPileOfBones;
 
+    /**
+     * Number of turns in pile of bones form
+     */
     int pileOfBonesTurns = 0;
+
     /**
      * Abstract constructor for Enemy class
      *

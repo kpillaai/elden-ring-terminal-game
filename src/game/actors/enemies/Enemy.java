@@ -5,8 +5,6 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.actions.AttackAction;
-import game.actions.QuickstepAction;
-import game.actions.UnsheatheAction;
 import game.behaviours.AOEAttackActionBehaviour;
 import game.behaviours.BasicAttackActionBehaviour;
 import game.behaviours.Behaviour;
@@ -14,11 +12,6 @@ import game.behaviours.WanderBehaviour;
 import game.utils.ResetManager;
 import game.utils.Resettable;
 import game.utils.Status;
-import game.weapons.GreatKnife;
-import game.weapons.Grossmesser;
-import game.weapons.Scimitar;
-import game.weapons.Uchigatana;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -115,18 +108,32 @@ public abstract class Enemy extends Actor implements Resettable{
     }
 
     /**
-     *
+     * Get the minimum and maximum values of runes the enemy can drop when killed by a player.
+     * @return the minimum and maximum values of runes the enemy can drop when killed by a player.
      */
     public int[] getRuneDropValues(){
         return this.runeDropValues;
     }
 
+    /**
+     * Setter for the range of runes the enemy can drop when killed by a player
+     * @param min minimum number of runes
+     * @param max maximum number of runes
+     */
     public void setRuneDropValues(int min, int max) {
         this.runeDropValues = new int[]{min, max};
     }
 
+    /**
+     * Getter for the spawn chance of an enemy out of 100
+     * @return the spawn chance of an enemy out of 100
+     */
     public abstract int getSpawnChance();
 
+    /**
+     * Reset the enemy by removing it from the map
+     * @param gameMap The map the enemy is on
+     */
     @Override
     public void reset(GameMap gameMap) {
         gameMap.removeActor(this);
