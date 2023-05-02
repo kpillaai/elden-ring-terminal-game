@@ -14,6 +14,7 @@ import game.items.Runes;
 import game.actors.enemies.Skeleton;
 import game.actors.enemies.Enemy;
 import game.utils.ResetManager;
+import game.utils.Status;
 
 /**
  * An action executed if an actor is killed.
@@ -55,7 +56,7 @@ public class DeathAction extends Action {
         String result = "";
 
         // Check if the target is a skeleton as they turn into a pile of bones
-        if(target instanceof Skeleton){
+        if(target.hasCapability(Status.SKELETON)){
             if(!((Skeleton) target).getIsPileOfBones()){
                result = ((Skeleton) target).updatePileOfBones();
                return result;
@@ -63,9 +64,9 @@ public class DeathAction extends Action {
         }
 
         // Grant gold to player on kill
-        if(attacker instanceof Player && target instanceof Enemy){
+        if(attacker.hasCapability(Status.HOSTILE_TO_ENEMY) && target.hasCapability(Status.HOSTILE_TO_PLAYER)){
             for (Item item : attacker.getItemInventory()){
-                if (item instanceof Runes){
+                if (item.hasCapability(Status.CURRENCY)) {
                     int[] ranges = ((Enemy) target).getRuneDropValues();
                     killRunes = new RandomNumberGenerator().getRandomInt(ranges[0], ranges[1]);
                     ((Runes) item).updateNumberOfRunes(killRunes);
@@ -76,7 +77,7 @@ public class DeathAction extends Action {
 
         ActionList dropActions = new ActionList();
         // drop all items, but the player will not drop its items
-        if(attacker instanceof Player){
+        if (attacker.hasCapability(Status.HOSTILE_TO_ENEMY)) {
             for (Item item : target.getItemInventory())
                 dropActions.add(item.getDropAction(target));
             for (WeaponItem weapon : target.getWeaponInventory())
@@ -86,7 +87,7 @@ public class DeathAction extends Action {
         }
 
         // remove actor
-        if(target instanceof Player){
+        if (target.hasCapability(Status.HOSTILE_TO_ENEMY)) {
             ResetManager resetManager = ResetManager.getInstance(map);
             for (String line : FancyMessage.YOU_DIED.split("\n")) {
                 new Display().println(line);

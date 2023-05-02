@@ -49,6 +49,7 @@ public abstract class Enemy extends Actor implements Resettable{
         super(name, displayChar, hitPoints);
         this.behaviours.put(2, new BasicAttackActionBehaviour(this.getIntrinsicWeapon()));
         this.behaviours.put(999, new WanderBehaviour());
+        this.addCapability(Status.HOSTILE_TO_PLAYER);
 
         ResetManager resetManager = ResetManager.getInstance();
         resetManager.registerResettable(this);
@@ -90,16 +91,13 @@ public abstract class Enemy extends Actor implements Resettable{
             for(int i = 0; i < otherActor.getWeaponInventory().size(); i++) {
                 actions.add(new AttackAction(this, direction, otherActor.getWeaponInventory().get(i)));
                 // if player has an Uchigatana, allow UnsheatheAction
-                if (otherActor.getWeaponInventory().get(i) instanceof Uchigatana) {
+                if (otherActor.getWeaponInventory().get(i).hasCapability(Status.UNSHEATHE)) {
                     actions.add(new UnsheatheAction(this, direction, new Uchigatana()));
                 }
-                if (otherActor.getWeaponInventory().get(i) instanceof GreatKnife) {
+                if (otherActor.getWeaponInventory().get(i).hasCapability(Status.QUICKSTEP)) {
                     actions.add(new QuickstepAction(this, direction, new GreatKnife()));
                 }
-                if (otherActor.getWeaponInventory().get(i) instanceof Grossmesser) {
-                    actions.add(new AOEAttackActionBehaviour(otherActor.getWeaponInventory().get(i)));
-                }
-                if (otherActor.getWeaponInventory().get(i) instanceof Scimitar) {
+                if (otherActor.getWeaponInventory().get(i).hasCapability(Status.AOE_ATTACK)) {
                     actions.add(new AOEAttackActionBehaviour(otherActor.getWeaponInventory().get(i)));
                 }
             }

@@ -1,5 +1,7 @@
 package game.actors.enemies;
 
+import game.utils.Status;
+
 /**
  * Interface for skeleton type enemies within the game such as Heavy Skeletal Swordsman
  * @author Zilei Chen
@@ -19,6 +21,7 @@ public abstract class Skeleton extends Enemy {
      */
     public Skeleton(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
+        this.addCapability(Status.SKELETON);
     }
 
     /**

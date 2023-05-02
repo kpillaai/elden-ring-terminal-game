@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.RestAction;
+import game.utils.Status;
 
 public class SiteOfLostGrace extends Ground {
     /**
@@ -14,6 +15,7 @@ public class SiteOfLostGrace extends Ground {
      */
     public SiteOfLostGrace() {
         super('U');
+        this.addCapability(Status.LOST_GRACE);
     }
 
     @Override

@@ -3,6 +3,7 @@ package game.weapons;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.utils.Status;
 
 /**
  * The starting weapon of the Bandit class.
@@ -19,6 +20,7 @@ public class GreatKnife extends WeaponItem implements Sellable, Buyable {
      */
     public GreatKnife() {
         super("GreatKnife", '/', 75, "stabs", 70);
+        this.addCapability(Status.QUICKSTEP);
     }
 
     @Override

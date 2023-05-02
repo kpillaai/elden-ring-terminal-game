@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.utils.ResetManager;
 import game.environments.SiteOfLostGrace;
+import game.utils.Status;
 
 /**
  * An action executed when a player rests at a Site of Lost Grace
@@ -38,7 +39,7 @@ public class RestAction extends Action {
         Ground ground = player_location.getGround();
 
         // if the ground is the Site of Lost Grace
-        if (ground instanceof SiteOfLostGrace) {
+        if (ground.hasCapability(Status.LOST_GRACE)) {
             ResetManager resetManager = ResetManager.getInstance(map);
             resetManager.run(map);
         }

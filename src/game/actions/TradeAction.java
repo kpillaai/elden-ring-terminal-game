@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.items.Runes;
+import game.utils.Status;
 
 /**
  * An action to trade items between the player and Merchant Kale
@@ -20,7 +21,7 @@ public class TradeAction extends Action {
      */
     public void updateRunes(int amount, Actor actor){
         for (Item item : actor.getItemInventory()){
-            if (item instanceof Runes){
+            if (item.hasCapability(Status.CURRENCY)){
                 ((Runes) item).updateNumberOfRunes(amount);
             }
         }
@@ -34,7 +35,7 @@ public class TradeAction extends Action {
     public int getRunes(Actor actor){
         int number = 0;
         for (Item item : actor.getItemInventory()){
-            if (item instanceof Runes){
+            if (item.hasCapability(Status.CURRENCY)){
                 number = ((Runes) item).getNumberOfRunes();
             }
         }
