@@ -1,15 +1,14 @@
 package game.actors.players;
 
-import game.actors.players.Player;
 import game.weapons.Uchigatana;
 
+/**
+ * Samurai class is custom combat Archetype available for the player to choose. It inherits from Player class.
+ */
 public class Samurai extends Player {
+
     /**
-     * Constructor.
-     *
-     * @param name        Name to call the player in the UI
-     * @param displayChar Character to represent the player in the UI
-     * @param hitPoints   Player's starting number of hitpoints
+     * Constructor for Samurai class, it spawns with an Uchigatana weapon.
      */
     public Samurai() {
         super(455);

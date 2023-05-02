@@ -4,45 +4,49 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.items.DropAction;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.environments.SiteOfLostGrace;
-import game.utils.FancyMessage;
 import game.utils.ResetManager;
 import game.utils.Resettable;
 import game.items.Runes;
 import game.utils.Status;
 import game.items.FlaskOfCrimsonTears;
-import game.weapons.Club;
-
-import javax.swing.plaf.synth.SynthTableUI;
 
 /**
  * Class representing the Player. It implements the Resettable interface.
- * It carries around a club to attack a hostile creature in the Lands Between.
- * Created by:
+ * It carries around a Flask Of Crimson Tears to heal itself when needed.
+ * Created by: Zilei Chen
  * @author Adrian Kristanto
- * Modified by:
- *
+ * Modified by: Zilei Chen
  */
 public class Player extends Actor implements Resettable {
 
+	/**
+	 * A menu showing the options that the Player is able to do each turn.
+	 */
 	private final Menu menu = new Menu();
 
+	/**
+	 * The last location the player was in x, y coordinates.
+	 */
 	private int[] lastLocation = {0, 0};
 
+	/**
+	 * The location of the last death of the player in x, y coordinates.
+	 */
 	private int[] lastDeathLocation = lastLocation;
 
+	/**
+	 * The last Site of Grace visited in x, y coordinates
+	 */
 	private int[] lastGraceSite = {37, 10};
 
 	/**
-	 * Constructor.
-	 *
-	 * @param name        Name to call the player in the UI
-	 * @param displayChar Character to represent the player in the UI
-	 * @param hitPoints   Player's starting number of hitpoints
+	 * Constructor for Player class. It also adds items to the player inventory that is necessary.
+	 * It also adds the player to the ResetManager.
+	 * @param hitPoints The number of hit points (HP) the player has.
 	 */
 	public Player(int hitPoints) {
 		super("Tarnished", '@', hitPoints);
@@ -54,6 +58,15 @@ public class Player extends Actor implements Resettable {
 		resetManager.registerResettable(this);
 	}
 
+	/**
+	 * Updates the last coordinates of the player. Then presents the player a list of options that they are able to
+	 * perform. Then performs the chosen action
+	 * @param actions    collection of possible Actions for the Player
+	 * @param lastAction The Action the Player took last turn. Can do interesting things in conjunction with Action.getNextAction()
+	 * @param map        the map containing the Player
+	 * @param display    the I/O object to which messages may be written
+	 * @return The action that the player chose to perform.
+	 */
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 		// saving the coordinates of the last location
@@ -80,6 +93,10 @@ public class Player extends Actor implements Resettable {
 		return menu.showMenu(this, actions, display);
 	}
 
+	/**
+	 * Get the Runes item from the player inventory
+	 * @return A Runes object representing the runes in the players inventory
+	 */
 	public Runes getRunes(){
 		for (Item item : this.getItemInventory()){
 			if (item.hasCapability(Status.CURRENCY)){
@@ -89,6 +106,10 @@ public class Player extends Actor implements Resettable {
 		return null;
 	}
 
+	/**
+	 * Get the number of uses left in the players Flask of Crimson Tears
+	 * @return An integer representing the number of uses left in the players Flask of Crimson Tears
+	 */
 	public int getUsesLeft(){
 		for (Item item : this.getItemInventory()){
 			if (item.hasCapability(Status.HEALING)){
@@ -98,7 +119,10 @@ public class Player extends Actor implements Resettable {
 		return 0;
 	}
 
-
+	/**
+	 * Adds an Item to the player inventory. If the item is a Rune object, it will combine the number of runes together.
+	 * @param item The Item to add.
+	 */
 	@Override
 	public void addItemToInventory(Item item) {
 		if(item.hasCapability(Status.CURRENCY)){
@@ -109,6 +133,13 @@ public class Player extends Actor implements Resettable {
 		}
 	}
 
+	/**
+	 * Resets the player when the player rests or dies.
+	 * It will reset the player's HP and Flasks of Crimson Tears uses.
+	 * If the player died, it will drop the player's runes, as well as teleport the player back to the last visited
+	 * Site of Lost Grace.
+	 * @param gameMap The map the player is on.
+	 */
 	@Override
 	public void reset(GameMap gameMap) {
 		if(!this.isConscious()){

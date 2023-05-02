@@ -2,13 +2,13 @@ package game.actors.players;
 
 import game.weapons.GreatKnife;
 
+/**
+ * Bandit class is custom combat Archetype available for the player to choose. It inherits from Player class.
+ */
 public class Bandit extends Player {
+
     /**
-     * Constructor.
-     *
-     * @param name        Name to call the player in the UI
-     * @param displayChar Character to represent the player in the UI
-     * @param hitPoints   Player's starting number of hitpoints
+     * Constructor for Bandit class, it spawns with a Great Knife weapon.
      */
     public Bandit() {
         super(414);
