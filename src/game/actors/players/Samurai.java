@@ -4,6 +4,8 @@ import game.weapons.Uchigatana;
 
 /**
  * Samurai class is custom combat Archetype available for the player to choose. It inherits from Player class.
+ * @author Zilei Chen
+ * @version 1.0
  */
 public class Samurai extends Player {
 
