@@ -36,7 +36,7 @@ public class BuyAction extends TradeAction {
     public String execute(Actor actor, GameMap map) {
         int buy_price = buyable.getBuyPrice();
         if (getRunes(actor) > (-1*(buy_price))) {
-            updateRunes(buy_price, actor);
+            updateRunes(buy_price, actor, map);
             actor.addWeaponToInventory(buyable.returnWeaponItem());
             return actor + " bought " + buyable.returnWeaponItem() + " for " + -buy_price + " runes";
         }

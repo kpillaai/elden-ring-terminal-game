@@ -2,6 +2,7 @@ package game.actions;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.items.PickUpItemAction;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.items.Runes;
 import game.utils.Status;
@@ -19,12 +20,11 @@ public class TradeAction extends Action {
      * @param amount the number to increase or decrease by
      * @param actor The player
      */
-    public void updateRunes(int amount, Actor actor){
-        for (Item item : actor.getItemInventory()){
-            if (item.hasCapability(Status.CURRENCY)){
-                ((Runes) item).updateNumberOfRunes(amount);
-            }
-        }
+    public void updateRunes(int amount, Actor actor, GameMap map){
+        Runes runes = new Runes(true);
+        runes.setNumberOfRunes(amount);
+        PickUpItemAction pickUpItemAction = new PickUpItemAction(runes);
+        pickUpItemAction.execute(actor, map);
     }
 
     /**
@@ -36,7 +36,7 @@ public class TradeAction extends Action {
         int number = 0;
         for (Item item : actor.getItemInventory()){
             if (item.hasCapability(Status.CURRENCY)){
-                number = ((Runes) item).getNumberOfRunes();
+                number = Integer.parseInt(item.toString().substring(0, item.toString().length() - 6));
             }
         }
         return number;

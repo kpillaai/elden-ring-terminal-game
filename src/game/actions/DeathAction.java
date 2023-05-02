@@ -4,7 +4,10 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.items.DropAction;
+import edu.monash.fit2099.engine.items.DropItemAction;
 import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.items.PickUpItemAction;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actors.players.Player;
@@ -55,22 +58,13 @@ public class DeathAction extends Action {
     public String execute(Actor target, GameMap map) {
         String result = "";
 
-        // Check if the target is a skeleton as they turn into a pile of bones
-        if(target.hasCapability(Status.SKELETON)){
-            if(!((Skeleton) target).getIsPileOfBones()){
-               result = ((Skeleton) target).updatePileOfBones();
-               return result;
-            }
-        }
-
         // Grant runes to player on kill
         if(attacker.hasCapability(Status.HOSTILE_TO_ENEMY) && target.hasCapability(Status.HOSTILE_TO_PLAYER)){
-            for (Item item : attacker.getItemInventory()){
+            for (Item item : target.getItemInventory()){
                 if (item.hasCapability(Status.CURRENCY)) {
-                    int[] ranges = ((Enemy) target).getRuneDropValues();
-                    killRunes = new RandomNumberGenerator().getRandomInt(ranges[0], ranges[1]);
-                    ((Runes) item).updateNumberOfRunes(killRunes);
-                    result += target + " drops " + killRunes + " runes.";
+                    PickUpItemAction pickUpItemAction = new PickUpItemAction(item);
+                    pickUpItemAction.execute(attacker, map);
+                    result += target + " drops " + item;
                 }
             }
         }
@@ -79,7 +73,9 @@ public class DeathAction extends Action {
         // drop all items, but the player will not drop its items
         if (attacker.hasCapability(Status.HOSTILE_TO_ENEMY)) {
             for (Item item : target.getItemInventory())
-                dropActions.add(item.getDropAction(target));
+                if(!item.hasCapability(Status.CURRENCY)){
+                    dropActions.add(item.getDropAction(target));
+                }
             for (WeaponItem weapon : target.getWeaponInventory())
                 dropActions.add(weapon.getDropAction(target));
             for (Action drop : dropActions)

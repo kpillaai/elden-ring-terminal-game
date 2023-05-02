@@ -14,6 +14,7 @@ public class GiantCrab extends GiantEnemy {
     public GiantCrab(){
         super("Giant Crab", 'c', 407);
         super.setRuneDropValues(318, 4961);
+        super.spawnRunes();
     }
 
     /**

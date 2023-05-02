@@ -9,6 +9,8 @@ import game.behaviours.AOEAttackActionBehaviour;
 import game.behaviours.BasicAttackActionBehaviour;
 import game.behaviours.Behaviour;
 import game.behaviours.WanderBehaviour;
+import game.items.Runes;
+import game.utils.RandomNumberGenerator;
 import game.utils.ResetManager;
 import game.utils.Resettable;
 import game.utils.Status;
@@ -46,6 +48,12 @@ public abstract class Enemy extends Actor implements Resettable{
 
         ResetManager resetManager = ResetManager.getInstance();
         resetManager.registerResettable(this);
+    }
+
+    public void spawnRunes(){
+        Runes runes = new Runes(true);
+        runes.setNumberOfRunes(RandomNumberGenerator.getRandomInt(this.runeDropValues[0], this.runeDropValues[1]));
+        this.addItemToInventory(runes);
     }
 
     /**

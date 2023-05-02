@@ -33,7 +33,7 @@ public class SellAction extends TradeAction {
     @Override
     public String execute(Actor actor, GameMap map) {
         int sell_price = sellable.getSellPrice();
-        updateRunes(sell_price, actor);
+        updateRunes(sell_price, actor, map);
         for (int i = 0; i < actor.getWeaponInventory().size(); i++) {
             if (actor.getWeaponInventory().get(i).toString().equals(sellable.toString())) {
                 actor.removeWeaponFromInventory(actor.getWeaponInventory().get(i));

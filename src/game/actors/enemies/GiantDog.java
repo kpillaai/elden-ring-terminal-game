@@ -17,6 +17,7 @@ public class GiantDog extends GiantEnemy {
     public GiantDog() {
         super("Giant Dog", 'G', 693);
         super.setRuneDropValues(313, 1808);
+        super.spawnRunes();
     }
 
     /**

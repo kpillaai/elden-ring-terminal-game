@@ -14,6 +14,7 @@ public class GiantCrayfish extends GiantEnemy {
     public GiantCrayfish(){
         super("Giant Crayfish", 'R', 4803);
         super.setRuneDropValues(500, 2374);
+        super.spawnRunes();
     }
 
     /**

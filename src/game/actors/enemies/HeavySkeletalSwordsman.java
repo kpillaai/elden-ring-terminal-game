@@ -25,6 +25,7 @@ public class HeavySkeletalSwordsman extends Skeleton {
         this.addWeaponToInventory(new Grossmesser());
         super.setRuneDropValues(35, 892);
         this.behaviours.put(1, new AOEAttackActionBehaviour(this.getWeaponInventory().get(0)));
+        super.spawnRunes();
     }
 
     /**
@@ -44,25 +45,4 @@ public class HeavySkeletalSwordsman extends Skeleton {
     public int getSpawnChance() {
         return 27;
     }
-
-    /**
-     * At each turn, select a valid action to perform.
-     * Checks to see if the skeleton is in Pile of Bones form
-     * @param actions    collection of possible Actions for this Enemy
-     * @param lastAction The Action this Enemy took last turn. Can do interesting things in conjunction with Action.getNextAction()
-     * @param map        the map containing the Enemy
-     * @param display    the I/O object to which messages may be written
-     * @return the valid action that can be performed in that iteration or null if no valid action is found
-     */
-    @Override
-    public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        if(getIsPileOfBones()){
-            this.updatePileOfBonesTurns();
-            return new DoNothingAction();
-        }
-        else{
-            return super.playTurn(actions, lastAction, map, display);
-        }
-    }
-
 }
