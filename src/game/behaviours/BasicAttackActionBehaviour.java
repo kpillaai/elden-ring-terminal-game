@@ -6,29 +6,35 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
-import game.actors.players.Player;
 import game.utils.RandomNumberGenerator;
-
 import java.util.ArrayList;
 
+/**
+ * The BasicAttackActionBehaviour class that inherits AttackAction and implements Behaviour. This allows Enemies to be
+ * able to use their basic attack.
+ * @author Zilei Chen
+ * @version 1.0
+ */
 public class BasicAttackActionBehaviour extends AttackAction implements Behaviour {
 
     /**
-     * Constructor.
-     *
-     * @param target    the Actor to attack
-     * @param direction the direction where the attack should be performed (only used for display purposes)
-     * @param weapon
+     * Constructor for BasicAttackActionBehaviour. Only the weapon is needed for this as it differs per actor.
+     * @param weapon The weapon used to perform a basic attack
      */
     public BasicAttackActionBehaviour(Weapon weapon) {
         super(null, null, weapon);
     }
 
+    /**
+     * This will check the actor's surroundings within 1 unit radius. If there is an actor there, add a new AttackAction.
+     * Then it will choose a random target to attack.
+     * @param actor The actor performing the attack action.
+     * @param map The map the actor is on.
+     * @return The result of the attack in String.
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         Location actor_location = map.locationOf(actor);
-        // int currentX = map.locationOf(actor).x();
-        // int currentY = map.locationOf(actor).y();
         int xMax = map.getXRange().max();
         int yMax = map.getYRange().max();
         ArrayList<AttackAction> attackList = new ArrayList<AttackAction>();
@@ -42,21 +48,6 @@ public class BasicAttackActionBehaviour extends AttackAction implements Behaviou
                 }
             }
         }
-        /*
-        for(int i = -1; i < 2; i++){
-            for(int j = -1; j<2; j++){
-                if (!(i == 0 && j == 0)){
-                    if((currentX + i) > 0 && (currentX + i) < xMax && currentY + j > 0 && currentY + j < yMax){
-                        if (map.at(currentX+i, currentY+j).containsAnActor()){
-                            Actor target = map.at(currentX+i, currentY+j).getActor();
-                            attackList.add(new AttackAction(target, "north", this.weapon));
-                        }
-                    }
-                }
-            }
-        }
-
-         */
         RandomNumberGenerator rng = new RandomNumberGenerator();
         if(attackList.isEmpty()){
             return null;
@@ -88,12 +79,16 @@ public class BasicAttackActionBehaviour extends AttackAction implements Behaviou
      */
 
 
-
+    /**
+     * This method will return the action to be executed when performing a BasicAttackAction. It will check if the
+     * surroundings of the actors has targets to hit.
+     * @param actor the Actor acting
+     * @param map the GameMap containing the Actor
+     * @return The action to be executed by the Actor.
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         Location actor_location = map.locationOf(actor);
-        // int currentX = map.locationOf(actor).x();
-        // int currentY = map.locationOf(actor).y();
         int xMax = map.getXRange().max();
         int yMax = map.getYRange().max();
         for (int i = 0; i < actor_location.getExits().size(); i++) {
@@ -105,20 +100,6 @@ public class BasicAttackActionBehaviour extends AttackAction implements Behaviou
                 }
             }
         }
-        /*
-        for(int i = -1; i < 2; i++){
-            for(int j = -1; j<2; j++){
-                if (!(i == 0 && j == 0)){
-                    if((currentX + i) > 0 && (currentX + i) < xMax && currentY + j > 0 && currentY + j < yMax){
-                        if (map.at(currentX+i, currentY+j).containsAnActor()){
-                            return this;
-                        }
-                    }
-                }
-            }
-        }
-
-         */
         return null;
     }
 }

@@ -6,12 +6,13 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
-import game.utils.RandomNumberGenerator;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
+/**
+ * The AOEAttackActionBehaviour inherits AttackAction and implements behaviour. Allowing both the player and the enemy
+ * to use attacks that cause aoe effects.
+ * @author Zilei Chen
+ * @version 1.0
+ */
 public class AOEAttackActionBehaviour extends AttackAction implements Behaviour {
 
     /**
@@ -33,11 +34,8 @@ public class AOEAttackActionBehaviour extends AttackAction implements Behaviour 
     @Override
     public String execute(Actor actor, GameMap map) {
         Location currentLocation = map.locationOf(actor);
-        int xCord = currentLocation.x();
-        int yCord = currentLocation.y();
         int xMax = map.getXRange().max();
         int yMax = map.getYRange().max();
-        String[] directions = {"north", "north east", "east", "south east", "south", "south west", "west", "north west"};
 
         String executeString = "The " + actor + " " + this.weapon.verb() + " in all directions.";
         for (int i = 0; i < currentLocation.getExits().size(); i++) {
@@ -51,21 +49,6 @@ public class AOEAttackActionBehaviour extends AttackAction implements Behaviour 
                 }
             }
         }
-        /*
-        for(int i = -1; i<2; i++) {
-            for (int j = -1; j < 2; j++) {
-                if((xCord + i) > 0 && (xCord + i) < xMax && yCord + j > 0 && yCord + j < yMax){
-                    if(i != 0 || j != 0){
-                        Actor attackTarget = map.at(xCord+i, yCord+j).getActor();
-                        if(attackTarget != null){
-                            AttackAction attack = new AttackAction(attackTarget, directions[0], this.weapon);
-                            executeString += " \n" + attack.execute(actor, map);
-                        }
-                    }
-                }
-            }
-        }
-         */
         return executeString;
     }
 
@@ -80,11 +63,15 @@ public class AOEAttackActionBehaviour extends AttackAction implements Behaviour 
         return actor + " uses spinning attack with " + weapon;
     }
 
+    /**
+     * Returns the action that is to be executed when chosen. In this case it will return itself.
+     * @param actor the Actor doing the action
+     * @param map the GameMap containing the Actor
+     * @return
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         Location actor_location = map.locationOf(actor);
-        int currentX = map.locationOf(actor).x();
-        int currentY = map.locationOf(actor).y();
         int xMax = map.getXRange().max();
         int yMax = map.getYRange().max();
         for (int i = 0; i < actor_location.getExits().size(); i++) {
@@ -96,19 +83,6 @@ public class AOEAttackActionBehaviour extends AttackAction implements Behaviour 
                 }
             }
         }
-        /*
-        for(int i = -1; i < 2; i++){
-            for(int j = -1; j<2; j++){
-                if (!(i == 0 && j == 0)){
-                    if((currentX + i) > 0 && (currentX + i) < xMax && currentY + j > 0 && currentY + j < yMax){
-                        if (map.at(currentX+i, currentY+j).containsAnActor()){
-                            return this;
-                        }
-                    }
-                }
-            }
-        }
-         */
         return null;
     }
 }
