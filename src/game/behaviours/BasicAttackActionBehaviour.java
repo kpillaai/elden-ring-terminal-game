@@ -3,6 +3,7 @@ package game.behaviours;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
 import game.actors.players.Player;
@@ -25,11 +26,23 @@ public class BasicAttackActionBehaviour extends AttackAction implements Behaviou
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        int currentX = map.locationOf(actor).x();
-        int currentY = map.locationOf(actor).y();
+        Location actor_location = map.locationOf(actor);
+        // int currentX = map.locationOf(actor).x();
+        // int currentY = map.locationOf(actor).y();
         int xMax = map.getXRange().max();
         int yMax = map.getYRange().max();
         ArrayList<AttackAction> attackList = new ArrayList<AttackAction>();
+        for (int i = 0; i < actor_location.getExits().size(); i++) {
+            if (!(actor_location.getExits().get(i).getDestination().x() == 0 && actor_location.getExits().get(i).getDestination().y() == 0)) {
+                if ((actor_location.getExits().get(i).getDestination().x() > 0) && (actor_location.getExits().get(i).getDestination().x() < xMax) && (actor_location.getExits().get(i).getDestination().y() > 0) && (actor_location.getExits().get(i).getDestination().y() < yMax)) {
+                    if (map.at(actor_location.getExits().get(i).getDestination().x(), actor_location.getExits().get(i).getDestination().y()).containsAnActor()) {
+                        Actor target = map.at(actor_location.getExits().get(i).getDestination().x(), actor_location.getExits().get(i).getDestination().y()).getActor();
+                        attackList.add(new AttackAction(target, actor_location.getExits().get(i).getName(), this.weapon));
+                    }
+                }
+            }
+        }
+        /*
         for(int i = -1; i < 2; i++){
             for(int j = -1; j<2; j++){
                 if (!(i == 0 && j == 0)){
@@ -42,6 +55,8 @@ public class BasicAttackActionBehaviour extends AttackAction implements Behaviou
                 }
             }
         }
+
+         */
         RandomNumberGenerator rng = new RandomNumberGenerator();
         if(attackList.isEmpty()){
             return null;
@@ -76,10 +91,21 @@ public class BasicAttackActionBehaviour extends AttackAction implements Behaviou
 
     @Override
     public Action getAction(Actor actor, GameMap map) {
-        int currentX = map.locationOf(actor).x();
-        int currentY = map.locationOf(actor).y();
+        Location actor_location = map.locationOf(actor);
+        // int currentX = map.locationOf(actor).x();
+        // int currentY = map.locationOf(actor).y();
         int xMax = map.getXRange().max();
         int yMax = map.getYRange().max();
+        for (int i = 0; i < actor_location.getExits().size(); i++) {
+            if (!(actor_location.getExits().get(i).getDestination().x() == 0 && actor_location.getExits().get(i).getDestination().y() == 0)) {
+                if ((actor_location.getExits().get(i).getDestination().x() > 0) && (actor_location.getExits().get(i).getDestination().x() < xMax) && (actor_location.getExits().get(i).getDestination().y() > 0) && (actor_location.getExits().get(i).getDestination().y() < yMax)) {
+                    if (map.at(actor_location.getExits().get(i).getDestination().x(), actor_location.getExits().get(i).getDestination().y()).containsAnActor()) {
+                        return this;
+                    }
+                }
+            }
+        }
+        /*
         for(int i = -1; i < 2; i++){
             for(int j = -1; j<2; j++){
                 if (!(i == 0 && j == 0)){
@@ -91,6 +117,8 @@ public class BasicAttackActionBehaviour extends AttackAction implements Behaviou
                 }
             }
         }
+
+         */
         return null;
     }
 }
