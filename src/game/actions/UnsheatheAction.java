@@ -37,7 +37,7 @@ public class UnsheatheAction extends AttackAction {
         }
 
         int damage = 2 * weapon.damage();
-        String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+        String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage. ";
         target.hurt(damage);
         if (!target.isConscious()) {
             result += new DeathAction(actor).execute(target, map);

@@ -92,10 +92,10 @@ public abstract class Enemy extends Actor implements Resettable{
                 actions.add(new AttackAction(this, direction, otherActor.getWeaponInventory().get(i)));
                 // if player has an Uchigatana, allow UnsheatheAction
                 if (otherActor.getWeaponInventory().get(i).hasCapability(Status.UNSHEATHE)) {
-                    actions.add(new UnsheatheAction(this, direction, new Uchigatana()));
+                    actions.add(otherActor.getWeaponInventory().get(i).getSkill(this, direction));
                 }
                 if (otherActor.getWeaponInventory().get(i).hasCapability(Status.QUICKSTEP)) {
-                    actions.add(new QuickstepAction(this, direction, new GreatKnife()));
+                    actions.add(otherActor.getWeaponInventory().get(i).getSkill(this, direction));
                 }
                 if (otherActor.getWeaponInventory().get(i).hasCapability(Status.AOE_ATTACK)) {
                     actions.add(new AOEAttackActionBehaviour(otherActor.getWeaponInventory().get(i)));
