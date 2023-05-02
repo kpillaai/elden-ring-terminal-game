@@ -40,6 +40,18 @@ public class AOEAttackActionBehaviour extends AttackAction implements Behaviour 
         String[] directions = {"north", "north east", "east", "south east", "south", "south west", "west", "north west"};
 
         String executeString = "The " + actor + " " + this.weapon.verb() + " in all directions.";
+        for (int i = 0; i < currentLocation.getExits().size(); i++) {
+            if ((currentLocation.getExits().get(i).getDestination().x() > 0) && (currentLocation.getExits().get(i).getDestination().x() < xMax) && (currentLocation.getExits().get(i).getDestination().y() > 0) && (currentLocation.getExits().get(i).getDestination().y() < yMax)) {
+                if (currentLocation.getExits().get(i).getDestination().x() != 0 || currentLocation.getExits().get(i).getDestination().y() != 0) {
+                    Actor attackTarget = map.at(currentLocation.getExits().get(i).getDestination().x(), currentLocation.getExits().get(i).getDestination().y()).getActor();
+                    if (attackTarget != null) {
+                        AttackAction attack = new AttackAction(attackTarget, currentLocation.getExits().get(i).getName(), this.weapon);
+                        executeString += " \n" + attack.execute(actor, map);
+                    }
+                }
+            }
+        }
+        /*
         for(int i = -1; i<2; i++) {
             for (int j = -1; j < 2; j++) {
                 if((xCord + i) > 0 && (xCord + i) < xMax && yCord + j > 0 && yCord + j < yMax){
@@ -53,6 +65,7 @@ public class AOEAttackActionBehaviour extends AttackAction implements Behaviour 
                 }
             }
         }
+         */
         return executeString;
     }
 
