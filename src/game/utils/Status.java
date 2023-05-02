@@ -15,6 +15,6 @@ public enum Status {
     QUICKSTEP,
     HEALING,
     AOE_ATTACK,
-    RESPAWNABLE,
-    RESTING
+    DOG,
+    AQUATIC
 }

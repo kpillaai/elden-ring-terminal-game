@@ -7,6 +7,8 @@ import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
 import game.utils.RandomNumberGenerator;
+import game.utils.Status;
+
 import java.util.ArrayList;
 
 /**
@@ -43,7 +45,15 @@ public class BasicAttackActionBehaviour extends AttackAction implements Behaviou
                 if ((actor_location.getExits().get(i).getDestination().x() > 0) && (actor_location.getExits().get(i).getDestination().x() < xMax) && (actor_location.getExits().get(i).getDestination().y() > 0) && (actor_location.getExits().get(i).getDestination().y() < yMax)) {
                     if (map.at(actor_location.getExits().get(i).getDestination().x(), actor_location.getExits().get(i).getDestination().y()).containsAnActor()) {
                         Actor target = map.at(actor_location.getExits().get(i).getDestination().x(), actor_location.getExits().get(i).getDestination().y()).getActor();
-                        attackList.add(new AttackAction(target, actor_location.getExits().get(i).getName(), this.weapon));
+                        if(!target.hasCapability(Status.DOG) && actor.hasCapability(Status.DOG)){
+                            attackList.add(new AttackAction(target, actor_location.getExits().get(i).getName(), this.weapon));
+                        }
+                        if(!target.hasCapability(Status.SKELETON) && actor.hasCapability(Status.SKELETON)){
+                            attackList.add(new AttackAction(target, actor_location.getExits().get(i).getName(), this.weapon));
+                        }
+                        if(!target.hasCapability(Status.AQUATIC) && actor.hasCapability(Status.AQUATIC)){
+                            attackList.add(new AttackAction(target, actor_location.getExits().get(i).getName(), this.weapon));
+                        }
                     }
                 }
             }
@@ -95,7 +105,16 @@ public class BasicAttackActionBehaviour extends AttackAction implements Behaviou
             if (!(actor_location.getExits().get(i).getDestination().x() == 0 && actor_location.getExits().get(i).getDestination().y() == 0)) {
                 if ((actor_location.getExits().get(i).getDestination().x() > 0) && (actor_location.getExits().get(i).getDestination().x() < xMax) && (actor_location.getExits().get(i).getDestination().y() > 0) && (actor_location.getExits().get(i).getDestination().y() < yMax)) {
                     if (map.at(actor_location.getExits().get(i).getDestination().x(), actor_location.getExits().get(i).getDestination().y()).containsAnActor()) {
-                        return this;
+                        Actor target = map.at(actor_location.getExits().get(i).getDestination().x(), actor_location.getExits().get(i).getDestination().y()).getActor();
+                        if(!target.hasCapability(Status.DOG) && actor.hasCapability(Status.DOG)){
+                            return this;
+                        }
+                        if(!target.hasCapability(Status.SKELETON) && actor.hasCapability(Status.SKELETON)){
+                            return this;
+                        }
+                        if(!target.hasCapability(Status.AQUATIC) && actor.hasCapability(Status.AQUATIC)){
+                            return this;
+                        }
                     }
                 }
             }

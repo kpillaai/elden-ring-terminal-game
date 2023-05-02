@@ -1,6 +1,7 @@
 package game.actors.enemies;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.behaviours.BasicAttackActionBehaviour;
+import game.utils.Status;
 
 /**
  * BEHOLD, DOG!
@@ -19,6 +20,7 @@ public class LoneWolf extends Enemy {
         super("Lone Wolf", 'h', 102);
         super.setRuneDropValues(55, 1470);
         super.spawnRunes();
+        this.addCapability(Status.DOG);
     }
 
     /**

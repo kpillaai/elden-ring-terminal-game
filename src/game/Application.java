@@ -92,11 +92,11 @@ public class Application {
 			world.addPlayer(player, gameMap.at(37, 10));
 		}
 
-		// (23, 17)
-		gameMap.at(36, 11).addActor(new LoneWolf());
 
 		MerchantKale merchantKale = new MerchantKale();
 		gameMap.at( 38, 9).addActor(merchantKale);
+
+
 
 		world.run();
 	}
