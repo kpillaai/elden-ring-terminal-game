@@ -3,6 +3,7 @@ package game.weapons;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.utils.Status;
 
 public class Grossmesser extends WeaponItem implements Sellable {
 
@@ -11,6 +12,7 @@ public class Grossmesser extends WeaponItem implements Sellable {
      */
     public Grossmesser() {
         super("Grossmesser", '?', 115, "swings", 85);
+        this.addCapability(Status.AOE_ATTACK);
     }
 
     @Override

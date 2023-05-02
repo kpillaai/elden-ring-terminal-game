@@ -1,6 +1,7 @@
 package game.items;
 
 import edu.monash.fit2099.engine.items.Item;
+import game.utils.Status;
 
 public class Runes extends Item {
     /***
@@ -12,6 +13,7 @@ public class Runes extends Item {
     int numberOfRunes = 0;
     public Runes(Boolean portable) {
         super("Runes", '$', portable);
+        this.addCapability(Status.CURRENCY);
     }
 
     public int getNumberOfRunes() {

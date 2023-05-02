@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
+import game.actors.players.Player;
 import game.utils.RandomNumberGenerator;
 
 import java.util.ArrayList;

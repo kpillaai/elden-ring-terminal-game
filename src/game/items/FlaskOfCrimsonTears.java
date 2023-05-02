@@ -3,6 +3,7 @@ package game.items;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.items.Item;
 import game.actions.ConsumeHealAction;
+import game.utils.Status;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class FlaskOfCrimsonTears extends Item {
     public FlaskOfCrimsonTears() {
         super("Flask of Crimson Tears", 'f', false);
         this.addAction(new ConsumeHealAction(this));
+        this.addCapability(Status.HEALING);
     }
 
     public int getHealAmount() {

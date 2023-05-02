@@ -17,6 +17,8 @@ import game.utils.Status;
 import game.items.FlaskOfCrimsonTears;
 import game.weapons.Club;
 
+import javax.swing.plaf.synth.SynthTableUI;
+
 /**
  * Class representing the Player. It implements the Resettable interface.
  * It carries around a club to attack a hostile creature in the Lands Between.
@@ -80,7 +82,7 @@ public class Player extends Actor implements Resettable {
 
 	public Runes getRunes(){
 		for (Item item : this.getItemInventory()){
-			if (item instanceof Runes){
+			if (item.hasCapability(Status.CURRENCY)){
 				return ((Runes) item);
 			}
 		}
@@ -89,7 +91,7 @@ public class Player extends Actor implements Resettable {
 
 	public int getUsesLeft(){
 		for (Item item : this.getItemInventory()){
-			if (item instanceof FlaskOfCrimsonTears){
+			if (item.hasCapability(Status.HEALING)){
 				return ((FlaskOfCrimsonTears) item).getUsesLeft();
 			}
 		}
@@ -99,7 +101,7 @@ public class Player extends Actor implements Resettable {
 
 	@Override
 	public void addItemToInventory(Item item) {
-		if(item instanceof Runes){
+		if(item.hasCapability(Status.CURRENCY)){
 			getRunes().updateNumberOfRunes(((Runes) item).getNumberOfRunes());
 		}
 		else{
@@ -117,7 +119,7 @@ public class Player extends Actor implements Resettable {
 
 			this.lastDeathLocation = lastLocation;
 			for (int i = 0; i < this.getItemInventory().size(); i++) {
-				if (this.getItemInventory().get(i) instanceof Runes) {
+				if (this.getItemInventory().get(i).hasCapability(Status.CURRENCY)) {
 					Runes droppedRunes = new Runes(true);
 					droppedRunes.updateNumberOfRunes(((Runes) this.getItemInventory().get(i)).getNumberOfRunes());
 					gameMap.at(lastDeathLocation[0], lastDeathLocation[1]).addItem(droppedRunes);
@@ -130,7 +132,7 @@ public class Player extends Actor implements Resettable {
 		}
 		this.resetMaxHp(this.getMaxHp());
 		for (Item item : this.getItemInventory()){
-			if (item instanceof FlaskOfCrimsonTears){
+			if (item.hasCapability(Status.HEALING)){
 				((FlaskOfCrimsonTears) item).refresh();
 			}
 		}

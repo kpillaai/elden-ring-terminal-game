@@ -3,6 +3,7 @@ package game.weapons;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.utils.Status;
 
 /**
  * The weapon held by the Skeleton Variant 'Skeletal Bandit'.
@@ -19,6 +20,7 @@ public class Scimitar extends WeaponItem implements Sellable, Buyable {
      */
     public Scimitar() {
         super("Scimitar", 's', 118, "swings", 88);
+        this.addCapability(Status.AOE_ATTACK);
     }
 
     @Override
