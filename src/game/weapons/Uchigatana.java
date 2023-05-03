@@ -18,44 +18,58 @@ import game.utils.Status;
 public class Uchigatana extends WeaponItem implements Sellable, Buyable {
 
     /**
-     * Constructor
+     * Constructor for Uchigatana class.
      */
     public Uchigatana() {
         super("Uchigatana", ')', 115, "slices", 80);
         this.addCapability(Status.UNSHEATHE);
     }
 
+    /**
+     * Gets the buy price of this Uchigatana. This number will be negative to represent losing Runes when purchasing
+     * this item.
+     * @return Negative Integer representing the buy price of this Uchigatana
+     */
     public int getBuyPrice() {
         return -5000;
     }
 
+    /**
+     * Gets the sell price of this Uchigatana
+     * @return Integer representing the sell price of this Uchigatana
+     */
     @Override
     public int getSellPrice() {
         return 500;
     }
 
+    /**
+     * Gets the WeaponItem equivalent of this Buyable interface.
+     * @return WeaponItem representing this buyable weapon.
+     */
     @Override
     public WeaponItem returnWeaponItem() {
         return this;
     }
+
+    /**
+     * Returns the name of this Uchigatana.
+     * @return String representing the name of the Uchigatana.
+     */
     @Override
     public String toString() {
         return "Uchigatana";
     }
 
     /**
-     * Get an active skill action from the weapon. Use this method if you want to use a weapon skill
-     * against one targeted Actor (i.e, special attack, heal, stun, etc.).
-     *
+     * Get an active skill action from the weapon. This special action is the Unsheathe Action.
+     * This allows the user to deal 2x damage but only have a 60% hit rate.
      * @param target    target actor
      * @param direction
-     * @return a special Action that can be performed by this weapon (perform special attack on the enemy, etc.)
+     * @return a special Action UnsheatheAction.
      */
     @Override
     public Action getSkill(Actor target, String direction) {
         return new UnsheatheAction(target, direction, this);
     }
-
-    @Override
-    public void tick(Location currentLocation, Actor actor) {}
 }

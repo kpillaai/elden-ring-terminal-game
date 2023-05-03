@@ -1,7 +1,7 @@
 package game.utils;
 
 /**
- * Use this enum class to give `buff` or `debuff`.
+ * Enum class that represents states and status of items and actors.
  * Created by:
  * @author Riordan D. Alfredo
  */

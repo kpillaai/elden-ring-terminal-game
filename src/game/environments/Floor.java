@@ -12,10 +12,19 @@ import game.utils.Status;
  *
  */
 public class Floor extends Ground {
+
+	/**
+	 * Constructor for Floor class.
+	 */
 	public Floor() {
 		super('_');
 	}
 
+	/**
+	 * Checks if a specific actor is able to enter this specific ground.
+	 * @param actor the Actor to check
+	 * @return Boolean representing if the actor can enter or not
+	 */
 	@Override
 	public boolean canActorEnter(Actor actor) {
 		return actor.hasCapability(Status.HOSTILE_TO_ENEMY);

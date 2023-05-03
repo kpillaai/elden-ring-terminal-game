@@ -10,34 +10,48 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
  * Created by:
  * @author Adrian Kristanto
  * Modified by:
- *
  */
 public class Club extends WeaponItem implements Sellable, Buyable {
 
     /**
-     * Constructor
+     * Constructor for Club weapon.
      */
     public Club() {
         super("Club", '!', 103, "bonks", 80);
     }
 
-    @Override
-    public void tick(Location currentLocation, Actor actor) {}
-
+    /**
+     * Gets the sell price of this Club
+     * @return Integer representing the sell price of this Club
+     */
     @Override
     public int getSellPrice() {
         return 100;
     }
 
+    /**
+     * Gets the buy price of this Club. This number will be negative to represent losing Runes when purchasing
+     * this item.
+     * @return Negative Integer representing the buy price of this Club
+     */
     @Override
     public int getBuyPrice() {
         return -600;
     }
+
+    /**
+     * Returns the name of this Club.
+     * @return String representing the name of the Club.
+     */
     @Override
     public String toString() {
         return "Club";
     }
 
+    /**
+     * Gets the WeaponItem equivalent of this Buyable interface.
+     * @return WeaponItem representing this buyable weapon.
+     */
     @Override
     public WeaponItem returnWeaponItem() {
         return this;

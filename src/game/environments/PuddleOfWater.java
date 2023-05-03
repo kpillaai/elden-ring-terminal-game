@@ -12,14 +12,28 @@ import game.utils.Status;
  *
  */
 public class PuddleOfWater extends Spawner {
+
+	/**
+	 * Giant Crab is one of the enemies that can be spawned on a Graveyard ground
+	 */
 	private Enemy giantCrab;
+
+	/**
+	 * Giant Crayfish is one of the enemies that can be spawned on a Graveyard ground
+	 */
 	private Enemy giantCrayFish;
+
+	/**
+	 * Constructor for PuddleOfWater class
+	 */
 	public PuddleOfWater() {
 		super('~');
 	}
 
 	/**
-	 * At each turn, this environment has a 2% chance of spawning its enemyType
+	 * For each turn, the Puddle of Water has a 2% change of spawning an enemy based on whether it is on the east or
+	 * west side of the map.
+	 * @param location The location of the Ground
 	 */
 	@Override
 	public void tick (Location location){

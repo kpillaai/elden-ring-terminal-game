@@ -7,19 +7,32 @@ import game.utils.Status;
 
 
 /**
- * A class that represents the floor inside a building.
+ * A class that represents a Gust Of Wind area within the map.
  * @author Jason Skurr
- *
  */
 public class GustOfWind extends Spawner {
+
+	/**
+	 * Lone Wolf is one of the enemies that can be spawned on a Graveyard ground
+	 */
 	private Enemy loneWolf;
+
+	/**
+	 * Giant Dog is one of the enemies that can be spawned on a Graveyard ground
+	 */
 	private Enemy giantDog;
+
+	/**
+	 * Constructor for GustOfWind class.
+	 */
 	public GustOfWind() {
 		super('&');
 	}
 
 	/**
-	 * At each turn, this environment has a 33% chance of spawning its enemyType
+	 * For each turn, the Gust Of Wind has a 30% change of spawning an enemy based on whether it is on the east or
+	 * west side of the map.
+	 * @param location The location of the Ground
 	 */
 	@Override
 	public void tick (Location location){

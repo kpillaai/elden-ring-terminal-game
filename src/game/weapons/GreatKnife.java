@@ -13,48 +13,61 @@ import game.utils.Status;
  * Created by: Krishna Pillaai Manogaran
  * @author Adrian Kristanto
  * Modified by:
- *
  */
 public class GreatKnife extends WeaponItem implements Sellable, Buyable {
 
     /**
-     * Constructor
+     * Constructor for GreatKnife class
      */
     public GreatKnife() {
         super("GreatKnife", '/', 75, "stabs", 70);
         this.addCapability(Status.QUICKSTEP);
     }
 
-    @Override
-    public void tick(Location currentLocation, Actor actor) {}
-
+    /**
+     * Gets the sell price of this GreatKnife
+     * @return Integer representing the sell price of this GreatKnife
+     */
     @Override
     public int getSellPrice() {
         return 350;
     }
 
+    /**
+     * Gets the buy price of this GreatKnife. This number will be negative to represent losing Runes when purchasing
+     * this item.
+     * @return Negative Integer representing the buy price of this GreatKnife
+     */
     @Override
     public int getBuyPrice() {
         return -3500;
     }
+
+    /**
+     * Returns the name of this GreatKnife.
+     * @return String representing the name of the GreatKnife.
+     */
     @Override
     public String toString() {
         return "GreatKnife";
     }
 
     /**
-     * Get an active skill action from the weapon. Use this method if you want to use a weapon skill
-     * against one targeted Actor (i.e, special attack, heal, stun, etc.).
-     *
+     * Get an active skill action from the weapon. This skill will be the Quick Step.
+     * It allows the actor to hit another enemy whilst also moving away from their attack range.
      * @param target    target actor
-     * @param direction
-     * @return a special Action that can be performed by this weapon (perform special attack on the enemy, etc.)
+     * @param direction Direction of attack
+     * @return QuickstepAction special skill
      */
     @Override
     public Action getSkill(Actor target, String direction) {
         return new QuickstepAction(target, direction, this);
     }
 
+    /**
+     * Gets the WeaponItem equivalent of this Buyable interface.
+     * @return WeaponItem representing this buyable weapon.
+     */
     @Override
     public WeaponItem returnWeaponItem() {
         return this;
