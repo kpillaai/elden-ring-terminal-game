@@ -119,10 +119,10 @@ public class MapManager {
          */
         GoldenFogDoor limgraveRoundtableHold = new GoldenFogDoor();
         GoldenFogDoor roundtableHoldLimgrave = new GoldenFogDoor();
-        gameMaps.get(0).at(1, 1).setGround(limgraveRoundtableHold);
-        gameMaps.get(2).at(1, 1).setGround(roundtableHoldLimgrave);
-        limgraveRoundtableHold.setTeleportsTo(gameMaps.get(2).at(1, 1));
-        roundtableHoldLimgrave.setTeleportsTo(gameMaps.get(0).at(1, 1));
+        gameMaps.get(0).at(29, 0).setGround(limgraveRoundtableHold);
+        gameMaps.get(2).at(9, 10).setGround(roundtableHoldLimgrave);
+        limgraveRoundtableHold.setTeleportsTo(gameMaps.get(2).at(9, 10));
+        roundtableHoldLimgrave.setTeleportsTo(gameMaps.get(0).at(29, 0));
 
         GoldenFogDoor limgraveStormveilCastle = new GoldenFogDoor();
         GoldenFogDoor stormveilCastleLimgrave = new GoldenFogDoor();
