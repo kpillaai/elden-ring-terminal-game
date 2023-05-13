@@ -6,10 +6,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
-import game.actors.players.Bandit;
-import game.actors.players.Player;
-import game.actors.players.Samurai;
-import game.actors.players.Wretch;
+import game.actors.players.*;
 import game.environments.*;
 import game.utils.FancyMessage;
 import game.actors.MerchantKale;
@@ -67,14 +64,14 @@ public class Application {
 			world.addPlayer(player, mapManager.Limgrave.at(37, 10));
 		} else if (input == '3') {
 			Player player = new Wretch();
-			world.addPlayer(player, gameMap.at(37, 10));
+			world.addPlayer(player, mapManager.Limgrave.at(37, 10));
 		} else if (input == '4') {
 			Player player = new Astrologer();
-			world.addPlayer(player, gameMap.at(37, 10));
+			world.addPlayer(player, mapManager.Limgrave.at(37, 10));
 
 
 			MerchantKale merchantKale = new MerchantKale();
-			gameMap.at(38, 9).addActor(merchantKale);
+			mapManager.Limgrave.at(38, 9).addActor(merchantKale);
 
 
 			world.run();
