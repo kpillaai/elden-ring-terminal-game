@@ -22,7 +22,7 @@ public class GodrickSoldier extends Enemy {
 
     /**
      * This is the default weapon for a Godrick Soldier
-     * @return An IntrinsicWeapon object for Godrick Soldier
+     * @return An IntrinsicWeapon object for a Godrick Soldier
      */
     @Override
     public IntrinsicWeapon getIntrinsicWeapon() {

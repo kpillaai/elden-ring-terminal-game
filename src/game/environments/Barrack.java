@@ -27,6 +27,5 @@ public class Barrack extends Spawner {
         this.godrickSoldier = new GodrickSoldier();
         spawnEnemy(godrickSoldier.getSpawnChance(), godrickSoldier, location);
         }
-
 }
 
