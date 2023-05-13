@@ -23,7 +23,7 @@ import game.utils.MapManager;
  *
  */
 public class Application {
-// committing new branch renaming
+	// committing new branch renaming
 	public static void main(String[] args) {
 		// test comment 12:56pm 17/04
 
@@ -56,6 +56,7 @@ public class Application {
 		display.println("1) Samurai");
 		display.println("2) Bandit");
 		display.println("3) Wretch");
+		display.println("4) Astrologer");
 		char input = display.readChar();
 
 		if (input == '1') {
@@ -66,15 +67,17 @@ public class Application {
 			world.addPlayer(player, mapManager.Limgrave.at(37, 10));
 		} else if (input == '3') {
 			Player player = new Wretch();
-			world.addPlayer(player, mapManager.Limgrave.at(37, 10));
+			world.addPlayer(player, gameMap.at(37, 10));
+		} else if (input == '4') {
+			Player player = new Astrologer();
+			world.addPlayer(player, gameMap.at(37, 10));
+
+
+			MerchantKale merchantKale = new MerchantKale();
+			gameMap.at(38, 9).addActor(merchantKale);
+
+
+			world.run();
 		}
-
-
-		MerchantKale merchantKale = new MerchantKale();
-		mapManager.Limgrave.at( 38, 9).addActor(merchantKale);
-
-
-
-		world.run();
 	}
 }
