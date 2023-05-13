@@ -30,7 +30,8 @@ public class Application {
 		World world = new World(new Display());
 
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(),
-				new Graveyard(), new GustOfWind(), new PuddleOfWater(), new SiteOfLostGrace(), new Cliff());
+				new Graveyard(), new GustOfWind(), new PuddleOfWater(), new SiteOfLostGrace(), new Cliff(),
+				new Cage(), new Barrack(), new SummonSign());
 
 		// Generate all game maps
 		MapManager mapManager = new MapManager(groundFactory);
