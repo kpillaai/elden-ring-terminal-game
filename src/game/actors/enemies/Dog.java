@@ -1,0 +1,42 @@
+package game.actors.enemies;
+import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.utils.Status;
+
+/**
+ * BEHOLD, DOG!
+ *
+ * Created by:
+ * @author Jason Skurr
+ * Modified by: Jason Skurr
+ *
+ */
+public class Dog extends Enemy {
+
+    /**
+     * Constructor for Dog class
+     */
+    public Dog() {
+        super("Dog", 'a', 104);
+        super.setRuneDropValues(52, 1390);
+        super.spawnRunes();
+        this.addCapability(Status.DOG);
+    }
+
+    /**
+     * This is the default weapon for a Dog
+     * @return An IntrinsicWeapon object for Dog
+     */
+    @Override
+    public IntrinsicWeapon getIntrinsicWeapon() {
+        return new IntrinsicWeapon(101, "bites", 93);
+    }
+
+    /**
+     * Getter for the spawn chance of a Dog out of 100
+     * @return the spawn chance of a Dog out of 100
+     */
+    @Override
+    public int getSpawnChance() {
+        return 37;
+    }
+}
