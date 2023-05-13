@@ -2,6 +2,7 @@ package game.utils;
 
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.environments.GoldenFogDoor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,12 +12,13 @@ public class MapManager {
 
     private ArrayList<GameMap> gameMaps = new ArrayList<>();
 
-    public GameMap defaultMap;
+    public GameMap Limgrave;
 
     private FancyGroundFactory groundFactory;
     public MapManager(FancyGroundFactory groundFactory){
         this.groundFactory = groundFactory;
         this.generateMaps();
+        this.setTeleporters();
     }
 
     private void generateMaps(){
@@ -45,8 +47,8 @@ public class MapManager {
                 "_____________#.....+....++........................++.........._.....__.#...",
                 "_____________#.........+..+.....................+++...........###..__###...",
                 "_____________#.............++..............................................");
-        this.defaultMap = new GameMap(this.groundFactory, mapLimgrave);
-        this.gameMaps.add(this.defaultMap);
+        this.Limgrave = new GameMap(this.groundFactory, mapLimgrave);
+        this.gameMaps.add(this.Limgrave);
 
 
 
@@ -106,5 +108,34 @@ public class MapManager {
 
     public ArrayList<GameMap> getGameMaps() {
         return gameMaps;
+    }
+
+    private void setTeleporters(){
+        /*
+        0. Limgrave
+        1. Stormveil Castle
+        2. Roundtable Hold
+        3. Boss Room
+         */
+        GoldenFogDoor limgraveRoundtableHold = new GoldenFogDoor();
+        GoldenFogDoor roundtableHoldLimgrave = new GoldenFogDoor();
+        gameMaps.get(0).at(1, 1).setGround(limgraveRoundtableHold);
+        gameMaps.get(2).at(1, 1).setGround(roundtableHoldLimgrave);
+        limgraveRoundtableHold.setTeleportsTo(gameMaps.get(2).at(1, 1));
+        roundtableHoldLimgrave.setTeleportsTo(gameMaps.get(0).at(1, 1));
+
+        GoldenFogDoor limgraveStormveilCastle = new GoldenFogDoor();
+        GoldenFogDoor stormveilCastleLimgrave = new GoldenFogDoor();
+        gameMaps.get(0).at(1, 1).setGround(limgraveStormveilCastle);
+        gameMaps.get(1).at(1, 1).setGround(stormveilCastleLimgrave);
+        limgraveStormveilCastle.setTeleportsTo(gameMaps.get(1).at(1, 1));
+        stormveilCastleLimgrave.setTeleportsTo(gameMaps.get(0).at(1, 1));
+
+        GoldenFogDoor stormveilCastleBossRoom = new GoldenFogDoor();
+        GoldenFogDoor bossRoomStormveilCastle = new GoldenFogDoor();
+        gameMaps.get(1).at(1, 1).setGround(stormveilCastleBossRoom);
+        gameMaps.get(3).at(1, 1).setGround(bossRoomStormveilCastle);
+        stormveilCastleBossRoom.setTeleportsTo(gameMaps.get(3).at(1, 1));
+        bossRoomStormveilCastle.setTeleportsTo(gameMaps.get(1).at(1, 1));
     }
 }

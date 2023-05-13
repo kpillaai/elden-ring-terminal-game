@@ -1,8 +1,6 @@
 package game;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
@@ -12,11 +10,6 @@ import game.actors.players.Bandit;
 import game.actors.players.Player;
 import game.actors.players.Samurai;
 import game.actors.players.Wretch;
-import game.behaviours.AOEAttackActionBehaviour;
-import game.actors.enemies.GiantCrab;
-import game.actors.enemies.HeavySkeletalSwordsman;
-import game.actors.enemies.LoneWolf;
-import game.behaviours.BasicAttackActionBehaviour;
 import game.environments.*;
 import game.utils.FancyMessage;
 import game.actors.MerchantKale;
@@ -66,18 +59,18 @@ public class Application {
 
 		if (input == '1') {
 			Player player = new Samurai();
-			world.addPlayer(player, mapManager.defaultMap.at(37, 10));
+			world.addPlayer(player, mapManager.Limgrave.at(37, 10));
 		} else if (input == '2') {
 			Player player = new Bandit();
-			world.addPlayer(player, mapManager.defaultMap.at(37, 10));
+			world.addPlayer(player, mapManager.Limgrave.at(37, 10));
 		} else if (input == '3') {
 			Player player = new Wretch();
-			world.addPlayer(player, mapManager.defaultMap.at(37, 10));
+			world.addPlayer(player, mapManager.Limgrave.at(37, 10));
 		}
 
 
 		MerchantKale merchantKale = new MerchantKale();
-		mapManager.defaultMap.at( 38, 9).addActor(merchantKale);
+		mapManager.Limgrave.at( 38, 9).addActor(merchantKale);
 
 
 
