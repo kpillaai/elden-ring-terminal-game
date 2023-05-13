@@ -126,16 +126,13 @@ public class MapManager {
 
         GoldenFogDoor limgraveStormveilCastle = new GoldenFogDoor();
         GoldenFogDoor stormveilCastleLimgrave = new GoldenFogDoor();
-        gameMaps.get(0).at(1, 1).setGround(limgraveStormveilCastle);
-        gameMaps.get(1).at(1, 1).setGround(stormveilCastleLimgrave);
+        gameMaps.get(0).at(6, 22).setGround(limgraveStormveilCastle);
+        gameMaps.get(1).at(38, 22).setGround(stormveilCastleLimgrave);
         limgraveStormveilCastle.setTeleportsTo(gameMaps.get(1).at(1, 1));
         stormveilCastleLimgrave.setTeleportsTo(gameMaps.get(0).at(1, 1));
 
         GoldenFogDoor stormveilCastleBossRoom = new GoldenFogDoor();
-        GoldenFogDoor bossRoomStormveilCastle = new GoldenFogDoor();
-        gameMaps.get(1).at(1, 1).setGround(stormveilCastleBossRoom);
-        gameMaps.get(3).at(1, 1).setGround(bossRoomStormveilCastle);
-        stormveilCastleBossRoom.setTeleportsTo(gameMaps.get(3).at(1, 1));
-        bossRoomStormveilCastle.setTeleportsTo(gameMaps.get(1).at(1, 1));
+        gameMaps.get(1).at(26, 0).setGround(stormveilCastleBossRoom);
+        stormveilCastleBossRoom.setTeleportsTo(gameMaps.get(3).at(12, 7));
     }
 }
