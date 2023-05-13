@@ -70,13 +70,11 @@ public class Application {
 			world.addPlayer(player, mapManager.Limgrave.at(37, 10));
 
 
+			MerchantKale merchantKale = new MerchantKale();
+			mapManager.Limgrave.at(38, 9).addActor(merchantKale);
 
 
-
-
+			world.run();
 		}
-		MerchantKale merchantKale = new MerchantKale();
-		mapManager.Limgrave.at(38, 9).addActor(merchantKale);
-		world.run();
 	}
 }
