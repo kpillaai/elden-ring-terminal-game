@@ -1,21 +1,19 @@
 package game;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
 
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
-import game.actors.players.*;
-import game.behaviours.AOEAttackActionBehaviour;
-import game.actors.enemies.GiantCrab;
-import game.actors.enemies.HeavySkeletalSwordsman;
-import game.actors.enemies.LoneWolf;
-import game.behaviours.BasicAttackActionBehaviour;
+import game.actors.players.Bandit;
+import game.actors.players.Player;
+import game.actors.players.Samurai;
+import game.actors.players.Wretch;
 import game.environments.*;
 import game.utils.FancyMessage;
 import game.actors.MerchantKale;
+import game.utils.MapManager;
 
 /**
  * The main class to start the game.
@@ -31,35 +29,17 @@ public class Application {
 
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Graveyard(), new GustOfWind(), new PuddleOfWater(), new SiteOfLostGrace());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(),
+				new Graveyard(), new GustOfWind(), new PuddleOfWater(), new SiteOfLostGrace(), new Cliff(),
+				new Cage(), new Barrack(), new SummonSign());
 
-		List<String> map = Arrays.asList(
-				"...........................................................................",
-				"......................#####....######.........................nnn..........",
-				"........~~~...........#..___....____#......................................",
-				"..................................__#......................................",
-				"......................._____........#..................&&&.................",
-				"......................#............_#......................................",
-				"......................#...........###......................................",
-				"............&&&............................................................",
-				"......................................................nnn..................",
-				"..................................###___###................................",
-				"..........................U.......________#................................",
-				"..................................#________................................",
-				".............nnn..................#_______#................................",
-				"..................................###___###..................~~~...........",
-				"....................................#___#..................................",
-				"...........................................................................",
-				"...............&&&...............................~~~.......................",
-				"...........................................................................",
-				"..####__##....................................................######..##...",
-				"..#.....__....................................&&&.............#....____....",
-				"..#___........................nnnn..............................__.....#...",
-				"..####__###..................................................._.....__.#...",
-				"..............................................................###..__###...",
-				"...........................................................................");
-		GameMap gameMap = new GameMap(groundFactory, map);
-		world.addGameMap(gameMap);
+		// Generate all game maps
+		MapManager mapManager = new MapManager(groundFactory);
+		ArrayList<GameMap> gameMaps = mapManager.getGameMaps();
+		for (GameMap map: gameMaps) {
+			world.addGameMap(map);
+		}
+
 
 		// BEHOLD, ELDEN RING
 		for (String line : FancyMessage.ELDEN_RING.split("\n")) {
@@ -81,10 +61,10 @@ public class Application {
 
 		if (input == '1') {
 			Player player = new Samurai();
-			world.addPlayer(player, gameMap.at(37, 10));
+			world.addPlayer(player, mapManager.Limgrave.at(37, 10));
 		} else if (input == '2') {
 			Player player = new Bandit();
-			world.addPlayer(player, gameMap.at(37, 10));
+			world.addPlayer(player, mapManager.Limgrave.at(37, 10));
 		} else if (input == '3') {
 			Player player = new Wretch();
 			world.addPlayer(player, gameMap.at(37, 10));
