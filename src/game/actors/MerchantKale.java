@@ -7,14 +7,10 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actions.BuyAction;
-import game.weapons.Buyable;
+import game.actors.players.Astrologer;
+import game.weapons.*;
 import game.actions.SellAction;
-import game.weapons.Sellable;
-import game.weapons.Club;
-import game.weapons.GreatKnife;
-import game.weapons.Grossmesser;
-import game.weapons.Uchigatana;
-import game.weapons.Scimitar;
+
 import java.util.ArrayList;
 
 /**
@@ -48,9 +44,20 @@ public class MerchantKale extends Actor {
     private Sellable grossmesser = new Grossmesser();
 
     /**
+     * A sellable AstrologerStaff weapon
+     */
+    private Sellable astrologerstaff_sell = new AstrologerStaff();
+
+    /**
      * A buyable Uchigatana weapon
      */
     private Buyable uchigatana_buy = new Uchigatana();
+
+    /**
+     * A buyable AstrologerStaff weapon
+     */
+
+    private Buyable astrologerstaff_buy = new AstrologerStaff();
 
     /**
      * A buyable GreatKnife weapon
@@ -87,10 +94,13 @@ public class MerchantKale extends Actor {
         SELLABLE_ITEMS.add(club_sell);
         SELLABLE_ITEMS.add(grossmesser);
         SELLABLE_ITEMS.add(scimitar_sell);
+        SELLABLE_ITEMS.add(astrologerstaff_sell);
         BUYABLE_ITEMS.add(uchigatana_buy);
         BUYABLE_ITEMS.add(greatKnife_buy);
         BUYABLE_ITEMS.add(club_buy);
         BUYABLE_ITEMS.add(scimitar_buy);
+        BUYABLE_ITEMS.add(astrologerstaff_buy);
+
     }
 
     /**
