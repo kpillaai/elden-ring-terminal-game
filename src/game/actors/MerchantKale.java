@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actions.BuyAction;
 import game.actors.players.Astrologer;
+import game.items.RemembranceOfTheGrafted;
 import game.weapons.*;
 import game.actions.SellAction;
 
@@ -46,7 +47,12 @@ public class MerchantKale extends Actor {
     /**
      * A sellable AstrologerStaff weapon
      */
-    private Sellable astrologerstaff_sell = new AstrologerStaff();
+    private Sellable astrologerStaff_sell = new AstrologerStaff();
+
+    /**
+     * A sellable RemembranceOfTheGrafted Item
+     */
+    private Sellable remembranceOfTheGrafted_sell = new RemembranceOfTheGrafted(false);
 
     /**
      * A buyable Uchigatana weapon
@@ -57,7 +63,7 @@ public class MerchantKale extends Actor {
      * A buyable AstrologerStaff weapon
      */
 
-    private Buyable astrologerstaff_buy = new AstrologerStaff();
+    private Buyable astrologerStaff_buy = new AstrologerStaff();
 
     /**
      * A buyable GreatKnife weapon
@@ -94,12 +100,13 @@ public class MerchantKale extends Actor {
         SELLABLE_ITEMS.add(club_sell);
         SELLABLE_ITEMS.add(grossmesser);
         SELLABLE_ITEMS.add(scimitar_sell);
-        SELLABLE_ITEMS.add(astrologerstaff_sell);
+        SELLABLE_ITEMS.add(astrologerStaff_sell);
+        SELLABLE_ITEMS.add(remembranceOfTheGrafted_sell);
         BUYABLE_ITEMS.add(uchigatana_buy);
         BUYABLE_ITEMS.add(greatKnife_buy);
         BUYABLE_ITEMS.add(club_buy);
         BUYABLE_ITEMS.add(scimitar_buy);
-        BUYABLE_ITEMS.add(astrologerstaff_buy);
+        BUYABLE_ITEMS.add(astrologerStaff_buy);
 
     }
 
@@ -114,9 +121,17 @@ public class MerchantKale extends Actor {
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
-        for (int i = 0; i < otherActor.getWeaponInventory().size(); i++) {
-            for (int j = 0; j < SELLABLE_ITEMS.size(); j++) {
+
+        for (int j = 0; j < SELLABLE_ITEMS.size(); j++) {
+            // for weapons
+            for (int i = 0; i < otherActor.getWeaponInventory().size(); i++) {
                 if (otherActor.getWeaponInventory().get(i).toString().equals(SELLABLE_ITEMS.get(j).toString())) {
+                    actions.add(new SellAction(SELLABLE_ITEMS.get(j)));
+                }
+            }
+            // for items
+            for (int k = 0; k < otherActor.getItemInventory().size(); k++) {
+                if (otherActor.getItemInventory().get(k).toString().equals(SELLABLE_ITEMS.get(j).toString())) {
                     actions.add(new SellAction(SELLABLE_ITEMS.get(j)));
                 }
             }

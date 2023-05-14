@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.environments.SiteOfLostGrace;
+import game.items.RemembranceOfTheGrafted;
 import game.utils.ResetManager;
 import game.utils.Resettable;
 import game.items.Runes;
@@ -53,6 +54,8 @@ public class Player extends Actor implements Resettable {
 	 */
 	private FlaskOfCrimsonTears flaskOfCrimsonTears = new FlaskOfCrimsonTears();
 
+	private RemembranceOfTheGrafted remembranceOfTheGrafted = new RemembranceOfTheGrafted(false);
+
 	/**
 	 * Constructor for Player class. It also adds items to the player inventory that is necessary.
 	 * It also adds the player to the ResetManager.
@@ -63,6 +66,7 @@ public class Player extends Actor implements Resettable {
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		super.addItemToInventory(this.runes); // always make sure the runes are at the start of the inventory
 		this.addItemToInventory(this.flaskOfCrimsonTears);
+		this.addItemToInventory(this.remembranceOfTheGrafted);
 
 		ResetManager resetManager = ResetManager.getInstance();
 		resetManager.registerResettable(this);
