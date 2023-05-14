@@ -40,6 +40,12 @@ public class SellAction extends TradeAction {
                 break;
             }
         }
+        for (int j = 0; j < actor.getItemInventory().size(); j++) {
+            if (actor.getItemInventory().get(j).toString().equals(sellable.toString())) {
+                actor.removeItemFromInventory((actor.getItemInventory().get(j)));
+                break;
+            }
+        }
         return actor + " sold " + sellable.returnWeaponItem() + " for " + sell_price + " runes";
     }
 

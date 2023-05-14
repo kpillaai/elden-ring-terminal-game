@@ -1,5 +1,6 @@
 package game.weapons;
 
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 
 /**
@@ -18,5 +19,5 @@ public interface Sellable {
      * Gets the WeaponItem equivalent of this Buyable interface.
      * @return WeaponItem representing this buyable weapon.
      */
-    public WeaponItem returnWeaponItem();
+    public Item returnWeaponItem();
 }
