@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
+import game.actors.FingerReaderEnia;
 import game.actors.players.*;
 import game.environments.*;
 import game.utils.FancyMessage;
@@ -71,6 +72,9 @@ public class Application {
 		}
 		MerchantKale merchantKale = new MerchantKale();
 		mapManager.Limgrave.at(38, 9).addActor(merchantKale);
+
+		FingerReaderEnia fingerReaderEnia = new FingerReaderEnia();
+		mapManager.Limgrave.at(38, 13).addActor(fingerReaderEnia);
 
 
 		world.run();
