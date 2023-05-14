@@ -17,5 +17,6 @@ public enum Status {
     AOE_ATTACK,
     DOG,
     AQUATIC,
-    STORMVEIL_FRIENDLY
+    STORMVEIL_FRIENDLY,
+    TRADEABLE
 }
