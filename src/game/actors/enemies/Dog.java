@@ -20,6 +20,8 @@ public class Dog extends Enemy {
         super.setRuneDropValues(52, 1390);
         super.spawnRunes();
         this.addCapability(Status.DOG);
+        this.addCapability(Status.STORMVEIL_FRIENDLY);
+
     }
 
     /**
