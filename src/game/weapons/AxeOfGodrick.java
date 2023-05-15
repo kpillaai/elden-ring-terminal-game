@@ -15,7 +15,7 @@ public class AxeOfGodrick extends WeaponItem implements Sellable {
      * Constructor for AxeOfGodrick class.
      */
     public AxeOfGodrick() {
-        super("AxeOfGodrick", 'T', 142, "swings", 84);
+        super("Axe Of Godrick", 'T', 142, "swings", 84);
     }
 
     /**

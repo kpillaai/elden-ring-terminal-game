@@ -15,7 +15,7 @@ public class GraftedDragon extends WeaponItem implements Sellable {
      * Constructor for GraftedDragon class.
      */
     public GraftedDragon() {
-        super("GraftedDragon", 'N', 89, "swings", 90);
+        super("Grafted Dragon", 'N', 89, "swings", 90);
     }
 
     /**
