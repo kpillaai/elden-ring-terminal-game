@@ -1,6 +1,7 @@
 package game.items;
 
 import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.utils.Status;
 import game.weapons.AxeOfGodrick;
 import game.weapons.GraftedDragon;
@@ -43,8 +44,8 @@ public class RemembranceOfTheGrafted extends Item implements Sellable, Tradeable
      * @return
      */
     @Override
-    public ArrayList<Item> tradeableItems() {
-        ArrayList<Item> TRADEABLE_ITEMS = new ArrayList<>();
+    public ArrayList<WeaponItem> tradeableItems() {
+        ArrayList<WeaponItem> TRADEABLE_ITEMS = new ArrayList<>();
         TRADEABLE_ITEMS.add(new AxeOfGodrick());
         TRADEABLE_ITEMS.add(new GraftedDragon());
         return TRADEABLE_ITEMS;

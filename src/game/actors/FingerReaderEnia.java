@@ -7,6 +7,8 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actions.SellAction;
+import game.actions.TradeAction;
+import game.actions.TradeItemAction;
 import game.items.RemembranceOfTheGrafted;
 import game.items.Tradeable;
 import game.utils.Status;
@@ -106,18 +108,16 @@ public class FingerReaderEnia extends Actor {
                 }
             }
         }
-        /*
+
         for (int m = 0; m < TRADEABLE_ITEMS.size(); m++) {
             for (int n = 0; n < otherActor.getItemInventory().size(); n++) {
-                if (otherActor.getItemInventory().get(n).hasCapability(Status.TRADEABLE)) {
-                    if (otherActor.getItemInventory().get(n).toString().equals(TRADEABLE_ITEMS.get(m).toString())) {
-                        for (int o = 0; o < otherActor.getItemInventory().get(n))
+                if (otherActor.getItemInventory().get(n).toString().equals(TRADEABLE_ITEMS.get(m).toString())) {
+                    for (int o = 0; o < TRADEABLE_ITEMS.get(m).tradeableItems().size(); o++) {
+                        actions.add(new TradeItemAction(TRADEABLE_ITEMS.get(m), TRADEABLE_ITEMS.get(m).tradeableItems().get(o)));
                     }
                 }
             }
         }
-
-         */
         return actions;
     }
 
