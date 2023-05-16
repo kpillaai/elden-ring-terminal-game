@@ -5,10 +5,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.actions.AttackAction;
-import game.behaviours.AOEAttackActionBehaviour;
-import game.behaviours.BasicAttackActionBehaviour;
-import game.behaviours.Behaviour;
-import game.behaviours.WanderBehaviour;
+import game.behaviours.*;
 import game.items.Runes;
 import game.utils.RandomNumberGenerator;
 import game.utils.ResetManager;
@@ -85,6 +82,9 @@ public abstract class Enemy extends Actor implements Resettable{
      */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
+        // Adding wander behaviour as the player approaches near an enemy.
+        this.behaviours.put(998, new FollowBehaviour(otherActor));
+        
         ActionList actions = new ActionList();
         if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)){
             actions.add(new AttackAction(this, direction));
