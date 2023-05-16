@@ -32,17 +32,8 @@ public class RestAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        // check where the player is
-        Location player_location = map.locationOf(actor);
-
-        // check the ground type where the player is
-        Ground ground = player_location.getGround();
-
-        // if the ground is the Site of Lost Grace
-        if (ground.hasCapability(Status.LOST_GRACE)) {
-            ResetManager resetManager = ResetManager.getInstance(map);
-            resetManager.run(map);
-        }
+        ResetManager resetManager = ResetManager.getInstance(map);
+        resetManager.run(map);
         return actor + " rests at the Site of Lost Grace";
     }
 
