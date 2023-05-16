@@ -84,23 +84,14 @@ public abstract class Enemy extends Actor implements Resettable{
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         // Adding wander behaviour as the player approaches near an enemy.
         this.behaviours.put(998, new FollowBehaviour(otherActor));
-        
+
         ActionList actions = new ActionList();
         if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)){
             actions.add(new AttackAction(this, direction));
             // loops through the size of weapon inventory to attack enemy with weapon
             for(int i = 0; i < otherActor.getWeaponInventory().size(); i++) {
+                actions.add(otherActor.getWeaponInventory().get(i).getSkill(this, direction));
                 actions.add(new AttackAction(this, direction, otherActor.getWeaponInventory().get(i)));
-                // if player has an Uchigatana, allow UnsheatheAction
-                if (otherActor.getWeaponInventory().get(i).hasCapability(Status.UNSHEATHE)) {
-                    actions.add(otherActor.getWeaponInventory().get(i).getSkill(this, direction));
-                }
-                if (otherActor.getWeaponInventory().get(i).hasCapability(Status.QUICKSTEP)) {
-                    actions.add(otherActor.getWeaponInventory().get(i).getSkill(this, direction));
-                }
-                if (otherActor.getWeaponInventory().get(i).hasCapability(Status.AOE_ATTACK)) {
-                    actions.add(new AOEAttackActionBehaviour(otherActor.getWeaponInventory().get(i)));
-                }
             }
                 if(this.hasCapability(Status.STORMVEIL_FRIENDLY)){
                     if(otherActor.hasCapability(Status.STORMVEIL_FRIENDLY)){

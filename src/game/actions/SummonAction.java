@@ -2,6 +2,7 @@ package game.actions;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actors.Ally;
@@ -24,13 +25,23 @@ public class SummonAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
+        //Checking for a location in a 1 unit radius to see if an actor can be spawned there
+        if(this.currentLocation.containsAnActor()){
+            for(Exit exit:this.currentLocation.getExits()){
+                if(!exit.getDestination().containsAnActor()){
+                    this.currentLocation = exit.getDestination();
+                }
+                break;
+            }
+        }
+
         if(RandomNumberGenerator.getRandomInt(100) < 50){
             map.addActor(new Ally(), this.currentLocation);
-            return menuDescription(actor) + " an  Ally";
+            return menuDescription(actor) + " An Ally spawns";
         }
         else{
             map.addActor(new Invader(), this.currentLocation);
-            return menuDescription(actor) + " an  Invader";
+            return menuDescription(actor) + " An Invader spawns";
         }
     }
 
