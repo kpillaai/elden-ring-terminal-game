@@ -16,5 +16,7 @@ public enum Status {
     HEALING,
     AOE_ATTACK,
     DOG,
-    AQUATIC
+    AQUATIC,
+    STORMVEIL_FRIENDLY,
+    TRADEABLE
 }

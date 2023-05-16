@@ -18,6 +18,8 @@ public class GodrickSoldier extends Enemy {
         super("Godrick Soldier", 'p', 198);
         super.setRuneDropValues(38, 70);
         super.spawnRunes();
+        this.addCapability(Status.STORMVEIL_FRIENDLY);
+
     }
 
     /**

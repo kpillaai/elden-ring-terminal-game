@@ -49,7 +49,7 @@ public class GreatKnife extends WeaponItem implements Sellable, Buyable {
      */
     @Override
     public String toString() {
-        return "GreatKnife";
+        return "Great Knife";
     }
 
     /**

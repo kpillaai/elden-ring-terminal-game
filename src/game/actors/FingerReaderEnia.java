@@ -6,19 +6,17 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.actions.BuyAction;
-import game.actors.players.Astrologer;
-import game.items.RemembranceOfTheGrafted;
-import game.weapons.*;
 import game.actions.SellAction;
+import game.actions.TradeAction;
+import game.actions.TradeItemAction;
+import game.items.RemembranceOfTheGrafted;
+import game.items.Tradeable;
+import game.utils.Status;
+import game.weapons.*;
 
 import java.util.ArrayList;
 
-/**
- * MerchantKale class is a class that represents the NPC Merchant Kale which allows players to trade weapons with.
- */
-public class MerchantKale extends Actor {
-
+public class FingerReaderEnia extends Actor {
     /**
      * A sellable Uchigatana weapon
      */
@@ -55,30 +53,9 @@ public class MerchantKale extends Actor {
     private Sellable remembranceOfTheGrafted_sell = new RemembranceOfTheGrafted(false);
 
     /**
-     * A buyable Uchigatana weapon
+     * A sellable RemembranceOfTheGrafted Item
      */
-    private Buyable uchigatana_buy = new Uchigatana();
-
-    /**
-     * A buyable AstrologerStaff weapon
-     */
-
-    private Buyable astrologerStaff_buy = new AstrologerStaff();
-
-    /**
-     * A buyable GreatKnife weapon
-     */
-    private Buyable greatKnife_buy = new GreatKnife();
-
-    /**
-     * A buyable Club weapon
-     */
-    private Buyable club_buy = new Club();
-
-    /**
-     * A buyable Scimitar weapon
-     */
-    private Buyable scimitar_buy = new Scimitar();
+    private Tradeable remembranceOfTheGrafted = new RemembranceOfTheGrafted(false);
 
     /**
      * A list of all sellable weapons.
@@ -86,15 +63,15 @@ public class MerchantKale extends Actor {
     private final ArrayList<Sellable> SELLABLE_ITEMS = new ArrayList<>();
 
     /**
-     * A list of all purchasable weapons.
+     * A list of all sellable weapons.
      */
-    private final ArrayList<Buyable> BUYABLE_ITEMS = new ArrayList<>();
+    private final ArrayList<Tradeable> TRADEABLE_ITEMS = new ArrayList<>();
 
     /**
-     * Constructor for MerchantKale. It adds a list of sellable and buyable items.
+     * Constructor.
      */
-    public MerchantKale() {
-        super("Merchant Kale", 'K', 500);
+    public FingerReaderEnia() {
+        super("Finger Reader Enia", 'E', 500);
         SELLABLE_ITEMS.add(uchigatana_sell);
         SELLABLE_ITEMS.add(greatKnife_sell);
         SELLABLE_ITEMS.add(club_sell);
@@ -102,12 +79,7 @@ public class MerchantKale extends Actor {
         SELLABLE_ITEMS.add(scimitar_sell);
         SELLABLE_ITEMS.add(astrologerStaff_sell);
         SELLABLE_ITEMS.add(remembranceOfTheGrafted_sell);
-        BUYABLE_ITEMS.add(uchigatana_buy);
-        BUYABLE_ITEMS.add(greatKnife_buy);
-        BUYABLE_ITEMS.add(club_buy);
-        BUYABLE_ITEMS.add(scimitar_buy);
-        BUYABLE_ITEMS.add(astrologerStaff_buy);
-
+        TRADEABLE_ITEMS.add(remembranceOfTheGrafted);
     }
 
     /**
@@ -136,23 +108,30 @@ public class MerchantKale extends Actor {
                 }
             }
         }
-        for (Buyable i : BUYABLE_ITEMS) {
-            actions.add((new BuyAction(i)));
+
+        for (int m = 0; m < TRADEABLE_ITEMS.size(); m++) {
+            for (int n = 0; n < otherActor.getItemInventory().size(); n++) {
+                if (otherActor.getItemInventory().get(n).toString().equals(TRADEABLE_ITEMS.get(m).toString())) {
+                    for (int o = 0; o < TRADEABLE_ITEMS.get(m).tradeableItems().size(); o++) {
+                        actions.add(new TradeItemAction(TRADEABLE_ITEMS.get(m), TRADEABLE_ITEMS.get(m).tradeableItems().get(o)));
+                    }
+                }
+            }
         }
         return actions;
     }
 
     /**
-     * Merchant Kale does not do anything in the map except for waiting for a player to trade with.
+     * Select and return an action to perform on the current turn.
+     *
      * @param actions    collection of possible Actions for this Actor
      * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
      * @param map        the map containing the Actor
      * @param display    the I/O object to which messages may be written
-     * @return DoNothingAction.
+     * @return the Action to be performed
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         return new DoNothingAction();
     }
-
 }
