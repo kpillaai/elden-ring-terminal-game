@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.positions.World;
 import game.actors.FingerReaderEnia;
 import game.actors.players.*;
 import game.environments.*;
+import game.items.GoldenRunes;
 import game.utils.FancyMessage;
 import game.actors.MerchantKale;
 import game.utils.MapManager;
@@ -75,6 +76,12 @@ public class Application {
 
 		FingerReaderEnia fingerReaderEnia = new FingerReaderEnia();
 		mapManager.Limgrave.at(38, 13).addActor(fingerReaderEnia);
+
+		GoldenRunes goldenRunes = new GoldenRunes();
+		mapManager.Limgrave.at(33, 10).addItem(goldenRunes);
+
+		GoldenRunes goldenRunes2 = new GoldenRunes();
+		mapManager.Limgrave.at(32, 10).addItem(goldenRunes2);
 
 
 		world.run();
