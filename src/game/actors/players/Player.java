@@ -119,6 +119,10 @@ public class Player extends Actor implements Resettable {
 		return this.flaskOfCrimsonTears.getUsesLeft();
 	}
 
+	public int getHp(){
+		return this.maxHitPoints;
+	}
+
 	/**
 	 * Adds an Item to the player inventory. If the item is a Rune object, it will combine the number of runes together.
 	 * @param item The Item to add.
