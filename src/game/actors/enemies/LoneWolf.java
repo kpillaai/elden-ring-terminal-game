@@ -20,7 +20,7 @@ public class LoneWolf extends Enemy {
         super("Lone Wolf", 'h', 102);
         super.setRuneDropValues(55, 1470);
         super.spawnRunes();
-        this.addCapability(Status.DOG);
+        this.addCapability(Status.RABIDDOG);
     }
 
     /**

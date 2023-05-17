@@ -15,7 +15,7 @@ public enum Status {
     QUICKSTEP,
     HEALING,
     AOE_ATTACK,
-    DOG,
+    RABIDDOG,
     AQUATIC,
     STORMVEIL_FRIENDLY,
     TRADEABLE
