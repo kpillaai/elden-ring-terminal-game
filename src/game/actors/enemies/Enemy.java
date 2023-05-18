@@ -93,10 +93,10 @@ public abstract class Enemy extends Actor implements Resettable{
                 actions.add(otherActor.getWeaponInventory().get(i).getSkill(this, direction));
                 actions.add(new AttackAction(this, direction, otherActor.getWeaponInventory().get(i)));
             }
-                if(this.hasCapability(Status.STORMVEIL_FRIENDLY)){
-                    if(otherActor.hasCapability(Status.STORMVEIL_FRIENDLY)){
-                        actions.remove(new AttackAction(this, direction));
-                    }
+            if(this.hasCapability(Status.STORMVEIL_FRIENDLY)){
+                if(otherActor.hasCapability(Status.STORMVEIL_FRIENDLY)){
+                    actions.remove(new AttackAction(this, direction));
+                }
             }
         }
         return actions;

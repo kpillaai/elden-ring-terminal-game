@@ -1,8 +1,10 @@
 package game.weapons;
 
+import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.behaviours.AOEAttackActionBehaviour;
 import game.utils.Status;
 
 /**
@@ -47,5 +49,11 @@ public class Grossmesser extends WeaponItem implements Sellable {
     @Override
     public WeaponItem returnWeaponItem() {
         return this;
+    }
+
+
+    @Override
+    public Action getSkill(Actor holder) {
+        return new AOEAttackActionBehaviour(this);
     }
 }
