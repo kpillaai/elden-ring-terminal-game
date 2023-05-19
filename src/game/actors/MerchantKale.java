@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import game.actions.BuyAction;
 import game.actors.players.Astrologer;
 import game.items.RemembranceOfTheGrafted;
+import game.utils.Status;
 import game.weapons.*;
 import game.actions.SellAction;
 
@@ -95,6 +96,7 @@ public class MerchantKale extends Actor {
      */
     public MerchantKale() {
         super("Merchant Kale", 'K', 500);
+        this.addCapability(Status.PEACEFUL);
         SELLABLE_ITEMS.add(uchigatana_sell);
         SELLABLE_ITEMS.add(greatKnife_sell);
         SELLABLE_ITEMS.add(club_sell);

@@ -1,5 +1,7 @@
 package game.actors.players;
 
+import edu.monash.fit2099.engine.weapons.WeaponItem;
+import game.actors.CombatArchetypes;
 import game.weapons.Uchigatana;
 
 /**
@@ -7,15 +9,22 @@ import game.weapons.Uchigatana;
  * @author Zilei Chen
  * @version 1.0
  */
-public class Samurai extends Player {
+public class Samurai extends CombatArchetypes {
+
 
     /**
-     * Constructor for Samurai class, it spawns with an Uchigatana weapon.
+     * @return
      */
-    public Samurai() {
-        super(455);
-        this.addWeaponToInventory(new Uchigatana());
+    @Override
+    public int getHp() {
+        return 455;
     }
 
-
+    /**
+     * @return
+     */
+    @Override
+    public WeaponItem getWeapon() {
+        return new Uchigatana();
+    }
 }
