@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.actions.AttackAction;
 import game.actors.players.*;
 import game.behaviours.BasicAttackActionBehaviour;
 import game.behaviours.Behaviour;
@@ -18,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Ally extends Actor {
+public class Ally extends Actor implements NPCCombatArchetype{
     /**
      * List of behaviours an ally can perform
      */
@@ -58,14 +59,36 @@ public class Ally extends Actor {
         return new DoNothingAction();
     }
 
+    /**
+     * Returns a new collection of the Actions that the otherActor can do to the current Actor.
+     *
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return A collection of Actions.
+     */
+    @Override
+    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
+        ActionList actions = new ActionList();
+        if(otherActor.hasCapability(Status.HOSTILE_TO_PLAYER)){
+            actions.add(new AttackAction(this, direction));
+            // loops through the size of weapon inventory to attack enemy with weapon
+            for(int i = 0; i < otherActor.getWeaponInventory().size(); i++) {
+                actions.add(otherActor.getWeaponInventory().get(i).getSkill(this, direction));
+                actions.add(new AttackAction(this, direction, otherActor.getWeaponInventory().get(i)));
+            }
+        }
+        return actions;
+    }
+
     public void applyRandomClass(){
-        ArrayList<Player> classes = new ArrayList<Player>();
+        ArrayList<CombatArchetypes> classes = new ArrayList<CombatArchetypes>();
         classes.add(new Astrologer());
         classes.add(new Bandit());
         classes.add(new Samurai());
         classes.add(new Wretch());
         int random = RandomNumberGenerator.getRandomInt(3);
-        this.addWeaponToInventory(classes.get(random).getWeaponInventory().get(0));
+        this.addWeaponToInventory(classes.get(random).getWeapon());
         this.resetMaxHp(classes.get(random).getHp());
     }
 

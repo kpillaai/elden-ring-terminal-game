@@ -20,5 +20,10 @@ public enum Status {
     STORMVEIL_FRIENDLY,
     TRADEABLE,
 
-    TRADER
+
+    TRADER,
+
+    ENEMY_NPC,
+    PEACEFUL
+
 }

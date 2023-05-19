@@ -5,8 +5,14 @@ import java.util.ArrayList;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.positions.World;
+import game.actors.Ally;
 import game.actors.FingerReaderEnia;
+import game.actors.PlayerSelectionManager;
+import game.actors.enemies.Invader;
+import game.actors.enemies.LoneWolf;
+import game.actors.enemies.SkeletalBandit;
 import game.actors.players.*;
 import game.environments.*;
 import game.items.GoldenRunes;
@@ -49,40 +55,21 @@ public class Application {
 				exception.printStackTrace();
 			}
 		}
-		Display display = new Display();
 
-		display.println("Select your class");
-		display.println("1) Samurai");
-		display.println("2) Bandit");
-		display.println("3) Wretch");
-		display.println("4) Astrologer");
-		char input = display.readChar();
+		PlayerSelectionManager playerSelectionManager = new PlayerSelectionManager();
+		world.addPlayer(playerSelectionManager.selectCombatArchetype(), mapManager.Limgrave.at(37, 10));
 
-		if (input == '1') {
-			Player player = new Samurai();
-			world.addPlayer(player, mapManager.Limgrave.at(37, 10));
-		} else if (input == '2') {
-			Player player = new Bandit();
-			world.addPlayer(player, mapManager.Limgrave.at(37, 10));
-		} else if (input == '3') {
-			Player player = new Wretch();
-			world.addPlayer(player, mapManager.Limgrave.at(37, 10));
-		} else if (input == '4') {
-			Player player = new Astrologer();
-			world.addPlayer(player, mapManager.Limgrave.at(37, 10));
-		}
+		Invader invader = new Invader();
+		mapManager.Limgrave.at(37, 9).addActor(invader);
+
+		//SkeletalBandit skeletalBandit = new SkeletalBandit();
+		//mapManager.Limgrave.at(37, 9).addActor(skeletalBandit);
+
 		MerchantKale merchantKale = new MerchantKale();
 		mapManager.Limgrave.at(38, 8).addActor(merchantKale);
 
 		FingerReaderEnia fingerReaderEnia = new FingerReaderEnia();
 		mapManager.Limgrave.at(38, 13).addActor(fingerReaderEnia);
-
-		GoldenRunes goldenRunes = new GoldenRunes();
-		mapManager.Limgrave.at(33, 10).addItem(goldenRunes);
-
-		GoldenRunes goldenRunes2 = new GoldenRunes();
-		mapManager.Limgrave.at(32, 10).addItem(goldenRunes2);
-
 
 		world.run();
 	}

@@ -64,6 +64,7 @@ public class MerchantKale extends Actor {
         buyableItems.add(scimitar);
         buyableItems.add(astrologerStaff);
         this.addCapability(Status.TRADER);
+
     }
 
     /**

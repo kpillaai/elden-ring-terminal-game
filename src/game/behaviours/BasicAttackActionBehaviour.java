@@ -45,14 +45,22 @@ public class BasicAttackActionBehaviour extends AttackAction implements Behaviou
                 if ((actor_location.getExits().get(i).getDestination().x() > 0) && (actor_location.getExits().get(i).getDestination().x() < xMax) && (actor_location.getExits().get(i).getDestination().y() > 0) && (actor_location.getExits().get(i).getDestination().y() < yMax)) {
                     if (map.at(actor_location.getExits().get(i).getDestination().x(), actor_location.getExits().get(i).getDestination().y()).containsAnActor()) {
                         Actor target = map.at(actor_location.getExits().get(i).getDestination().x(), actor_location.getExits().get(i).getDestination().y()).getActor();
-                        if(!target.hasCapability(Status.RABIDDOG) && actor.hasCapability(Status.RABIDDOG)){
-                            attackList.add(new AttackAction(target, actor_location.getExits().get(i).getName(), this.weapon));
-                        }
-                        if(!target.hasCapability(Status.SKELETON) && actor.hasCapability(Status.SKELETON)){
-                            attackList.add(new AttackAction(target, actor_location.getExits().get(i).getName(), this.weapon));
-                        }
-                        if(!target.hasCapability(Status.AQUATIC) && actor.hasCapability(Status.AQUATIC)){
-                            attackList.add(new AttackAction(target, actor_location.getExits().get(i).getName(), this.weapon));
+                        if(!target.hasCapability(Status.PEACEFUL)) {
+                            if (!target.hasCapability(Status.RABIDDOG) && actor.hasCapability(Status.RABIDDOG)) {
+                                attackList.add(new AttackAction(target, actor_location.getExits().get(i).getName(), this.weapon));
+                            }
+                            if (!target.hasCapability(Status.SKELETON) && actor.hasCapability(Status.SKELETON)) {
+                                attackList.add(new AttackAction(target, actor_location.getExits().get(i).getName(), this.weapon));
+                            }
+                            if (!target.hasCapability(Status.AQUATIC) && actor.hasCapability(Status.AQUATIC)) {
+                                attackList.add(new AttackAction(target, actor_location.getExits().get(i).getName(), this.weapon));
+                            }
+                            if (!target.hasCapability(Status.STORMVEIL_FRIENDLY) && actor.hasCapability(Status.STORMVEIL_FRIENDLY)) {
+                                attackList.add(new AttackAction(target, actor_location.getExits().get(i).getName(), this.weapon));
+                            }
+                            if (!target.hasCapability(Status.ENEMY_NPC) && actor.hasCapability(Status.ENEMY_NPC)) {
+                                attackList.add(new AttackAction(target, actor_location.getExits().get(i).getName(), this.weapon));
+                            }
                         }
                     }
                 }
@@ -113,6 +121,12 @@ public class BasicAttackActionBehaviour extends AttackAction implements Behaviou
                             return this;
                         }
                         if(!target.hasCapability(Status.AQUATIC) && actor.hasCapability(Status.AQUATIC)){
+                            return this;
+                        }
+                        if(!target.hasCapability(Status.STORMVEIL_FRIENDLY) && actor.hasCapability(Status.STORMVEIL_FRIENDLY)){
+                            return this;
+                        }
+                        if(!target.hasCapability(Status.ENEMY_NPC) && actor.hasCapability(Status.ENEMY_NPC)){
                             return this;
                         }
                     }
