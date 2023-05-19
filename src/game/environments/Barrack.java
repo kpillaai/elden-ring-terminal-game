@@ -6,7 +6,7 @@ import game.utils.RandomNumberGenerator;
 
 public class Barrack extends Spawner {
 
-    private Enemy godrickSoldier;
+    private GodrickSoldier godrickSoldier;
 
     /**
      * Constructor.
