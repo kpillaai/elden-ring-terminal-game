@@ -15,12 +15,12 @@ public class GustOfWind extends Spawner {
 	/**
 	 * Lone Wolf is one of the enemies that can be spawned on a Graveyard ground
 	 */
-	private Enemy loneWolf;
+	private LoneWolf loneWolf;
 
 	/**
 	 * Giant Dog is one of the enemies that can be spawned on a Graveyard ground
 	 */
-	private Enemy giantDog;
+	private GiantDog giantDog;
 
 	/**
 	 * Constructor for GustOfWind class.

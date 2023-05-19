@@ -16,12 +16,12 @@ public class PuddleOfWater extends Spawner {
 	/**
 	 * Giant Crab is one of the enemies that can be spawned on a Graveyard ground
 	 */
-	private Enemy giantCrab;
+	private GiantCrab giantCrab;
 
 	/**
 	 * Giant Crayfish is one of the enemies that can be spawned on a Graveyard ground
 	 */
-	private Enemy giantCrayFish;
+	private GiantCrayfish giantCrayFish;
 
 	/**
 	 * Constructor for PuddleOfWater class

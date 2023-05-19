@@ -16,12 +16,12 @@ public class Graveyard extends Spawner {
 	/**
 	 * HeavySkeletalSwordsman is one of the enemies that can be spawned on a Graveyard ground
 	 */
-	private Enemy heavySkeletalSwordsman;
+	private HeavySkeletalSwordsman heavySkeletalSwordsman;
 
 	/**
 	 * Skeletal Bandit is one of the enemies that can be spawned on a Graveyard ground
 	 */
-	private Enemy skeletalBandit;
+	private SkeletalBandit skeletalBandit;
 
 	/**
 	 * Constructor for Graveyard class

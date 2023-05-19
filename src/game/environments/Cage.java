@@ -6,7 +6,7 @@ import game.actors.enemies.Enemy;
 
 public class Cage extends Spawner {
 
-    private Enemy Dog;
+    private Dog dog;
 
     /**
      * Constructor.
@@ -19,7 +19,7 @@ public class Cage extends Spawner {
 
     @Override
     public void tick (Location location){
-        this.Dog = new Dog();
-        spawnEnemy(Dog.getSpawnChance(), Dog, location);
+        this.dog = new Dog();
+        spawnEnemy(dog.getSpawnChance(), dog, location);
     }
 }
