@@ -6,9 +6,12 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.weapons.Weapon;
+import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.BuyAction;
 import game.actors.players.Astrologer;
 import game.items.RemembranceOfTheGrafted;
+import game.utils.Status;
 import game.weapons.*;
 import game.actions.SellAction;
 
@@ -20,94 +23,47 @@ import java.util.ArrayList;
 public class MerchantKale extends Actor {
 
     /**
-     * A sellable Uchigatana weapon
-     */
-    private Sellable uchigatana_sell = new Uchigatana();
-
-    /**
-     * A sellable Scimitar weapon
-     */
-    private Sellable scimitar_sell = new Scimitar();
-
-    /**
-     * A sellable GreatKnife weapon
-     */
-    private Sellable greatKnife_sell = new GreatKnife();
-
-    /**
-     * A sellable Club weapon
-     */
-    private Sellable club_sell = new Club();
-
-    /**
-     * A sellable Grossmesser weapon
-     */
-    private Sellable grossmesser = new Grossmesser();
-
-    /**
-     * A sellable AstrologerStaff weapon
-     */
-    private Sellable astrologerStaff_sell = new AstrologerStaff();
-
-    /**
-     * A sellable RemembranceOfTheGrafted Item
-     */
-    private Sellable remembranceOfTheGrafted_sell = new RemembranceOfTheGrafted(false);
-
-    /**
      * A buyable Uchigatana weapon
      */
-    private Buyable uchigatana_buy = new Uchigatana();
+    private Buyable uchigatana = new Uchigatana();
 
     /**
      * A buyable AstrologerStaff weapon
      */
 
-    private Buyable astrologerStaff_buy = new AstrologerStaff();
+    private Buyable astrologerStaff = new AstrologerStaff();
 
     /**
      * A buyable GreatKnife weapon
      */
-    private Buyable greatKnife_buy = new GreatKnife();
+    private Buyable greatKnife= new GreatKnife();
 
     /**
      * A buyable Club weapon
      */
-    private Buyable club_buy = new Club();
+    private Buyable club = new Club();
 
     /**
      * A buyable Scimitar weapon
      */
-    private Buyable scimitar_buy = new Scimitar();
-
-    /**
-     * A list of all sellable weapons.
-     */
-    private final ArrayList<Sellable> SELLABLE_ITEMS = new ArrayList<>();
+    private Buyable scimitar = new Scimitar();
 
     /**
      * A list of all purchasable weapons.
      */
-    private final ArrayList<Buyable> BUYABLE_ITEMS = new ArrayList<>();
+    private final ArrayList<Buyable> buyableItems = new ArrayList<>();
 
     /**
      * Constructor for MerchantKale. It adds a list of sellable and buyable items.
      */
     public MerchantKale() {
         super("Merchant Kale", 'K', 500);
-        SELLABLE_ITEMS.add(uchigatana_sell);
-        SELLABLE_ITEMS.add(greatKnife_sell);
-        SELLABLE_ITEMS.add(club_sell);
-        SELLABLE_ITEMS.add(grossmesser);
-        SELLABLE_ITEMS.add(scimitar_sell);
-        SELLABLE_ITEMS.add(astrologerStaff_sell);
-        SELLABLE_ITEMS.add(remembranceOfTheGrafted_sell);
-        BUYABLE_ITEMS.add(uchigatana_buy);
-        BUYABLE_ITEMS.add(greatKnife_buy);
-        BUYABLE_ITEMS.add(club_buy);
-        BUYABLE_ITEMS.add(scimitar_buy);
-        BUYABLE_ITEMS.add(astrologerStaff_buy);
-
+        buyableItems.add(uchigatana);
+        buyableItems.add(greatKnife);
+        buyableItems.add(club);
+        buyableItems.add(scimitar);
+        buyableItems.add(astrologerStaff);
+        this.addCapability(Status.TRADER);
     }
 
     /**
@@ -122,21 +78,10 @@ public class MerchantKale extends Actor {
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
 
-        for (int j = 0; j < SELLABLE_ITEMS.size(); j++) {
-            // for weapons
-            for (int i = 0; i < otherActor.getWeaponInventory().size(); i++) {
-                if (otherActor.getWeaponInventory().get(i).toString().equals(SELLABLE_ITEMS.get(j).toString())) {
-                    actions.add(new SellAction(SELLABLE_ITEMS.get(j)));
-                }
-            }
-            // for items
-            for (int k = 0; k < otherActor.getItemInventory().size(); k++) {
-                if (otherActor.getItemInventory().get(k).toString().equals(SELLABLE_ITEMS.get(j).toString())) {
-                    actions.add(new SellAction(SELLABLE_ITEMS.get(j)));
-                }
-            }
+        for(WeaponItem weaponItem : otherActor.getWeaponInventory()){
+            actions.add(weaponItem.getAllowableActions());
         }
-        for (Buyable i : BUYABLE_ITEMS) {
+        for (Buyable i : buyableItems) {
             actions.add((new BuyAction(i)));
         }
         return actions;

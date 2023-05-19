@@ -2,16 +2,14 @@ package game.actions;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.items.GoldenRunes;
-import game.utils.Status;
+import game.items.Consumable;
 
-public class ConsumeGoldenRuneAction extends Action {
-    private GoldenRunes goldenRunes;
+public class ConsumeAction extends Action {
+    private Consumable consumable;
 
-    public ConsumeGoldenRuneAction(GoldenRunes goldenRunes) {
-        this.goldenRunes = goldenRunes;
+    public ConsumeAction(Consumable consumable) {
+        this.consumable = consumable;
     }
 
     /**
@@ -23,12 +21,7 @@ public class ConsumeGoldenRuneAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        for (int i = 0; i < actor.getItemInventory().size(); i++) {
-            if (actor.getItemInventory().get(i).toString().equals(goldenRunes.toString())) {
-                actor.removeItemFromInventory(actor.getItemInventory().get(i));
-            }
-        }
-        return actor + " consumed the Golden Rune";
+        return this.consumable.consume(actor);
     }
 
     /**
@@ -39,6 +32,6 @@ public class ConsumeGoldenRuneAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " consumes the " + goldenRunes;
+        return actor + " consumes the " + this.consumable;
     }
 }

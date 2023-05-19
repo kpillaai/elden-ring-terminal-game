@@ -1,5 +1,6 @@
 package game.actions;
 
+import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.weapons.Buyable;
@@ -10,7 +11,7 @@ import game.weapons.Buyable;
  * @author Zilei Chen
  * Modified by: Zilei Chen
  */
-public class BuyAction extends TradeAction {
+public class BuyAction extends Action {
 
     /**
      * The item that is being purchased
@@ -34,15 +35,7 @@ public class BuyAction extends TradeAction {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        int buy_price = buyable.getBuyPrice();
-        if (getRunes(actor) > (-1*(buy_price))) {
-            updateRunes(buy_price, actor, map);
-            actor.addWeaponToInventory(buyable.returnWeaponItem());
-            return actor + " bought " + buyable.returnWeaponItem() + " for " + -buy_price + " runes";
-        }
-        else {
-            return "Tarnished does not have enough runes";
-        }
+        return this.buyable.buy(actor);
     }
 
     /**
@@ -53,6 +46,6 @@ public class BuyAction extends TradeAction {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "Buy " + buyable.returnWeaponItem() + " from Merchant Kale for " + -buyable.getBuyPrice() + " runes";
+        return "Buy " + buyable + " from Merchant Kale for " + -buyable.getBuyPrice() + " runes";
     }
 }

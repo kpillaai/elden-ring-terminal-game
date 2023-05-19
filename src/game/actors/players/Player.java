@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
+import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.environments.SiteOfLostGrace;
 import game.items.RemembranceOfTheGrafted;
 import game.utils.ResetManager;
@@ -14,6 +15,12 @@ import game.utils.Resettable;
 import game.items.Runes;
 import game.utils.Status;
 import game.items.FlaskOfCrimsonTears;
+import game.weapons.Grossmesser;
+import game.weapons.Scimitar;
+import game.weapons.Sellable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class representing the Player. It implements the Resettable interface.

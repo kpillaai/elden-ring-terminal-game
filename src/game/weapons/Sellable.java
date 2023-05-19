@@ -1,5 +1,6 @@
 package game.weapons;
 
+import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 
@@ -16,8 +17,8 @@ public interface Sellable {
     public int getSellPrice();
 
     /**
-     * Gets the WeaponItem equivalent of this Buyable interface.
-     * @return WeaponItem representing this buyable weapon.
+     * Sells the item by removing the item from the actor's inventory and updating the number of runes the actor has.
+     * @param actor the actor or player selling the item.
      */
-    public Item returnWeaponItem();
+    public String sell(Actor actor);
 }

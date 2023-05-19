@@ -1,5 +1,6 @@
 package game.weapons;
 
+import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 
 /**
@@ -15,8 +16,8 @@ public interface Buyable {
     public int getBuyPrice();
 
     /**
-     * Gets the WeaponItem equivalent of this Buyable interface.
-     * @return WeaponItem representing this buyable weapon.
+     * Buys the item and gives the item to the actor.
+     * @param actor the actor or player buying the item.
      */
-    public WeaponItem returnWeaponItem();
+    public String buy(Actor actor);
 }

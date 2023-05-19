@@ -14,32 +14,14 @@ import game.utils.Status;
  * Modified by: Zilei Chen
  */
 public class TradeAction extends Action {
+    private Item itemToGive;
 
-    /**
-     * Update the number of runes the player has
-     * @param amount the number to increase or decrease by
-     * @param actor The player
-     */
-    public void updateRunes(int amount, Actor actor, GameMap map){
-        Runes runes = new Runes(true);
-        runes.setNumberOfRunes(amount);
-        PickUpItemAction pickUpItemAction = new PickUpItemAction(runes);
-        pickUpItemAction.execute(actor, map);
-    }
+    private Item itemToReceive;
 
-    /**
-     * Get the number of runes the player has
-     * @param actor The player
-     * @return The number of runes the player has
-     */
-    public int getRunes(Actor actor){
-        int number = 0;
-        for (Item item : actor.getItemInventory()){
-            if (item.hasCapability(Status.CURRENCY)){
-                number = Integer.parseInt(item.toString().substring(0, item.toString().length() - 6));
-            }
-        }
-        return number;
+    public TradeAction(Item itemToGive, Item itemToReceive){
+        super();
+        this.itemToGive = itemToGive;
+        this.itemToReceive = itemToReceive;
     }
 
     /**
@@ -51,7 +33,9 @@ public class TradeAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        return null;
+        actor.addItemToInventory(this.itemToReceive);
+        actor.removeItemFromInventory(this.itemToGive);
+        return actor + " trades " + this.itemToGive + " for " + this.itemToReceive;
     }
 
     /**
@@ -62,6 +46,6 @@ public class TradeAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return null;
+        return "Trade " + this.itemToGive + " for " + this.itemToReceive;
     }
 }

@@ -72,7 +72,7 @@ public class Application {
 			world.addPlayer(player, mapManager.Limgrave.at(37, 10));
 		}
 		MerchantKale merchantKale = new MerchantKale();
-		mapManager.Limgrave.at(38, 9).addActor(merchantKale);
+		mapManager.Limgrave.at(38, 8).addActor(merchantKale);
 
 		FingerReaderEnia fingerReaderEnia = new FingerReaderEnia();
 		mapManager.Limgrave.at(38, 13).addActor(fingerReaderEnia);
