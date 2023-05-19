@@ -18,5 +18,7 @@ public enum Status {
     RABIDDOG,
     AQUATIC,
     STORMVEIL_FRIENDLY,
-    TRADEABLE
+    TRADEABLE,
+    ENEMY_NPC,
+    PEACEFUL
 }

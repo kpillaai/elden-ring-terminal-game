@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
+import game.actors.CombatArchetypes;
 import game.environments.SiteOfLostGrace;
 import game.items.RemembranceOfTheGrafted;
 import game.utils.ResetManager;
@@ -14,6 +15,9 @@ import game.utils.Resettable;
 import game.items.Runes;
 import game.utils.Status;
 import game.items.FlaskOfCrimsonTears;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class representing the Player. It implements the Resettable interface.
@@ -172,4 +176,18 @@ public class Player extends Actor implements Resettable {
 		this.resetMaxHp(this.getMaxHp());
 		this.flaskOfCrimsonTears.refresh();
 	}
+
+	public void setCombatArchetype(int index) {
+		ArrayList<CombatArchetypes> combatArchetypes = new ArrayList<>();
+		// add combat archetypes to player
+		// (have combat archetype manager that will ask for int from user and call this method)
+		combatArchetypes.add(new Samurai());
+		combatArchetypes.add(new Bandit());
+		combatArchetypes.add(new Wretch());
+		combatArchetypes.add(new Astrologer());
+
+		this.addWeaponToInventory(combatArchetypes.get(index).getWeapon());
+		this.increaseMaxHp(combatArchetypes.get(index).getHp());
+	}
+
 }
