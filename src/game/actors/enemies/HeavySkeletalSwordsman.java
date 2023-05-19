@@ -1,12 +1,8 @@
 package game.actors.enemies;
 
-import edu.monash.fit2099.engine.actions.Action;
-import edu.monash.fit2099.engine.actions.ActionList;
-import edu.monash.fit2099.engine.actions.DoNothingAction;
-import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.behaviours.AOEAttackActionBehaviour;
+import game.utils.Spawnable;
 import game.weapons.Grossmesser;
 
 /**
@@ -14,7 +10,7 @@ import game.weapons.Grossmesser;
  * @author Zilei Chen
  * @version 1.0
  */
-public class HeavySkeletalSwordsman extends Skeleton {
+public class HeavySkeletalSwordsman extends Skeleton implements Spawnable {
 
     /**
      * Abstract constructor for HeavySkeletalSwordsman class
@@ -41,7 +37,6 @@ public class HeavySkeletalSwordsman extends Skeleton {
      * Getter for the spawn chance of HeavySkeletalSwordsman out of 100
      * @return the spawn chance of HeavySkeletalSwordsman out of 100
      */
-    @Override
     public int getSpawnChance() {
         return 27;
     }

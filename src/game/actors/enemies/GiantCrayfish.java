@@ -1,12 +1,13 @@
 package game.actors.enemies;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.utils.Spawnable;
 
 /**
  * GiantCrayfish is a concrete class inheriting from GiantEnemy
  * @author Zilei Chen
  * @version 1.0
  */
-public class GiantCrayfish extends GiantEnemy {
+public class GiantCrayfish extends GiantEnemy implements Spawnable {
 
     /**
      * Constructor for GiantCrayfish
@@ -30,7 +31,6 @@ public class GiantCrayfish extends GiantEnemy {
      * Getter for the spawn chance of GiantCrayfish out of 100
      * @return the spawn chance of GiantCrayfish out of 100
      */
-    @Override
     public int getSpawnChance() {
         return 1;
     }

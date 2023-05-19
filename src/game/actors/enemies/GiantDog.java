@@ -1,5 +1,6 @@
 package game.actors.enemies;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.utils.Spawnable;
 
 /**
  * BEHOLD, DOG!
@@ -9,7 +10,7 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
  * Modified by: Jason Skurr
  *
  */
-public class GiantDog extends GiantEnemy {
+public class GiantDog extends GiantEnemy implements Spawnable{
 
     /**
      * Constructor for GiantDog
@@ -33,7 +34,6 @@ public class GiantDog extends GiantEnemy {
      * Getter for the spawn chance of GiantDog out of 100
      * @return the spawn chance of GiantDog out of 100
      */
-    @Override
     public int getSpawnChance() {
         return 4;
     }

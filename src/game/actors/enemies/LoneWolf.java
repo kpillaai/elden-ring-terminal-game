@@ -1,6 +1,6 @@
 package game.actors.enemies;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-import game.behaviours.BasicAttackActionBehaviour;
+import game.utils.Spawnable;
 import game.utils.Status;
 
 /**
@@ -11,7 +11,7 @@ import game.utils.Status;
  * Modified by: Zilei Chen
  *
  */
-public class LoneWolf extends Enemy {
+public class LoneWolf extends Enemy implements Spawnable {
 
     /**
      * Constructor for LoneWolf class
@@ -36,7 +36,6 @@ public class LoneWolf extends Enemy {
      * Getter for the spawn chance of LoneWolf out of 100
      * @return the spawn chance of LoneWolf out of 100
      */
-    @Override
     public int getSpawnChance() {
         return 33;
     }

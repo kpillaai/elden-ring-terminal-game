@@ -44,21 +44,6 @@ public class Invader extends Enemy implements NPCCombatArchetype {
         //this.behaviours.put(999, new WanderBehaviour());
     }
 
-    /**
-     * Getter for the spawn chance of an enemy out of 100
-     *
-     * @return the spawn chance of an enemy out of 100
-     */
-    @Override
-    public int getSpawnChance() {
-        return 50;
-    }
-
-
-
-    /**
-     *
-     */
     @Override
     public void applyRandomClass() {
         ArrayList<CombatArchetypes> classes = new ArrayList<CombatArchetypes>();

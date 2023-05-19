@@ -1,6 +1,7 @@
 package game.actors.enemies;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.utils.Status;
+import game.utils.Spawnable;
 
 /**
  *
@@ -9,7 +10,7 @@ import game.utils.Status;
  * Modified by: Jason Skurr
  *
  */
-public class GodrickSoldier extends Enemy {
+public class GodrickSoldier extends Enemy implements Spawnable{
 
     /**
      * Constructor for GodrickSoldier class
@@ -35,7 +36,6 @@ public class GodrickSoldier extends Enemy {
      * Getter for the spawn chance of a Godrick Soldier out of 100
      * @return the spawn chance of a Godrick Soldier out of 100
      */
-    @Override
     public int getSpawnChance() {
         return 45;
     }

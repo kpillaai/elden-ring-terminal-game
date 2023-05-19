@@ -1,12 +1,14 @@
 package game.actors.enemies;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.utils.Spawnable;
+
 
 /**
  * GiantCrab is a concrete class inheriting from GiantEnemy
  * @author Zilei Chen
  * @version 1.0
  */
-public class GiantCrab extends GiantEnemy {
+public class GiantCrab extends GiantEnemy implements Spawnable {
 
     /**
      * Constructor for GiantCrab
@@ -30,7 +32,6 @@ public class GiantCrab extends GiantEnemy {
      * Getter for the spawn chance of Giant Crab out of 100
      * @return the spawn chance of Giant Crab out of 100
      */
-    @Override
     public int getSpawnChance() {
         return 2;
     }

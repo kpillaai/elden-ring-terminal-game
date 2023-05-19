@@ -1,13 +1,7 @@
 package game.actors.enemies;
-
-import edu.monash.fit2099.engine.actions.Action;
-import edu.monash.fit2099.engine.actions.ActionList;
-import edu.monash.fit2099.engine.actions.DoNothingAction;
-import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.behaviours.AOEAttackActionBehaviour;
-import game.items.Runes;
+import game.utils.Spawnable;
 import game.weapons.Scimitar;
 
 /**
@@ -15,7 +9,7 @@ import game.weapons.Scimitar;
  * @author Zilei Chen
  * @version 1.0
  */
-public class SkeletalBandit extends Skeleton {
+public class SkeletalBandit extends Skeleton implements Spawnable {
 
     /**
      * Abstract constructor for SkeletalBandit class
@@ -42,7 +36,6 @@ public class SkeletalBandit extends Skeleton {
      * Getter for the spawn chance of SkeletalBandit out of 100
      * @return the spawn chance of SkeletalBandit out of 100
      */
-    @Override
     public int getSpawnChance() {
         return 27;
     }

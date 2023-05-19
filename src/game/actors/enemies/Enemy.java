@@ -123,11 +123,6 @@ public abstract class Enemy extends Actor implements Resettable{
         this.runeDropValues = new int[]{min, max};
     }
 
-    /**
-     * Getter for the spawn chance of an enemy out of 100
-     * @return the spawn chance of an enemy out of 100
-     */
-    public abstract int getSpawnChance();
 
     /**
      * Reset the enemy by removing it from the map

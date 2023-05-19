@@ -1,6 +1,8 @@
 package game.actors.enemies;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.utils.Status;
+import game.utils.Spawnable;
+
 
 /**
  * BEHOLD, DOG!
@@ -10,7 +12,7 @@ import game.utils.Status;
  * Modified by: Jason Skurr
  *
  */
-public class Dog extends Enemy {
+public class Dog extends Enemy implements Spawnable{
 
     /**
      * Constructor for Dog class
@@ -35,7 +37,6 @@ public class Dog extends Enemy {
      * Getter for the spawn chance of a Dog out of 100
      * @return the spawn chance of a Dog out of 100
      */
-    @Override
     public int getSpawnChance() {
         return 37;
     }
