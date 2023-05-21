@@ -11,7 +11,11 @@ import game.utils.RandomNumberGenerator;
 import game.utils.Status;
 
 import java.util.ArrayList;
-
+/**
+ * Invader class
+ * @author Krishna Managoran
+ * @version 1.0
+ */
 public class Invader extends Enemy implements NPCCombatArchetype {
 
     /**

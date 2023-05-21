@@ -19,7 +19,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * Ally class that extends Actor Parent Class and implements NPCCombatArchetype Interface
+ * @author Krishna Managoran
+ * @version 1.0
+ */
 public class Ally extends Actor implements NPCCombatArchetype {
     /**
      * List of behaviours an ally can perform
@@ -81,7 +85,9 @@ public class Ally extends Actor implements NPCCombatArchetype {
         }
         return actions;
     }
-
+    /**
+     * Method for Ally combat archetype to be randomly chosen.
+     */
     public void applyRandomClass(){
         ArrayList<CombatArchetypes> classes = new ArrayList<CombatArchetypes>();
         classes.add(new Astrologer());
