@@ -45,7 +45,7 @@ public class SleepStaff extends WeaponItem implements Buyable, Sellable{
      */
     @Override
     public int getBuyPrice() {
-        return -500;
+        return 500;
     }
 
     /**

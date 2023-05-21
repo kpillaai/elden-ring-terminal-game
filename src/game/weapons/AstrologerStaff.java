@@ -42,7 +42,7 @@ public class AstrologerStaff extends WeaponItem implements Sellable, Buyable {
      */
     @Override
     public int getBuyPrice() {
-        return -800;
+        return 800;
     }
 
     /**
