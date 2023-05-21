@@ -44,7 +44,7 @@ public class GreatKnife extends WeaponItem implements Sellable, Buyable {
      */
     @Override
     public int getBuyPrice() {
-        return -3500;
+        return 3500;
     }
 
     /**

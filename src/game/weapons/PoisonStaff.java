@@ -93,7 +93,7 @@ public class PoisonStaff extends DelayedDamageWeapon implements Buyable, Sellabl
      */
     @Override
     public int getBuyPrice() {
-        return -600;
+        return 600;
     }
 
     /**

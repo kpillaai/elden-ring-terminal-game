@@ -44,7 +44,7 @@ public class Scimitar extends WeaponItem implements Sellable, Buyable {
      */
     @Override
     public int getBuyPrice() {
-        return -600;
+        return 600;
     }
 
     /**
