@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class DelayedDamageWeapon extends WeaponItem {
 
-    public Map<Actor, Integer> poisonTracker = new HashMap<>();
+    public Map<Actor, Integer> damageTracker = new HashMap<>();
     /**
      * Constructor.
      *
@@ -36,19 +36,19 @@ public class DelayedDamageWeapon extends WeaponItem {
      */
     @Override
     public void tick(Location currentLocation, Actor actor) {
-        for (Actor target: poisonTracker.keySet()) {
-            if (poisonTracker.get(target) > 0) {
+        for (Actor target: damageTracker.keySet()) {
+            if (damageTracker.get(target) > 0) {
                 target.hurt(20);
                 // CHANGE THIS TO DISPLAY
                 Display display = new Display();
                 display.println(target + " was poisoned for 20 damage");
-                int counter = poisonTracker.get(target) - 1;
-                poisonTracker.remove(target);
+                int counter = damageTracker.get(target) - 1;
+                damageTracker.remove(target);
                 if (counter <= 0) {
                     target.removeCapability(Status.POISONED);
                 }
                 else {
-                    poisonTracker.put(target, counter);
+                    damageTracker.put(target, counter);
                 }
                 if (!target.isConscious()) {
                     new DeathAction(actor).execute(target, currentLocation.map());
