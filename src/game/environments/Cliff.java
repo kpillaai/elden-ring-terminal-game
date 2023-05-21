@@ -27,6 +27,7 @@ public class Cliff extends Ground {
     public void tick(Location location) {
         Actor player = location.getActor();
         if(player != null){
+            player.hurt(999999);
             FallAction fallAction = new FallAction(player);
             fallAction.execute(player, location.map());
         }
