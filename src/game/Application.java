@@ -53,17 +53,8 @@ public class Application {
 		PlayerSelectionManager playerSelectionManager = new PlayerSelectionManager();
 		world.addPlayer(playerSelectionManager.selectCombatArchetype(), mapManager.Limgrave.at(37, 10));
 
-		//Invader invader = new Invader();
-		//mapManager.Limgrave.at(35, 10).addActor(invader);
-
-		//Ally ally = new Ally();
-		//mapManager.Limgrave.at(36, 10).addActor(ally);
-
-		LoneWolf skeletalBandit = new LoneWolf();
-		mapManager.Limgrave.at(37, 9).addActor(skeletalBandit);
-
 		MerchantKale merchantKale = new MerchantKale();
-		mapManager.Limgrave.at(38, 8).addActor(merchantKale);
+		mapManager.Limgrave.at(38, 11).addActor(merchantKale);
 
 		FingerReaderEnia fingerReaderEnia = new FingerReaderEnia();
 		mapManager.Limgrave.at(38, 13).addActor(fingerReaderEnia);
