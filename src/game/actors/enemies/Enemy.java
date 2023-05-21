@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.actions.AttackAction;
+import game.actions.IsAsleepAction;
 import game.behaviours.*;
 import game.items.Runes;
 import game.utils.RandomNumberGenerator;
@@ -30,6 +31,8 @@ public abstract class Enemy extends Actor implements Resettable{
      * Range of values runes can drop for each enemy
      */
     private int[] runeDropValues;
+
+    private int poisonCounter = 0;
 
     /**
      * Abstract constructor for Enemy class
@@ -64,6 +67,15 @@ public abstract class Enemy extends Actor implements Resettable{
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        if (lastAction != null) {
+            Action nextAction = lastAction.getNextAction();
+            if (nextAction != null) {
+                return nextAction;
+            }
+        }
+        if (this.hasCapability(Status.ASLEEP)) {
+            return new IsAsleepAction(3);
+        }
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
             if(action != null)

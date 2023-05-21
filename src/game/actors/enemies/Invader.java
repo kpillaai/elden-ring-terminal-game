@@ -26,8 +26,6 @@ import java.util.Map;
 
 public class Invader extends Enemy implements NPCCombatArchetype {
 
-    public Map<Integer, Behaviour> behaviours = new HashMap<>();
-
     /**
      * Constructor for Player class. It also adds items to the player inventory that is necessary.
      * It also adds the player to the ResetManager.
@@ -41,6 +39,7 @@ public class Invader extends Enemy implements NPCCombatArchetype {
         this.behaviours.put(1, new BasicAttackActionBehaviour(this.getWeaponInventory().get(0)));
         super.setRuneDropValues(1358, 5578);
         super.spawnRunes();
+        this.behaviours.remove(2);
         //this.behaviours.put(999, new WanderBehaviour());
     }
 
