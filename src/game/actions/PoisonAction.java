@@ -32,7 +32,7 @@ public class PoisonAction extends AttackAction{
     @Override
     public String execute(Actor actor, GameMap map) {
         target.addCapability(Status.POISONED);
-        delayedDamageWeapon.poisonTracker.put(target, 3);
+        delayedDamageWeapon.damageTracker.put(target, 3);
         return super.execute(actor, map);
     }
 
