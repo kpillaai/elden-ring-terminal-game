@@ -7,6 +7,9 @@ import game.environments.Teleporter;
 
 public class TeleportAction extends Action {
 
+    /**
+     * instantiating a teleporter object
+     */
     Teleporter teleporter;
     /**
      * Perform the Action.

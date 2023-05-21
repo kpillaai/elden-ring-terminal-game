@@ -14,10 +14,21 @@ import game.utils.Status;
  * Modified by: Zilei Chen
  */
 public class TradeAction extends Action {
+    /**
+     * item the player will give
+     */
     private Item itemToGive;
 
+    /**
+     * item the player will recieve
+     */
     private Item itemToReceive;
 
+    /**
+     * Constructor, perform the action
+     * @param itemToGive item the player will trade away
+     * @param itemToReceive item the player will receive
+     */
     public TradeAction(Item itemToGive, Item itemToReceive){
         super();
         this.itemToGive = itemToGive;

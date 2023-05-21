@@ -19,7 +19,7 @@ import game.utils.Status;
 public class AxeOfGodrick extends WeaponItem implements Sellable {
 
     /**
-     * Constructor for AxeOfGodrick class.
+     * Constructor for Axe Of Godrick class.
      */
     public AxeOfGodrick() {
         super("Axe Of Godrick", 'T', 142, "swings", 84);

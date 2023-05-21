@@ -11,7 +11,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class DelayedDamageWeapon extends WeaponItem {
+    /**
+     * damage done to an actor each turn
+     */
     int damagePerTurn;
+    /**
+     * verb for damage done to actor each turn
+     */
     String damagePerTurnVerb;
 
     public Map<Actor, Integer> damageTracker = new HashMap<>();

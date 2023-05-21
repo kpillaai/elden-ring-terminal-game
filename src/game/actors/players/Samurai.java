@@ -10,9 +10,10 @@ import game.weapons.Uchigatana;
  */
 public class Samurai extends CombatArchetypes {
 
-
     /**
-     * @return
+     * getter for the hp of this combat archetype
+     *
+     * @return int HP value
      */
     @Override
     public int getHp() {
@@ -20,7 +21,9 @@ public class Samurai extends CombatArchetypes {
     }
 
     /**
-     * @return
+     * getter for the weapon of this combat archetype
+     *
+     * @return weapon item
      */
     @Override
     public WeaponItem getWeapon() {

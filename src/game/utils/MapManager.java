@@ -9,29 +9,43 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MapManager {
-
+    /**
+     * an array list of the game maps in the world
+     */
     private ArrayList<GameMap> gameMaps = new ArrayList<>();
-
+    /**
+     * original gamemap that player spawns in
+     */
     public GameMap Limgrave;
-
+    /**
+     * instantiates the class used to actually create the ground
+     */
     private FancyGroundFactory groundFactory;
+
+    /**
+     * generates the map and sets teleporters
+     * @param groundFactory used to create the map
+     */
     public MapManager(FancyGroundFactory groundFactory){
         this.groundFactory = groundFactory;
         this.generateMaps();
         this.setTeleporters();
     }
 
+    /**
+     * generates the map and prints to the user
+     */
     private void generateMaps(){
         List<String> mapLimgrave = Arrays.asList(
-                "......................#.............#..........................+++.........",
+                "......................#.............#...............*..........+++.........",
                 "......................#.............#.......................+++++..........",
-                "......................#..___....____#.........................+++++........",
+                "........*.............#..___....____#.........................+++++........",
                 "......................#...........__#............................++........",
                 "......................#_____........#.............................+++......",
                 "......................#............_#..............................+++.....",
                 "......................######...######......................................",
                 "...........................................................................",
-                "...........................=...............................................",
+                "...........................=............................................*..",
                 "........++++......................###___###................................",
                 "........+++++++...................________#................................",
                 "..........+++.....................#________................................",
@@ -46,7 +60,7 @@ public class MapManager {
                 "_____________#.....++++..........................+..............__.....#...",
                 "_____________#.....+....++........................++.........._.....__.#...",
                 "_____________#.........+..+.....................+++...........###..__###...",
-                "_____________#.............++..............................................");
+                "_____________#.............++............*.................................");
         this.Limgrave = new GameMap(this.groundFactory, mapLimgrave);
         this.gameMaps.add(this.Limgrave);
 
@@ -106,10 +120,17 @@ public class MapManager {
         this.gameMaps.add(new GameMap(this.groundFactory, mapBossRoom));
     }
 
+    /**
+     * getter for game map
+     * @return gameMaps
+     */
     public ArrayList<GameMap> getGameMaps() {
         return gameMaps;
     }
 
+    /**
+     * setter for teleporters on the map
+     */
     private void setTeleporters(){
         /*
         0. Limgrave

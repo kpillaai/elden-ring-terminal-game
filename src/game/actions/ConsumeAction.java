@@ -6,7 +6,15 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import game.items.Consumable;
 
 public class ConsumeAction extends Action {
+    /**
+     * something that is consumable
+     */
     private Consumable consumable;
+
+    /**
+     * Constructor
+     * @param consumable thing to be consumed
+     */
 
     public ConsumeAction(Consumable consumable) {
         this.consumable = consumable;
