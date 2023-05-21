@@ -32,7 +32,6 @@ public abstract class Enemy extends Actor implements Resettable{
      */
     private int[] runeDropValues;
 
-    private int poisonCounter = 0;
 
     /**
      * Abstract constructor for Enemy class

@@ -58,7 +58,9 @@ public class Player extends Actor implements Resettable {
 	 * The Flask of Crimson Tears that the player has
 	 */
 	private FlaskOfCrimsonTears flaskOfCrimsonTears = new FlaskOfCrimsonTears();
-
+	/**
+	 *  Remembrance of the Grafted given to the player for marking purposes
+	 */
 	private RemembranceOfTheGrafted remembranceOfTheGrafted = new RemembranceOfTheGrafted(false);
 
 	/**
@@ -72,8 +74,6 @@ public class Player extends Actor implements Resettable {
 		super.addItemToInventory(this.runes); // always make sure the runes are at the start of the inventory
 		this.addItemToInventory(this.flaskOfCrimsonTears);
 		this.addItemToInventory(this.remembranceOfTheGrafted);
-		this.addWeaponToInventory(new PoisonStaff());
-		this.addWeaponToInventory(new SleepStaff());
 
 		ResetManager resetManager = ResetManager.getInstance();
 		resetManager.registerResettable(this);

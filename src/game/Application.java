@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.NPC.FingerReaderEnia;
+import game.items.GoldenRunes;
 import game.utils.PlayerSelectionManager;
 import game.actors.enemies.LoneWolf;
 import game.environments.*;
@@ -58,6 +59,12 @@ public class Application {
 
 		FingerReaderEnia fingerReaderEnia = new FingerReaderEnia();
 		mapManager.Limgrave.at(38, 13).addActor(fingerReaderEnia);
+
+		GoldenRunes goldenRunes1 = new GoldenRunes();
+		mapManager.Limgrave.at(45, 13).addItem(goldenRunes1);
+
+		GoldenRunes goldenRunes2 = new GoldenRunes();
+		mapManager.Limgrave.at(28, 10).addItem(goldenRunes2);
 
 		world.run();
 	}
