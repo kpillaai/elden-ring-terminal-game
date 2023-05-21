@@ -23,7 +23,7 @@ public class PoisonStaff extends DelayedDamageWeapon implements Buyable, Sellabl
      * Constructor.
      */
     public PoisonStaff() {
-        super("Poison Staff", '|', 60, "attacks", 100);
+        super("Poison Staff", '|', 60, "attacks", 100, 20, "poisoned");
     }
 
     /**
@@ -65,6 +65,7 @@ public class PoisonStaff extends DelayedDamageWeapon implements Buyable, Sellabl
 
     @Override
     public void tick(Location currentLocation, Actor actor) {
+        super.tick(currentLocation, actor);
         Boolean isTraderNear = false;
         for (Exit exits : currentLocation.getExits()) {
             if (exits.getDestination().containsAnActor()) {
