@@ -4,11 +4,18 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.actors.players.Samurai;
 import game.utils.Status;
 
 public class IsAsleepAction extends DoNothingAction {
+    /**
+     * integer counter to count how many turns actor has been sleeping
+     */
     int sleepCounter;
+
+    /**
+     * Constructor
+     * @param sleepCounter integer to count how many turns actor has been asleep
+     */
     public IsAsleepAction(int sleepCounter) {
         this.sleepCounter = sleepCounter;
     }

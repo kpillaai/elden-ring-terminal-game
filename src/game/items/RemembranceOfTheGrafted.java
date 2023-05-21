@@ -5,14 +5,9 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Location;
-import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.SellAction;
 import game.utils.Status;
-import game.weapons.AxeOfGodrick;
-import game.weapons.GraftedDragon;
 import game.weapons.Sellable;
-
-import java.util.ArrayList;
 
 public class RemembranceOfTheGrafted extends Item implements Sellable{
     /***
@@ -49,7 +44,13 @@ public class RemembranceOfTheGrafted extends Item implements Sellable{
         actor.removeItemFromInventory(this);
         return actor + " sells " + this + " for " + this.getSellPrice() + " Runes";
     }
-
+    /**
+     * Inform a carried Item of the passage of time.
+     *
+     * This method is called once per turn, if the Item is being carried.
+     * @param currentLocation The location of the actor carrying this Item.
+     * @param actor The actor carrying this Item.
+     */
     @Override
     public void tick(Location currentLocation, Actor actor) {
         Boolean isTraderNear = false;

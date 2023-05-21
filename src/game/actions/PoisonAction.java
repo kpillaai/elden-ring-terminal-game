@@ -7,6 +7,9 @@ import game.utils.Status;
 import game.weapons.DelayedDamageWeapon;
 
 public class PoisonAction extends AttackAction{
+    /**
+     * a weapon that has a delayed damage characteristic
+     */
     private DelayedDamageWeapon delayedDamageWeapon;
     /**
      * Constructor.

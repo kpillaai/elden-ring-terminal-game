@@ -14,12 +14,6 @@ import game.utils.Status;
 public class SleepStaff extends WeaponItem implements Buyable, Sellable{
     /**
      * Constructor.
-     *
-     * @param name        name of the item
-     * @param displayChar character to use for display when item is on the ground
-     * @param damage      amount of damage this weapon does
-     * @param verb        verb to use for this weapon, e.g. "hits", "zaps"
-     * @param hitRate     the probability/chance to hit the target.
      */
     public SleepStaff() {
         super("Sleep Staff", '{', 40, "bonks",  100);

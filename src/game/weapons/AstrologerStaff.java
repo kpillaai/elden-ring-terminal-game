@@ -23,7 +23,7 @@ public class AstrologerStaff extends WeaponItem implements Sellable, Buyable {
      * Constructor for AstrologerStaff class
      */
     public AstrologerStaff() {
-        super("AstrologerStaff", 'f', 274, "casts", 50);
+        super("Astrologer Staff", 'f', 274, "casts", 50);
     }
 
     /**
@@ -36,9 +36,8 @@ public class AstrologerStaff extends WeaponItem implements Sellable, Buyable {
     }
 
     /**
-     * Gets the buy price of this GreatKnife. This number will be negative to represent losing Runes when purchasing
-     * this item.
-     * @return Negative Integer representing the buy price of this AstrologerStaff
+     * Gets the buy price of this Astrologer Staff
+     * @return Integer representing the buy price of this AstrologerStaff
      */
     @Override
     public int getBuyPrice() {
@@ -46,7 +45,7 @@ public class AstrologerStaff extends WeaponItem implements Sellable, Buyable {
     }
 
     /**
-     * Returns the name of this GreatKnife.
+     * Returns the name of this Astrologer Staff.
      * @return String representing the name of the AstrologerStaff.
      */
     @Override

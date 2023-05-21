@@ -13,6 +13,11 @@ public class FallAction extends DeathAction{
         super(actor);
     }
 
+    /**
+     * A menu description output after the action has occurred
+     * @param actor The actor performing the action.
+     * @return string output to describe what has happened
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " falls to its death";

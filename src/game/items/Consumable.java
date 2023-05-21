@@ -2,6 +2,9 @@ package game.items;
 
 import edu.monash.fit2099.engine.actors.Actor;
 
+/**
+ * a consumable interface that represents when an item can be consumed
+ */
 public interface Consumable {
 
     /**
