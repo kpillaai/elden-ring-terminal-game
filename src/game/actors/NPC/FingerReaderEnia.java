@@ -42,6 +42,8 @@ public class FingerReaderEnia extends Actor {
         remembranceTrades.add(new AxeOfGodrick());
         remembranceTrades.add(new GraftedDragon());
         tradeList.put(TradeName.REMEMBRANCE_OF_THE_GRAFTED, remembranceTrades);
+        this.addCapability(Status.PEACEFUL);
+
     }
 
 

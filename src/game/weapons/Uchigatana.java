@@ -36,7 +36,7 @@ public class Uchigatana extends WeaponItem implements Sellable, Buyable {
      * @return Negative Integer representing the buy price of this Uchigatana
      */
     public int getBuyPrice() {
-        return -5000;
+        return 5000;
     }
 
     /**
