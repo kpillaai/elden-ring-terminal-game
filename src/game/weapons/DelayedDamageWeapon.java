@@ -10,7 +10,7 @@ import game.utils.Status;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DelayedDamageWeapon extends WeaponItem {
+public abstract class DelayedDamageWeapon extends WeaponItem {
 
     public Map<Actor, Integer> damageTracker = new HashMap<>();
     /**
