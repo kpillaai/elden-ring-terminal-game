@@ -46,6 +46,6 @@ public class BuyAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "Buy " + buyable + " from Merchant Kale for " + -buyable.getBuyPrice() + " runes";
+        return "Buy " + buyable + " from Merchant Kale for " + buyable.getBuyPrice() + " runes";
     }
 }
