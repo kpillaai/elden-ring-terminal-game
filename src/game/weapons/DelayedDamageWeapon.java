@@ -41,7 +41,7 @@ public abstract class DelayedDamageWeapon extends WeaponItem {
                 target.hurt(20);
                 // CHANGE THIS TO DISPLAY
                 Display display = new Display();
-                display.println(target + " was poisoned for 20 damage");
+                display.println(target + " was hurt for 20 damage");
                 int counter = damageTracker.get(target) - 1;
                 damageTracker.remove(target);
                 if (counter <= 0) {
