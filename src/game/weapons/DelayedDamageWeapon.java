@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class DelayedDamageWeapon extends WeaponItem {
+    int damagePerTurn;
+    String damagePerTurnVerb;
 
     public Map<Actor, Integer> damageTracker = new HashMap<>();
     /**
@@ -22,8 +24,10 @@ public abstract class DelayedDamageWeapon extends WeaponItem {
      * @param verb        verb to use for this weapon, e.g. "hits", "zaps"
      * @param hitRate     the probability/chance to hit the target.
      */
-    public DelayedDamageWeapon(String name, char displayChar, int damage, String verb, int hitRate) {
+    public DelayedDamageWeapon(String name, char displayChar, int damage, String verb, int hitRate, int damagePerTurn, String damagePerTurnVerb) {
         super(name, displayChar, damage, verb, hitRate);
+        this.damagePerTurn = damagePerTurn;
+        this.damagePerTurnVerb = damagePerTurnVerb;
     }
 
     /**
@@ -38,10 +42,10 @@ public abstract class DelayedDamageWeapon extends WeaponItem {
     public void tick(Location currentLocation, Actor actor) {
         for (Actor target: damageTracker.keySet()) {
             if (damageTracker.get(target) > 0) {
-                target.hurt(20);
+                target.hurt(damagePerTurn);
                 // CHANGE THIS TO DISPLAY
                 Display display = new Display();
-                display.println(target + " was poisoned for 20 damage");
+                display.println(target + " was " + damagePerTurnVerb + " for " + damagePerTurn + " damage");
                 int counter = damageTracker.get(target) - 1;
                 damageTracker.remove(target);
                 if (counter <= 0) {
