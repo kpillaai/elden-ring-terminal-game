@@ -1,12 +1,11 @@
 package game.actions;
 
-import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.utils.Status;
 
-public class SleepAction extends AttackAction {
+public class CastSleepAction extends AttackAction {
 
     /**
      * Constructor.
@@ -15,7 +14,7 @@ public class SleepAction extends AttackAction {
      * @param direction the direction where the attack should be performed (only used for display purposes)
      * @param weapon
      */
-    public SleepAction(Actor target, String direction, Weapon weapon) {
+    public CastSleepAction(Actor target, String direction, Weapon weapon) {
         super(target, direction, weapon);
     }
 
