@@ -4,20 +4,21 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.weapons.AstrologerStaff;
 
 /**
- * Bandit class is custom combat Archetype available for the player to choose. It inherits from Player class.
+ * Astrologer class is custom combat Archetype available for the player to choose
  * @author Jason Skurr
  * @version 1.0
  */
 public class Astrologer extends CombatArchetypes {
 
     /**
-     * Constructor for Bandit class, it spawns with a Great Knife weapon.
+     * Constructor for Astrologer class, it spawns with an Astrologer Staff weapon.
      */
     public Astrologer() {
     }
 
     /**
-     * @return
+     * getter for the hp
+     * @return hp of this astrologer
      */
     @Override
     public int getHp() {
@@ -25,7 +26,8 @@ public class Astrologer extends CombatArchetypes {
     }
 
     /**
-     * @return
+     * getter for the weapon item
+     * @return weapon item of this astrologer
      */
     @Override
     public WeaponItem getWeapon() {

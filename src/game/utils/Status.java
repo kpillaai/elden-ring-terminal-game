@@ -19,10 +19,7 @@ public enum Status {
     AQUATIC,
     STORMVEIL_FRIENDLY,
     TRADEABLE,
-
-
     TRADER,
-
     ENEMY_NPC,
     PEACEFUL,
     POISONED,

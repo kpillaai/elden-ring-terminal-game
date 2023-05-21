@@ -4,8 +4,16 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.actors.enemies.Dog;
 import game.actors.enemies.Enemy;
 
+/**
+ * A class that represents a Cage within the map.
+ * @author Jason Skurr
+ */
 public class Cage extends Spawner {
 
+
+    /**
+     * A dog is one of the enemies that can be spawned on a Cage ground
+     */
     private Dog dog;
 
     /**
@@ -17,6 +25,10 @@ public class Cage extends Spawner {
         super('<');
     }
 
+    /**
+     * For each turn, a Cage has a 37% change of spawning a dog.
+     * @param location The location of the Ground
+     */
     @Override
     public void tick (Location location){
         this.dog = new Dog();

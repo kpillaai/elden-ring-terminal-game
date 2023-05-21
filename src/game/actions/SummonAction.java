@@ -11,7 +11,15 @@ import game.utils.RandomNumberGenerator;
 
 public class SummonAction extends Action {
 
+    /**
+     * the current location which Ally or Invader should be summoned at
+     */
     Location currentLocation;
+
+    /**
+     * Constructor
+     * @param location location where summoned entity should appear
+     */
     public SummonAction(Location location) {
         this.currentLocation = location;
     }

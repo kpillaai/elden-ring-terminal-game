@@ -5,16 +5,10 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Location;
-import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.actions.DeathAction;
 import game.actions.PoisonAction;
 import game.actions.SellAction;
-import game.behaviours.Behaviour;
 import game.items.Runes;
 import game.utils.Status;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class PoisonStaff extends DelayedDamageWeapon implements Buyable, Sellable{
 

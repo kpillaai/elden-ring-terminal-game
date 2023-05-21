@@ -7,21 +7,17 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.actions.SellAction;
 import game.actions.TradeAction;
-import game.actions.TradeItemAction;
-import game.behaviours.Behaviour;
-import game.items.RemembranceOfTheGrafted;
 import game.items.TradeName;
-import game.items.Tradeable;
 import game.utils.Status;
 import game.weapons.*;
 
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * FingerReaderEnia class is a class that represents the NPC Finger Reader Enia which allows players to trade weapons with.
+ */
 public class FingerReaderEnia extends Actor {
 
     /**
@@ -36,7 +32,9 @@ public class FingerReaderEnia extends Actor {
         super("Finger Reader Enia", 'E', 500);
         this.addTrades();
     }
-
+    /**
+     * Adding possible trades to the Remembrance Trade list.
+     */
     private void addTrades(){
         ArrayList<Item> remembranceTrades = new ArrayList<>();
         remembranceTrades.add(new AxeOfGodrick());
@@ -46,10 +44,8 @@ public class FingerReaderEnia extends Actor {
 
     }
 
-
-
     /**
-     * Returns a list of actions that the player is able to perform with Merchant Kale.
+     * Returns a list of actions that the player is able to perform with Finger Reader Enia.
      * This will include a list of all purchasable weapons and a list of sellable items from the player's inventory.
      * @param otherActor the Player looking to trade
      * @param direction  Not applicable in this case.

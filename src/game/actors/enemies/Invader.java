@@ -11,14 +11,18 @@ import game.utils.RandomNumberGenerator;
 import game.utils.Status;
 
 import java.util.ArrayList;
-
+/**
+ * Invader class
+ * @author Krishna Managoran
+ * @version 1.0
+ */
 public class Invader extends Enemy implements NPCCombatArchetype {
 
     /**
-     * Constructor for Player class. It also adds items to the player inventory that is necessary.
-     * It also adds the player to the ResetManager.
+     * Constructor for Invader class. It also adds items to the Invader inventory that is necessary.
+     * It also adds the Invader to the ResetManager.
      *
-     * @param hitPoints The number of hit points (HP) the player has.
+     * @param hitPoints The number of hit points (HP) the Invader has.
      */
     public Invader() {
         super("Invader", 'ඞ', 1);
@@ -31,6 +35,9 @@ public class Invader extends Enemy implements NPCCombatArchetype {
         //this.behaviours.put(999, new WanderBehaviour());
     }
 
+    /**
+     * Method for Invader combat archetype to be randomly chosen.
+     */
     @Override
     public void applyRandomClass() {
         ArrayList<CombatArchetypes> classes = new ArrayList<CombatArchetypes>();
