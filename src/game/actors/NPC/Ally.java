@@ -21,7 +21,7 @@ import java.util.Map;
 
 /**
  * Ally class that extends Actor Parent Class and implements NPCCombatArchetype Interface
- * @author Krishna Managoran
+ * @author Krishna Manogaran
  * @version 1.0
  */
 public class Ally extends Actor implements NPCCombatArchetype {
