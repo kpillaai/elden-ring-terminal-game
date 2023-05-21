@@ -24,6 +24,7 @@ public enum Status {
     TRADER,
 
     ENEMY_NPC,
-    PEACEFUL
-
+    PEACEFUL,
+    POISONED,
+    ASLEEP
 }
