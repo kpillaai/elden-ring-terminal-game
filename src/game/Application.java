@@ -5,19 +5,13 @@ import java.util.ArrayList;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.positions.World;
-import game.actors.Ally;
-import game.actors.FingerReaderEnia;
-import game.actors.PlayerSelectionManager;
-import game.actors.enemies.Invader;
+import game.actors.NPC.FingerReaderEnia;
+import game.utils.PlayerSelectionManager;
 import game.actors.enemies.LoneWolf;
-import game.actors.enemies.SkeletalBandit;
-import game.actors.players.*;
 import game.environments.*;
-import game.items.GoldenRunes;
 import game.utils.FancyMessage;
-import game.actors.MerchantKale;
+import game.actors.NPC.MerchantKale;
 import game.utils.MapManager;
 
 /**

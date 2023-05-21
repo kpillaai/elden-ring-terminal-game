@@ -1,7 +1,6 @@
 package game.actors.players;
 
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.actors.CombatArchetypes;
 import game.weapons.AstrologerStaff;
 
 /**

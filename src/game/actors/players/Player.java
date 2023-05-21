@@ -7,7 +7,6 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
-import game.actors.CombatArchetypes;
 import game.environments.SiteOfLostGrace;
 import game.items.RemembranceOfTheGrafted;
 import game.utils.ResetManager;

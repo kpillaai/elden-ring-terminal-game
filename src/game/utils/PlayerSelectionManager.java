@@ -1,4 +1,4 @@
-package game.actors;
+package game.utils;
 
 import edu.monash.fit2099.engine.displays.Display;
 import game.actors.players.Player;

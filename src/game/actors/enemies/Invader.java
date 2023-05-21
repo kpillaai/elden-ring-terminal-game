@@ -1,28 +1,16 @@
 package game.actors.enemies;
 
-import edu.monash.fit2099.engine.actions.Action;
-import edu.monash.fit2099.engine.actions.ActionList;
-import edu.monash.fit2099.engine.actions.DoNothingAction;
-import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.positions.GameMap;
-import game.actions.AttackAction;
-import game.actors.CombatArchetypes;
-import game.actors.NPCCombatArchetype;
+import game.actors.players.CombatArchetypes;
+import game.actors.NPC.NPCCombatArchetype;
 import game.actors.players.Astrologer;
 import game.actors.players.Bandit;
 import game.actors.players.Samurai;
 import game.actors.players.Wretch;
 import game.behaviours.BasicAttackActionBehaviour;
-import game.behaviours.Behaviour;
-import game.behaviours.FollowBehaviour;
-import game.behaviours.WanderBehaviour;
 import game.utils.RandomNumberGenerator;
 import game.utils.Status;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Invader extends Enemy implements NPCCombatArchetype {
 

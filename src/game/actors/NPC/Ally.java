@@ -1,4 +1,4 @@
-package game.actors;
+package game.actors.NPC;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actions.AttackAction;
+import game.actors.players.CombatArchetypes;
 import game.actors.players.*;
 import game.behaviours.BasicAttackActionBehaviour;
 import game.behaviours.Behaviour;
@@ -19,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Ally extends Actor implements NPCCombatArchetype{
+public class Ally extends Actor implements NPCCombatArchetype {
     /**
      * List of behaviours an ally can perform
      */

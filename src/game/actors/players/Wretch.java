@@ -1,9 +1,7 @@
 package game.actors.players;
 
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import game.actors.CombatArchetypes;
 import game.weapons.Club;
-import game.weapons.GreatKnife;
 
 /**
  * Wretch class is custom combat Archetype available for the player to choose. It inherits from Player class.
