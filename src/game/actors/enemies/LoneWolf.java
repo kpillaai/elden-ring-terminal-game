@@ -17,7 +17,8 @@ public class LoneWolf extends Enemy {
      * Constructor for LoneWolf class
      */
     public LoneWolf() {
-        super("Lone Wolf", 'h', 102);
+        //102
+        super("Lone Wolf", 'h', 120);
         super.setRuneDropValues(55, 1470);
         super.spawnRunes();
         this.addCapability(Status.RABIDDOG);

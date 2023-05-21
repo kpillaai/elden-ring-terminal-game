@@ -61,6 +61,9 @@ public class BasicAttackActionBehaviour extends AttackAction implements Behaviou
                             if (!target.hasCapability(Status.ENEMY_NPC) && actor.hasCapability(Status.ENEMY_NPC)) {
                                 attackList.add(new AttackAction(target, actor_location.getExits().get(i).getName(), this.weapon));
                             }
+                            if (!target.hasCapability(Status.HOSTILE_TO_ENEMY) && actor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+                                attackList.add(new AttackAction(target, actor_location.getExits().get(i).getName(), this.weapon));
+                            }
                         }
                     }
                 }
@@ -127,6 +130,9 @@ public class BasicAttackActionBehaviour extends AttackAction implements Behaviou
                             return this;
                         }
                         if(!target.hasCapability(Status.ENEMY_NPC) && actor.hasCapability(Status.ENEMY_NPC)){
+                            return this;
+                        }
+                        if(!target.hasCapability(Status.HOSTILE_TO_ENEMY) && actor.hasCapability(Status.HOSTILE_TO_ENEMY)){
                             return this;
                         }
                     }

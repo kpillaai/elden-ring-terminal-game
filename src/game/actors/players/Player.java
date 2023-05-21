@@ -15,6 +15,8 @@ import game.utils.Resettable;
 import game.items.Runes;
 import game.utils.Status;
 import game.items.FlaskOfCrimsonTears;
+import game.weapons.PoisonStaff;
+import game.weapons.SleepStaff;
 
 import java.util.ArrayList;
 
@@ -71,6 +73,8 @@ public class Player extends Actor implements Resettable {
 		super.addItemToInventory(this.runes); // always make sure the runes are at the start of the inventory
 		this.addItemToInventory(this.flaskOfCrimsonTears);
 		this.addItemToInventory(this.remembranceOfTheGrafted);
+		this.addWeaponToInventory(new PoisonStaff());
+		this.addWeaponToInventory(new SleepStaff());
 
 		ResetManager resetManager = ResetManager.getInstance();
 		resetManager.registerResettable(this);
