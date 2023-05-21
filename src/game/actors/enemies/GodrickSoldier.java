@@ -5,9 +5,7 @@ import game.utils.Spawnable;
 
 /**
  *
- * Created by:
  * @author Jason Skurr
- * Modified by: Jason Skurr
  *
  */
 public class GodrickSoldier extends Enemy implements Spawnable{

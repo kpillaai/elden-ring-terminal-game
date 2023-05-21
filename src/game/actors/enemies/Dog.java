@@ -7,9 +7,7 @@ import game.utils.Spawnable;
 /**
  * BEHOLD, DOG!
  *
- * Created by:
  * @author Jason Skurr
- * Modified by: Jason Skurr
  *
  */
 public class Dog extends Enemy implements Spawnable{
@@ -32,7 +30,6 @@ public class Dog extends Enemy implements Spawnable{
     public IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(101, "bites", 93);
     }
-
     /**
      * Getter for the spawn chance of a Dog out of 100
      * @return the spawn chance of a Dog out of 100
